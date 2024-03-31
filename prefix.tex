@@ -1,9 +1,11 @@
+% \documentclass[oneside]{book}
 \documentclass[]{report}
 
 % PACKAGES =================================================
 
 \usepackage[english]{babel}
-\usepackage[labelformat=empty]{caption}
+% \usepackage[labelformat=empty]{caption}
+\usepackage[]{caption}
 \usepackage[table]{xcolor}
 \usepackage[all]{xy}
 \usepackage{tikz}
@@ -32,6 +34,7 @@
 \usepackage{wrapfig}
 \usepackage[most]{tcolorbox}
 \usepackage[round]{natbib}
+\usepackage{graphicx,subcaption,lipsum} % Added for subfigures
 
 % SETTINGS =================================================
 \setlength{\parindent}{0pt} %no indentazione al paragrafo nuovo
@@ -78,7 +81,13 @@
 
 \newcommand\noted{\textbf{\textcolor{\stdcolor}{\textsuperscript{$_{\diabox1{}}$}}}}
 
-\newcommand\notets{\textbf{\textcolor{\stdcolor}{\textsuperscript{$_{\sqbox1{}}$}}}}
+\newcommand\notes{\textbf{\textcolor{\stdcolor}{\textsuperscript{$_{\sqbox1{}}$}}}}
+
+\newcommand\notetv{\textbf{\textcolor{\stdcolor}{${\trianbox0{}}\;$}}}
+
+\newcommand\notedv{\textbf{\textcolor{\stdcolor}{${\diabox0{}}\;$}}}
+
+\newcommand\notesv{\textbf{\textcolor{\stdcolor}{${\sqbox0{}}\;$}}}
 
 
 
@@ -126,7 +135,7 @@
 }
 
 \newcommand\boxl[2]{
-\begin{tcolorbox}[colback=\stdcolorlight!white,colframe=\stdcolor!black,title=#1]
+\begin{tcolorbox}[colback=\stdcolorlight!white,colframe=\stdcolor!black,title=\diabox1{} \textbf{#1}]
 #2
 \end{tcolorbox}
 }
