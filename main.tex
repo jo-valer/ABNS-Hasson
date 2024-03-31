@@ -1,0 +1,185 @@
+\documentclass[]{report}
+
+% PACKAGES =================================================
+
+\usepackage[english]{babel}
+\usepackage[labelformat=empty]{caption}
+\usepackage[table]{xcolor}
+\usepackage[all]{xy}
+\usepackage{tikz}
+\usepackage{subfiles}
+\usepackage{titlesec}
+\usepackage{subcaption}
+\usepackage{ragged2e}
+\usepackage{graphicx}
+\usepackage{latexsym}
+\usepackage[export]{adjustbox}
+%\usepackage{sectsty}
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{color}
+\usepackage{graphicx,caption}
+\usepackage{soul}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{siunitx}
+\usepackage{array}
+\usepackage{rotating}
+\usepackage{multirow}
+\usepackage[colorlinks=true, allcolors=black]{hyperref}
+\usepackage[framemethod=tikz]{mdframed}
+\usepackage[a4paper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+\usepackage{wrapfig}
+\usepackage[most]{tcolorbox}
+\usepackage[round]{natbib}
+
+% SETTINGS =================================================
+\setlength{\parindent}{0pt} %no indentazione al paragrafo nuovo
+\captionsetup{font={small,sf}}
+
+\def\stdcolor{purple!70}
+\def\stdcolorlight{purple!5}
+
+% DEFINED COMMANDS ========================================
+
+% Riquadro definizioni
+\newcommand\definition[2]{\begin{mdframed}[nobreak=true,hidealllines=false,linecolor=blue!40,linewidth=2pt,backgroundcolor=blue!5,]\begin{center}\textbf{{#1}}\end{center}\vspace{2mm}{#2}\end{mdframed}}
+
+% Riquadro dettagli
+\newcommand\details[2]{\begin{mdframed}[nobreak=true,hidealllines=false,backgroundcolor=yellow!20,linewidth=0pt]\textbf{{#1}}\vspace{2mm}\\{#2}\end{mdframed}}
+
+% Tabulazione
+\newcommand\tab[1][0.5cm]{\hspace*{#1}} %Tab
+\newcommand\vtab{\vspace{2mm}} %Spazio verticale (N.B. Usare un invio prima e dopo!)
+
+% Osservazioni con carattere base: '!'
+\newcommand\oss[1]{\begin{itemize}\item [\textbf{\textcolor{\stdcolor}{!}}] {#1}\end{itemize}}
+
+% Osservazioni con triangolo
+\newcommand\osst[1]{\begin{itemize}\item [\textbf{\textcolor{\stdcolor}{\trianbox1{}}}] {#1}\end{itemize}}
+% Osservazioni con diamante
+\newcommand\ossd[1]{\begin{itemize}\item [\textbf{\textcolor{\stdcolor}{\diabox1{}}}] {#1}\end{itemize}}
+% Osservazioni con quadrato
+\newcommand\ossq[1]{\begin{itemize}\item [\textbf{\textcolor{\stdcolor}{\sqbox1{}}}] {#1}\end{itemize}}
+
+% Corrispettivi vuoti
+% Osservazioni con triangolo vuoto
+\newcommand\osstv[1]{\begin{itemize}\item [\textbf{\textcolor{\stdcolor}{\trianbox0{}}}] {#1}\end{itemize}}
+% Osservazioni con diamante vuoto
+\newcommand\ossdv[1]{\begin{itemize}\item [\textbf{\textcolor{\stdcolor}{\diabox0{}}}] {#1}\end{itemize}}
+% Osservazioni con quadrato vuoto
+\newcommand\ossqv[1]{\begin{itemize}\item [\textbf{\textcolor{\stdcolor}{\sqbox0{}}}] {#1}\end{itemize}}
+
+
+% NOTE
+\newcommand\note{\textbf{\textcolor{\stdcolor}{\textsuperscript{\textbf{!}}}}}
+
+\newcommand\notet{\textbf{\textcolor{\stdcolor}{\textsuperscript{$_{\trianbox1{}}$}}}}
+
+\newcommand\noted{\textbf{\textcolor{\stdcolor}{\textsuperscript{$_{\diabox1{}}$}}}}
+
+\newcommand\notets{\textbf{\textcolor{\stdcolor}{\textsuperscript{$_{\sqbox1{}}$}}}}
+
+
+
+% CREATE SYMBOLS ===========================================
+
+\def\sqPDF#1#2{0 0 m #1 0 l #1 #1 l 0 #1 l h}
+\def\trianPDF#1#2{0 0 m #1 0 l #2 4.5 l h}
+\def\uptrianPDF#1#2{#2 0 m #1 4.5 l 0 4.5 l h}
+\def\circPDF#1#2{#1 0 0 #1 #2 #2 cm .1 w .5 0 m
+   .5 .276 .276 .5 0 .5 c -.276 .5 -.5 .276 -.5 0 c
+   -.5 -.276 -.276 -.5 0 -.5 c .276 -.5 .5 -.276 .5 0 c h}
+\def\diaPDF#1#2{#2 0 m #1 #2 l #2 #1 l 0 #2 l h}
+
+\def\credCOLOR   {.54 .14 0}
+\def\cblueCOLOR  {.06 .3 .54}
+\def\cgreenCOLOR {0 .54 0}
+
+\def\genbox#1#2#3#4#5#6{% #1=0/1, #2=color, #3=shape, #4=raise, #5=width, #6=width/2
+    \leavevmode\raise#4bp\hbox to#5bp{\vrule height#5bp depth0bp width0bp
+    \pdfliteral{q .5 w \csname #2COLOR\endcsname\space RG
+                       \csname #3PDF\endcsname{#5}{#6} S Q
+             \ifx1#1 q \csname #2COLOR\endcsname\space rg 
+                       \csname #3PDF\endcsname{#5}{#6} f Q\fi}\hss}}
+
+                                    % shape     raise width  width/2
+\def\sqbox      #1#2{\genbox{#1}{#2}  {sq}       {1}   {4.5}  {2.25}}
+\def\trianbox   #1#2{\genbox{#1}{#2}  {trian}    {1}   {5}    {2.5}}
+\def\uptrianbox #1#2{\genbox{#1}{#2}  {uptrian}  {1}   {5}    {2.5}}
+\def\circbox    #1#2{\genbox{#1}{#2}  {circ}     {1}   {5}    {2.5}}
+\def\diabox     #1#2{\genbox{#1}{#2}  {dia}      {0} {6}    {3}}
+
+% USAGE:
+% squares: \sqbox0{cgreen}, \sqbox1{cred}, \sqbox0{cblue}.
+% triangles: \trianbox0{cgreen}, \trianbox1{cred}, \trianbox0{cblue}.
+% triangles: \uptrianbox0{cgreen}, \uptrianbox1{cred}, \uptrianbox0{cblue}.
+% circles: \circbox0{cgreen}, \circbox1{cred}, \circbox0{cblue}.
+% diamonds: \diabox0{cgreen}, \diabox1{cred}, \diabox0{cblue}.
+
+
+% TCOLORBOX
+\newcommand\boxs[1]{
+\begin{tcolorbox}[colback=\stdcolorlight!white,colframe=\stdcolor!black]
+#1
+\end{tcolorbox}
+}
+
+\newcommand\boxl[2]{
+\begin{tcolorbox}[colback=\stdcolorlight!white,colframe=\stdcolor!black,title=#1]
+#2
+\end{tcolorbox}
+}
+
+\newcommand\boxc[2]{
+\begin{tcolorbox}[enhanced,attach boxed title to top center={yshift=-3mm,yshifttext=-1mm},
+  colback=\stdcolorlight!white,colframe=\stdcolor!black,colbacktitle=\stdcolor!black,
+  title=#1,fonttitle=\bfseries,
+  boxed title style={size=small,colframe=\stdcolor!black} ]
+  #2
+\end{tcolorbox}
+}
+% \input{prefix}
+
+\title{\textbf{Artificial and Biological Neural Systems}\\\large \textbf{Theory Notes}}
+\author{Giovanni Valer}
+\date{a.y. 2023/24}
+
+\begin{document}
+\maketitle
+\pagenumbering{roman}
+
+\newpage
+\newgeometry{left=5cm, right=5cm}
+\textit{These notes are for the course ``Artificial and Biological Neural Systems" held by professor Uri Hasson.\\
+I have included all the topics seen during the lectures and tried my best to avoid mistakes. I have also included some digressions (i.e. non-mandatory topics), marking them as such and with a yellow background. That being said, a very broad range of topics was to be covered, hence I do not take responsibility for any mistake or imperfection that might be present; still, it would be much appreciated if you reported any of those, so that I can fix the notes accordingly.
+In the GitHub repository\footnote{TODO} you can find the LaTex source code, where you can create issues and pull requests to include topics and corrections.\\
+I hope that this document will help in the study of this beautiful and exciting subject.}
+\newline
+
+\textit{If you consider this material valuable for you in order to be prepared for the exam, consider offering me a coffee :)}\\
+Paypal: @GiovanniValer (\url{https://www.paypal.me/GiovanniValer})
+\newline
+
+\textit{XOXO - jo}
+\restoregeometry
+\newpage
+
+\tableofcontents
+\clearpage
+
+\pagenumbering{arabic}
+\subfile{chapters/01_introduction}
+\subfile{chapters/02_overview}
+\subfile{chapters/03_categories}
+\subfile{chapters/04_modeling_conceptual_organization}
+% \subfile{chapters/05_modeling_human}
+% \subfile{chapters/06_human_memory}
+% \subfile{chapters/07_language}
+% \subfile{chapters/08_attention}
+
+% \bibliographystyle{alpha}
+\bibliographystyle{plainnat}
+\bibliography{biblio}
+
+\end{document}
