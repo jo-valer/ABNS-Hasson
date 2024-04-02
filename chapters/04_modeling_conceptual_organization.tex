@@ -3,10 +3,144 @@
 \label{chap:modeling_conceptual_organization}
 
 \section[Modeling typicality]{Modeling typicality\\ \large{\textit{Deep Neural Networks Predict Category Typicality Ratings for Images}\\ \cite{lake-2015-deep}}}
-\textcolor{red}{TODO}
+
+They evaluate deep convolutional networks trained for classification on their ability to \textbf{predict category typicality} (human typicality ratings), and try to understand whether deep-learning systems can serve as potential cognitive models.
+
+\subsection{Background}
+The motivation is that, for any task that requires relating an item to its category, \textbf{typicality will influence performance}, whether it is the speed of categorization, ease of production, ease of learning, usefulness for inductive inference, or word order in language.
+
+CNNs learn categorization, but \textbf{perhaps they categorize by learning prototypes}, i.e. produce representations that track categorical structure with typicality structure.
+
+\subsection{Methods}
+They asked people to rate a collection of images for category typicality (images drawn from 8 image categories), and tested different CNN architectures on their ability to predict these ratings.
+
+\subsubsection{Behavioral experiment}
+Each participant rates ``how well does this picture fit your idea or image of the category". Mean typicality per image is computed across all splits. Human reliability ratings have good split-half correlation: the average reliability of human ratings across random splits is $\rho=0.92$. This confirms that two groups of people produce similar rankings \notet.
+
+\osst{This is required to know if we can trust human ratings (i.e. \textit{is human behaviour reliable enough to predict itself?}). If we could not trust human data, there would be no point in aligning the model output to human ratings.}
+
+\subsubsection{Computational experiment}
+They use 3 CNN architectures (but for the sake of simplicity \textit{OverDeat} only is described). After the convolutions, the next two layers have 3072 and 4096 fully-connected units, respectively.
+Finally, a 1000-way softmax layer produces a probability distribution over the $j = 1,\dots,1000$ classes. They get a top-five error rate of 14.2\% \notet.
+
+\osst{Top-five error: the correct label did not appear in the top five guesses.}
+
+\subsection{Estimating image-typicality}
+They assume that \textbf{typicality} (human) \textbf{is related to the strength of the model’s classification response} (strength) to the category of interest.
+\textbf{Classification-strength} can be estimated in two ways:
+\begin{itemize}
+    \item \textbf{Raw typicality}: This is a raw category score. There is a theoretical vector (input of last layer) which \textbf{maximizes the activation} of a particular category. Images with representation very close to this theoretical vector are expected to be more typical. So we can maximize $y_j$ to get the particular abstract representation for each category $j$:
+    \[
+    y_j = \sum_{i=1}^{4096} w_{ij}x_i
+    \]
+    \item \textbf{Contrast typicality}: It measures to what extent the correct category is more active than the others. It benefits images that load on the correct category much more than on other ones. Most typical image produces $y_j$ that is most differentiated from other categories’ response to this image. This is independent from raw value:
+    \[
+    z_j = \frac{e^{y_j}}{ \sum_{j=1}^{1000} e^{y_j} }
+    \]
+\end{itemize}
+
+The values computed for each $j$ are averaged, then they check for correlation with human ratings.
+
+\subsection{Results}
+\begin{wrapfigure}[16]{r}{0pt}
+  \centering
+  \includegraphics[width=0.4\textwidth]{images/lake.png}
+  \caption{Correlation between human and convnet typicality ratings as a function of network depth. The red line indicates a transition from convolutional (1-5) to standard layers (6-7).}
+  \label{fig:lake}
+\end{wrapfigure}
+
+They found that raw and contrast scores do similarly well, and that some models have significant human-machine typicality correlation. This suggests that deep \textbf{CNNs learn graded categories that can predict human typicality ratings}, at least for some types of everyday categories.\\
+
+However, when dealing with hidden layers, one cannot have categories' activations, so they needed to redefine typicality.
+They used 1300 images (of the same category) as input for the network and averaged the activation of the given layer over all images to get the \textbf{category prototype} (typical activation vector).
+Typicality was modeled as the cosine distance between the activation vector for a new image and the stored prototype. They found better prediction in deeper convolutional layers (see Figure~\ref{fig:lake}), i.e. by going deeper (closer to the output layer) the layer representations predict increasingly better human typicality.
+
 
 \section[Words-as-features as models of cognition]{Words-as-features as models of cognition\\ \large{\textit{Predicting Human Brain Activity Associated with the Meanings of Nouns}\\ \cite{Mitchell2008PredictingHB}}}
-\textcolor{red}{TODO}
+They try to answer this question: Can feature models explain behavioral and brain responses?
+The underlying idea is to understand how/where word meaning is stored in the brain, under the assumption that our brain represents words as features. Notice: this assumption is not necessarily true, there might be also other possibilities (not tackled in this paper).
+
+\subsection{Background}
+Core questions for neuroscience are:
+\begin{itemize}
+    \item Are there systematic differences in neural activity as people think about different concepts? 
+    \item Is the neural representation of concepts localized in specific brain areas or is it distributed across the entire cortex?
+    \item How meaningful are individual differences, or is the representation of meaning similar across people?
+\end{itemize}
+
+We ask ourselves if fMRI and neuroscience allow us to \textit{test} or \textit{understand} what are the \textbf{basis functions} (the \textbf{semantic feature} space) that underlie the representation of words. This can help in designing more cognitive real computational models.
+
+\boxc{Historical approach}{
+We present multiple words sampled from several categories (e.g. tools, buildings), and then train a classifier that predicts the class (tool/ building) from the brain images of the words. Brain images are taken with fMRI: see the figure, which shows activation maps from fMRI data (each of the 4 images in a row represent a slice of the brain). A classifier can be trained using a single voxel.
+The results of the classifier can be used as a tool for studying the semantics in the brain. For instance, we can understand which brain area contain information about particular classes. This is a pure \textit{decoder}; there is no domain-based knowledge that is applied to predict the brain response from more basic principles.
+
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{images/fmri_slices.png}
+\end{center}
+
+Classifiers capture some meaning, as they show \textbf{cross-domain generalization} (train on words, guess class of image)
+They collected brain activity while people watched an image (instead of the word), and while Portuguese (instead of English) people watched the same words.
+They then took the classifier trained to discriminate categories based on brain responses to words presented in English and tested on brain activity from those other domains. 
+Both \textit{testing on pictures} and \textit{testing on other language} produce above chance accuracy: \textbf{semantics generalize beyond modality used}.
+}
+
+The historical (decoding) approach works, but has a problem: \textbf{data is highly dimensional} (over 20 thousand features/voxels per word). At the same time, however, \textbf{data is also sparse} (only few examples of brain activity per category). This is difficult from a regression perspective and solutions to this (regularization) are mathematically valid but may lose information about the brain.
+These considerations sparked \cite{Mitchell2008PredictingHB} to propose an alternative.
+
+\subsection{Generative encoding model}
+\begin{wrapfigure}[13]{r}{0pt}
+  \centering
+  \includegraphics[width=0.23\textwidth]{images/mitchell_2.png}
+  \caption{Example of feature vector.}
+  \label{fig:mitchell_2}
+\end{wrapfigure}
+Their proposal is to \textbf{come up with a theory of word meaning and see whether the theory predicts brain activity} (\textit{activation}). They capture ``word meaning" from corpus statistics (from mutual constraints appearing in corpora). The challenge is basically to find a ``mapping function" from word meaning to brain activity.
+\begin{figure}
+    \centering
+    \captionsetup{width=.8\linewidth}
+    \includegraphics[width=0.65\linewidth]{images/mitchell.png}
+    \caption{The predictive encoding model. Each word gets a vector of $n$ features (in this simplified schema just 7); the value of $n$ has to be chosen as it is a hyper-parameter. Note: there is no single step prediction for the whole brain. The prediction is done for a single pixel, i.e. we get a weight vector for each voxel. Then all pixels are put together to get the whole map.}
+    \label{fig:mitchell}
+\end{figure}
+
+The model works in two steps. The first step encodes the stimulus word.
+The second step predicts the neural fMRI activation at every voxel location in the brain, as a weighted sum of neural activations contributed by each of the intermediate semantic features. A schematic explanation can be seen in Figure \ref{fig:mitchell}.
+
+\subsubsection{Define word meaning}
+We mentioned that they captured word meanings via corpora exploitation. They use 60 \textbf{nouns}. Each noun $j$ is described using 25 \textbf{features}.\\
+Feature $i$ is defined as the \textbf{co-occurrence frequency of the stimulus noun with the verb} $i$. They chose verbs which are either: \textit{sensory}, \textit{motor}, or \textit{abstract} verbs. An example of the resulting semantic features is provided in Figure \ref{fig:mitchell_2}.
+
+\subsubsection{Single-voxel analysis}
+They perform a single-voxel analysis. For each voxel in the brain they learn the relation between voxel activity values for the 60 nouns, and the semantic features of the 60 nouns \notet.
+
+Such analysis can tell, \textbf{for each voxel},\textbf{ what is the relative importance of each of the 25 features} when it comes to predicting brain activation. To show generalization, they train the model with 58 words and test on the remaining 2.
+
+In matrix notation the multiple regression model is $\mathbf{Y=X}\boldsymbol{\beta}+\boldsymbol{\varepsilon}$, where
+\[ 
+     \mathbf{Y} = \begin{bmatrix}
+     Y_1 \\ Y_2 \\ \vdots \\ Y_n
+     \end{bmatrix}, \quad\; 
+     \boldsymbol{\varepsilon} = \begin{bmatrix}
+     \varepsilon_1 \\ \varepsilon_2 \\ \vdots \\ \varepsilon_n
+     \end{bmatrix}, \quad\;
+     \boldsymbol{\beta} = \begin{bmatrix}
+     \beta_0 \\ \beta_1 \\ \vdots \\ \beta_k
+     \end{bmatrix}, \quad\;
+     \mathbf{X} = \begin{bmatrix}
+     1 & X_{11} & \dots & X_{1k}\\
+     1 & X_{21} & \dots & X_{2k}\\
+     \vdots & \vdots & \ddots & \vdots\\
+     1 & X_{n1} & \dots & X_{nk}\\
+     \end{bmatrix}
+\] 
+$\mathbf{Y}$ is the activity for the 58 nouns in the voxel; $\boldsymbol{\varepsilon}$ is the bias; $\boldsymbol{\beta}$ are the 25 weights to be fit; $\mathbf{X}$ is the set of 25 feature-value per noun ($n=25, k=58)$.
+
+\osst{To be precise, they present stimuli of noun+image together (but for the sake of simplicity we refer to them just as ``nouns").}
+
+Predicting word activity in each voxel just means multiplying its semantic feature values by learned weights.
+
+\subsection{Results}
+
 
 \section{Modeling similarity spaces expressed in human behavior and brain responses}
 \textcolor{red}{TODO}
