@@ -98,7 +98,7 @@ Their proposal is to \textbf{come up with a theory of word meaning and see wheth
 \begin{figure}
     \centering
     \captionsetup{width=.8\linewidth}
-    \includegraphics[width=0.65\linewidth]{images/mitchell.png}
+    \includegraphics[width=0.55\linewidth]{images/mitchell.png}
     \caption{The predictive encoding model. Each word gets a vector of $n$ features (in this simplified schema just 7); the value of $n$ has to be chosen as it is a hyper-parameter. Note: there is no single step prediction for the whole brain. The prediction is done for a single pixel, i.e. we get a weight vector for each voxel. Then all pixels are put together to get the whole map.}
     \label{fig:mitchell}
 \end{figure}
@@ -115,7 +115,7 @@ They perform a single-voxel analysis. For each voxel in the brain they learn the
 
 Such analysis can tell, \textbf{for each voxel},\textbf{ what is the relative importance of each of the 25 features} when it comes to predicting brain activation. To show generalization, they train the model with 58 words and test on the remaining 2.
 
-In matrix notation the multiple regression model is $\mathbf{Y=X}\boldsymbol{\beta}+\boldsymbol{\varepsilon}$, where
+In matrix notation the multiple regression model is $\mathbf{Y=X}\boldsymbol{\beta}+\boldsymbol{\varepsilon}$, where:
 \[ 
      \mathbf{Y} = \begin{bmatrix}
      Y_1 \\ Y_2 \\ \vdots \\ Y_n
@@ -137,9 +137,61 @@ $\mathbf{Y}$ is the activity for the 58 nouns in the voxel; $\boldsymbol{\vareps
 
 \osst{To be precise, they present stimuli of noun+image together (but for the sake of simplicity we refer to them just as ``nouns").}
 
-Predicting word activity in each voxel just means multiplying its semantic feature values by learned weights.
+Predicting word activity in each voxel just means multiplying its semantic feature values by learned weights (Figure \ref{fig:mitchell_3}).
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.6\linewidth]{images/mitchell_3.png}
+    \caption{Predicting fMRI image for given word.}
+    \label{fig:mitchell_3}
+\end{figure}
 
 \subsection{Results}
+They tested the model by predicting activity for word A, and checking if it is more similar to true activity of word A than it is to the other word B (where A and B are the two left over words, not used for training). They got an average accuracy of 0.79, suggesting that word meanings are indeed \textbf{represented as features in the brain}.\\
+
+They also examined, for each of the 25 features (verbs), the importance across the brain, to obtain a map of which brain areas are the most important for a given verb (and therefore for a given activity, see Figure \ref{fig:mitchell_4}).\\
+
+\begin{figure}[!ht]
+    \centering
+    \captionsetup{width=.8\linewidth}
+    \begin{subfigure}{.52\textwidth}
+        \centering
+        \captionsetup{width=.8\linewidth}
+        \includegraphics[width=.9\linewidth]{images/mitchell_4.png}
+        \caption{The three images show the weight magnitude of each voxel, given a verb (notice different fMRI slices are shown for different verbs).}
+        \label{fig:mitchell_4}
+    \end{subfigure}%
+    \begin{subfigure}{.47\textwidth}
+        \centering
+        \captionsetup{width=.8\linewidth}
+        \includegraphics[width=.8\linewidth]{images/mitchell_5.png}
+        \caption{Mean accuracy over 9 participants, using  randomly selected sets of intermediate semantic features vs. using the manually chosen set.}
+        \label{fig:mitchell_5}
+    \end{subfigure}
+    \caption{Results.}
+    \label{fig:mitchell_45}
+\end{figure}
+
+% \begin{figure}
+%     \centering
+%     \captionsetup{width=.8\linewidth}
+%     \includegraphics[width=0.5\linewidth]{images/mitchell_4.png}
+%     \caption{}
+%     \label{fig:mitchell_4}
+% \end{figure}
+
+Furthermore, they performed a a \textit{by participant} analysis that allowed them to account for inter-individual differences. They split the brain into areas and sweep through a very large number of words (10 thousands) to see \textbf{which word maximally activates that region} (or the entire brain).
+They found there are indeed words that are most activating for specific brain areas.\\
+
+In the end, they experimented with \textbf{random} \textit{25-feature-basis} sets, instead of a manually chosen set. They tried with 115 randomly selected sets (composed not only by verbs), finding that the results are much worse, yet with \textbf{significant accuracy} ($>0.61$, see Figure \ref{fig:mitchell_5}).
+
+% \begin{figure}
+%     \centering
+%     \captionsetup{width=.8\linewidth}
+%     \includegraphics[width=0.45\linewidth]{images/mitchell_5.png}
+%     \caption{Mean accuracy over 9 participants, using  randomly selected sets of intermediate semantic features vs. using the manually chosen set.}
+%     \label{fig:mitchell_5}
+% \end{figure}
+
 
 
 \section{Modeling similarity spaces expressed in human behavior and brain responses}
