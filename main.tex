@@ -135,7 +135,7 @@
 }
 
 \newcommand\boxl[2]{
-\begin{tcolorbox}[colback=\stdcolorlight!white,colframe=\stdcolor!black,title=\diabox1{} \textbf{#1}]
+\begin{tcolorbox}[colback=\stdcolorlight!white,colframe=\stdcolor!black,title=\diabox1{} \hypersetup{citecolor=white}\textbf{#1}\hypersetup{citecolor=black}]
 #2
 \end{tcolorbox}
 }
@@ -148,6 +148,7 @@
   #2
 \end{tcolorbox}
 }
+
 % \input{prefix}
 
 \title{\textbf{Artificial and Biological Neural Systems}\\\large \textbf{Theory Notes}}
@@ -182,10 +183,11 @@ Paypal: @GiovanniValer (\url{https://www.paypal.me/GiovanniValer})
 \subfile{chapters/02_overview}
 \subfile{chapters/03_categories}
 \subfile{chapters/04_modeling_conceptual_organization}
-\subfile{chapters/05_modeling_human}
-\subfile{chapters/06_human_memory}
-\subfile{chapters/07_language}
-\subfile{chapters/08_attention}
+\subfile{chapters/05_1_modeling_human}
+\subfile{chapters/05_2_common_representations}
+% \subfile{chapters/06_human_memory}
+% \subfile{chapters/07_language}
+% \subfile{chapters/08_attention}
 
 % \bibliographystyle{alpha}
 \bibliographystyle{plainnat}

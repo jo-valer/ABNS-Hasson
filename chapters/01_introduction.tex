@@ -30,10 +30,10 @@ Gray matter (GM), which gets its name from its color, is the brain part that \te
   \includegraphics[width=0.4\textwidth]{images/brain_2.png}
 \end{wrapfigure}
 
-The gray matter is on the perimeter of the brain, and its folded structure (with \textit{gyri} and \textit{sulci}, determined by the DNA) allows for higher surface. This also causes parts that are located close to each other in physical space, to be far away in cortical space.
+The gray matter is on the perimeter of the brain, and its folded structure (with \textit{gyri} and \textit{sulci}, determined by the DNA) allows for higher surface. This also causes parts that are located close to each other, in physical space, to be far away in cortical space.
 
 \subsection{White matter}
-White matter consists mainly of \textbf{long-range axon pathways}, or tracts, that \textbf{connect different regions of the brain}. Unlike gray matter, there is \textbf{no direct information processing} within white matter itself. The structure of white matter can change with learning because it reflects the long-range neural pathways that carry nerve impulses and facilitate the communication between different regions of the brain. 
+White matter consists mainly of \textbf{long-range axon pathways}, or \textit{tracts}, that \textbf{connect different regions of the brain}. Unlike gray matter, there is \textbf{no direct information processing} within white matter itself. The structure of white matter can change with learning because it reflects the long-range neural pathways that carry nerve impulses and facilitate the communication between different regions of the brain. 
 
 % \begin{wrapfigure}{l}{0.4\textwidth}
 \begin{wrapfigure}[15]{l}{0pt}
@@ -43,7 +43,7 @@ White matter consists mainly of \textbf{long-range axon pathways}, or tracts, th
 Damage to white matter, such as the loss of myelin in conditions like multiple sclerosis, can have significant impacts on communication between different regions of the brain, leading to various neurological and psychiatric symptoms. Therefore, understanding the role and function of white matter is critical for studying brain function and identifying potential targets for interventions in various neurological and psychiatric disorders.
 
 \subsection{The neuron}
-A neuron consists of \textbf{dendrites}, a \textbf{cell body} (aka \textbf{soma}) and an \textbf{axon}. Connections between neurons are called \textbf{synapses}, and typically occur on a neuron’s dendrite (but in some cases also on soma), who receive synaptic signals. Synapses are \textbf{chemical}, \textbf{not electrical}.
+A neuron consists of \textbf{dendrites}, a \textbf{cell body} (aka \textbf{soma}) and an \textbf{axon}. Connections between neurons are called \textbf{synapses}, and typically occur on a neuron’s dendrite (but in some cases also on soma), which receives synaptic signals. Synapses are \textbf{chemical}, \textbf{not electrical}.
 A neuron will \textit{fire} (generate an action potential) depending on the number of signals it receives on its dendrites and their strength, which are \textit{summed} in the neuron’s body. 
 
 \details{Digression: Synaptic communication}{Synaptic communication is the process by which neurons communicate with each other through the release and reception of chemical signals called neurotransmitters. The postsynaptic neuron receives the signal, which is either excitatory (the neuron is depolarized and fires an action potential), or inhibitory (causing the neuron to hyperpolarize and become less likely to fire an action potential). Depolarization produces an \textit{all-or-nothing} signal: \textbf{no partial firing}.
@@ -73,7 +73,7 @@ The human brain can be studied at different levels of organization, from systems
 Studying the brain at different scales provides insights into organization of function from the macroscopic to the microscopic level.
 
 \subsection{Basics of experimentation}
-There are several \textbf{non-invasive tools} available for studying brain activity and structure, including electroencephalography, structural imaging, functional magnetic resonance imaging (fMRI), and diffusion-weighted imaging. These tools provide insights into different aspects of brain function and structure: electrical activity of neurons, the structural connectivity of brain regions, and the metabolic activity (i.e. energy consumption) associated with specific tasks or behaviors.
+There are several \textbf{non-invasive tools} available for studying brain activity and structure, including electroencephalography (EEG), structural imaging, functional magnetic resonance imaging (fMRI), and diffusion-weighted imaging. These tools provide insights into different aspects of brain function and structure: electrical activity of neurons, structural connectivity of brain regions, and metabolic activity (i.e. energy consumption) associated with specific tasks or behaviors.
 
 \begin{figure}[ht]
     \centering
@@ -81,14 +81,14 @@ There are several \textbf{non-invasive tools} available for studying brain activ
     \includegraphics[width=0.7\textwidth]{images/tools.png}
     \caption{\textbf{Temporal} and \textbf{spatial resolution} of common tools. An additional dimension is \textbf{coverage}: how much of the brain is simultaneously observable by the tool.}
 \end{figure}
-Experimental procedures are used to analyze the data collected by these tools, which typically consists in conducting studies that involve manipulating variables of interest and collecting and analyzing data from participants. In neuroscience, an \textbf{experiment} or study is a systematic \textbf{investigation of a research hypothesis} that involves \textbf{manipulating variables and measuring their effects on some outcome of interest}.
+Experimental procedures are used to analyze the data collected by these tools; they typically consist in conducting studies that involve manipulating variables of interest and collecting and analyzing data from participants. In neuroscience, an \textbf{experiment} or study is a systematic \textbf{investigation of a research hypothesis} that involves \textbf{manipulating variables and measuring their effects on some outcome of interest}.
 Conclusions from experiments are drawn by analyzing the data collected from participants and testing whether there are statistically significant differences between groups or conditions, typically using statistical methods to quantify the strength and direction of effects and assessing the probability that the observed effects are due to chance.\\
 
 In the following sections we will discuss the most important tools (namely EEG, structural imaging, fMRI), however there are many others:
 \begin{itemize}
-    \item TMS (transcranial magnetic stimulation): induces a virtual lesion of a part of the brain (might be dangerous).
-    \item MEG (Magnetoencephalography): measures the magnetic fields generated by neural activity directly.
-    \item Patch clamp: records current from ion channels in cell membrane
+    \item TMS (Transcranial Magnetic Stimulation): induces a virtual lesion of a part of the brain (this might be dangerous).
+    \item MEG (Magnetoencephalography): directly measures the magnetic fields generated by neural activity.
+    \item Patch clamp: records the current from ion channels in the cell membrane
 \end{itemize}
 
 \subsection{Electroencephalography (EEG)}
@@ -161,11 +161,11 @@ In our brain there are 60 to 70 thousands voxels. By chance (statistics) we will
 
 \boxc{fMRI in an experimental context}{
 The \textbf{signal} is defined as the measurable response to a stimulus.\\
-Statistical detection theory:
+In statistical detection theory we:
 \begin{itemize}
-    \item Understand relationship between stimulus and signal
-    \item Describe noise properties statistically
-    \item Devise methods to distinguish noise-only measurements from signal+noise measurements, and assess the methods’ reliability
+    \item understand relationship between stimulus and signal;
+    \item describe noise properties statistically;
+    \item devise methods to distinguish noise-only measurements from signal+noise measurements, and assess the methods’ reliability.
 \end{itemize}
 
 \textit{Stimulus-signal connection} and \textit{noise statistics} are complex and poorly characterized.
@@ -179,9 +179,9 @@ Pre-processing techniques are applied to reduce noise, including spatial smoothi
 The outcome of model fitting is a collection of parameters estimated from each voxel's data. The Activation Amplitude (Beta) is the most critical parameter, and it is related to the correlation between the model and activity.
 At the group level, the \textbf{voxel-level estimates are pooled together to reach a group-level conclusion per voxel}.\\
 
-FMRI measures changes in neural activity, there are not absolute magnitudes.
+FMRI measures changes in neural activity, there are no absolute magnitudes.
 The baseline signal level in a voxel does not provide information about neural activity.
-An experiment using fMRI requires at least two conditions to detect changes in neural activity. Minimally, experiments use a ``task" and ``rest" condition. In such a two-task experiment intermixed with rest, a beta value is estimated per task, and their values are contrasted to determine the difference between the two tasks.
+An experiment using fMRI requires at least two conditions to detect changes in neural activity. Minimally, experiments use a ``task" and ``rest" condition. In such a two-task experiment intermixed with rest, a Beta value is estimated per task, and their values are contrasted to determine the difference between the two tasks.
 }
 \begin{wrapfigure}[8]{r}{0pt}
   \centering

@@ -59,7 +59,7 @@ Pruning and ablation causes performance deficits. However, thanks to neuroplasti
 
 Speaking of artificial neural networks, the debate in the last years has seen three thesis on how DNNs encode information:
 \begin{itemize}
-    \item distributed information (meaning we can remove some part without hardly impacting a single task),
+    \item distributed information (meaning we can remove some parts without hardly impacting a single task),
     \item local encoding (meaning some neurons are super specialized and don't share encoding information),
     \item Modularity theory: not each single neuron is necessary, but some modules (groups of neurons) are necessary for specific tasks.
 \end{itemize}
@@ -78,7 +78,7 @@ multivariate analysis:
     \item \textbf{Correlation} among units could indicate that the \textbf{activity can be described in a lower dimensional space}.
 \end{itemize}
 
-It has been shown that, in DNNs, an object-by-feature matrix from fully connected layer can be \textbf{compressed by more than 80\%} (e.g. from 4096 dimensions to 512) while maintaining almost all variance. This means, few low dimensions explain differences between images. 
+It has been shown that, in DNNs, an object-by-feature matrix from fully connected layer can be \textbf{compressed by more than 80\%} (e.g. from 4096 dimensions to 512) while maintaining almost all variance. This means few dimensions are enough to explain differences between images. 
 
 \subsection{Representational geometries}
 To \textbf{understand representations}, we study how they are represented in different layers, how they change over time, and how are different embedding spaces related to each other.
@@ -87,7 +87,7 @@ To \textbf{understand representations}, we study how they are represented in dif
 
 \paragraph{Representational Similarity Analysis:} it involves \textbf{comparing two similarity matrices}, often constructed from object-by-feature matrices. This yields an object-by-object similarity matrix.
 Representational Similarity Analysis does not factorize matrices. The principle is: describe how the objects cluster together (in the representational space) according to the matrix. To code for distances between objects, we need a distance matrix; and to get this a distance function is needed (e.g. Euclidean, Mahalanobis, etc.), indeed each row in the object-by-feature matrix is a vector. So we can \textbf{turn the object-by-feature matrix into an object-by-object distance matrix} (pairwise distance between objects).
-For human data (how human represent things), we usually don't get an object-by-feature matrices (we are provided instead an object-by-object matrix), so with RSA we can study the \textbf{relationship between human representation and machine representation}.
+For human data (how human represent things), we usually don't get an object-by-feature matrices (we are directly provided an object-by-object matrix), so with RSA we can study the \textbf{relationship between human representation and machine representation}.
 
 \paragraph{Linear regression:} The machine representation in the neural network (\textit{DNN embeddings}) can be used to predict brain activity (\textit{neurobiological activation vectors}) using linear regression.
 
@@ -119,7 +119,7 @@ P(C_J|i )= \frac{ \left( \sum_{j \in J} s_{ij} \right)^\gamma }
 }
 
 \subsection{Logical methods and Artificial neural networks (ANNs)}
-\paragraph{Logical methods:} concepts are based on a definition that is applied to the features of the object. One viable solution is searching for rules that maximizes discrimination between stimuli; the rules can be probabilistic (i.e., the rules, if not given, can be automatically computed/learned).
+\paragraph{Logical methods:} concepts are based on a definition that is applied to the features of the object. One viable solution is searching for rules that maximize discrimination between stimuli; the rules can be probabilistic (i.e., the rules, if not given, can be automatically computed/learned).
 
 \paragraph{ANNs:} do not make assumptions about the representations involved, but offer an implementation method.
 
