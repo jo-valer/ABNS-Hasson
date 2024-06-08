@@ -2,7 +2,7 @@
 \chapter{Modeling conceptual organization}
 \label{chap:modeling_conceptual_organization}
 
-\section[Modeling typicality]{Modeling typicality\\ \large{\textit{Deep Neural Networks Predict Category Typicality Ratings for Images}\\ \cite{lake-2015-deep}}}
+\section[Modeling typicality]{Modeling typicality\\ \large{\textit{Deep Neural Networks Predict Category Typicality Ratings for Images}\\ \mandatory{lake-2015-deep}}}
 
 They evaluate deep convolutional networks trained for classification on their ability to \textbf{predict category typicality} (human typicality ratings), and try to understand whether deep learning systems can serve as potential cognitive models.
 
@@ -56,7 +56,7 @@ They used 1300 images (of the same category) as input for the network and averag
 Typicality was modeled as the cosine distance between the activation vector for a new image and the stored prototype. They found better prediction in deeper convolutional layers (see Figure~\ref{fig:lake}), i.e., by going deeper (closer to the output layer) the layer representations predict increasingly better human typicality.
 
 
-\section[Words-as-features as models of cognition]{Words-as-features as models of cognition\\ \large{\textit{Predicting Human Brain Activity Associated with the Meanings of Nouns}\\ \cite{Mitchell2008PredictingHB}}}
+\section[Words-as-features as models of cognition]{Words-as-features as models of cognition\\ \large{\textit{Predicting Human Brain Activity Associated with the Meanings of Nouns}\\ \mandatory{Mitchell2008PredictingHB}}}
 They try to answer this question: Can feature models explain behavioral and brain responses?
 The underlying idea is to understand how/where word meaning is stored in the brain, under the assumption that our brain represents words as features. Notice: this assumption is not necessarily true, there might be also other possibilities (not tackled in this paper).
 
@@ -211,7 +211,7 @@ RSA:
 
 \subsection{Applied contexts for RSA}
 
-A \textbf{Representational Dissimilarity Matrix} (\textbf{RDM}) of \textbf{human behavior} is shown in Figure \ref{fig:rdm}. We can see how objects in the same category are judged to be similar (as expected). Such matrix can be populated either by directly asking pairwise similarity to people, or via item sorting task: given randomly placed objects, people are required to sort objects in an array with similar objects close one to each other.\\
+A \textbf{Representational Dissimilarity Matrix} (\textbf{RDM}) of \textbf{human behavior} is shown in Figure \ref{fig:rdm}. We can see how objects in the same category are judged to be similar (as expected). Such matrix can be populated either by directly asking pairwise similarity to people, or via item sorting tasks: given randomly placed objects, people are required to sort objects in an array with similar objects close one to each other.\\
 
 An RDM can also be constructed on \textbf{brain data}. Figure \ref{fig:rdm_brain} shows how it is populated: we consider how much each group of voxels is related to input stimuli. We can then compare the similarity matrices as in Figure \ref{fig:rsa}.
 
@@ -229,7 +229,7 @@ An RDM can also be constructed on \textbf{brain data}. Figure \ref{fig:rdm_brain
         \centering
         \captionsetup{width=.8\linewidth}
         \includegraphics[width=\linewidth]{images/rdm_brain.png}
-        \caption{Construction process of an RDM from brain data. For convinience, just 9 goups of voxels are represented.}
+        \caption{Construction process of an RDM from brain data. For convenience, just 9 groups of voxels are represented.}
         \label{fig:rdm_brain}
     \end{subfigure}
     \caption{Examples of RDMs.}

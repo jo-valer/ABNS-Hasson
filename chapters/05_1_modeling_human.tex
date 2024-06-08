@@ -3,14 +3,14 @@
 
 From a historical point of view, the success of RSA brought to many studies on ablation, plasticity, etc. Many researchers used it, but they started questioning whether it is a good model of human knowledge. In the following we are discussing different assumptions, in respect to artificial DNN.
 
-\subsection{Background}
+\section{Background}
 We have already seen in Chapter \ref{chap:concepts_categories} the most accepted representation of concepts, as categories, in psychology: semantic domains or categories (e.g. mammals, animals, dogs) are organized via features or dimensions that carry the relevant variance for the category (Classical view, Rosch and Mervis (1975), \cite{lake-2015-deep}).
-We have also seen how we can have typicality effects in AI: entities (e.g. images, words) are described by feature values from which representational category effects emerge.\\
+We have also seen how we can have typicality effects in AI: entities (e.g. images, words) are described by feature values from which representational category effects emerge.
 
 We can use AI systems as models of semantics (Section \ref{sec:kriegeskorte}): AI systems trained for image categorization or word embedding produce representations that reasonably approximate those of humans. Similarity between categories, as operationalized from human data, is well predicted by distances between objects in the AI model, where human similarity is quantified using brain/behavior and model similarity is quantified via Euclidean distances, inverse cosine, etc.
 For prediction of human similarity judgments on images, they found 20 to 60\% of the judgments is modeled by the NN. While in MVPA the results are more complicated: these can predict activation in brain areas, but the correlation is just barely above the significance threshold.
 
-\subsection{AI modeling of human representations}
+\section{AI modeling of human representations}
 Modeling human representations with AI is useful for many fields:
 \begin{itemize}
     \item Psychology: AI models achieve human-like competence on different tasks. Because of their competence, they offer a \textbf{model of potential knowledge organization}. They can also offer \textbf{interpretability of human behaviour}: if we have an AI model that behaves as humans, we can study it to come up with valid hypotheses.
@@ -25,14 +25,14 @@ There are three approaches:
     \item \textbf{Pruning}: \textbf{keep the weights unchanged but remove some features}, investigating modular structures in AI models. This assumes that the network develops a modular structure where information about different categories is represented in different subspaces (subsets of latent dimensions) within the model, i.e., knowledge about particular categories or concepts is stored in particular areas (``modules") in the AI model.
 \end{itemize}
 
-\subsubsection{Default approach}
+\subsection{Default approach}
 Assuming two objects, $U$ and $V$, each with 3 features, \textbf{human similarity} can be defined using the \textbf{inner product} (or a related quantity), and approximated as follows:
 \[
     Similarity(V,U) = V \cdot U = V_1 \cdot U_1 +  V_2 \cdot U_2 + V_3 \cdot U_3
 \]
 Note this is just an evaluation (no learning involved).
 
-\subsubsection{Reweighting approach, \cite{peterson}}
+\subsection[Reweighting]{Reweighting, \mandatory{peterson}}
 The similarity is defined as the \textbf{weighted inner product} (or related measure), where the weights ($W_{1,2,3}$) are learned via regression and evaluated on out-of-sample data.
 \[
     Similarity(V,U) = W_1 \cdot V_1 \cdot U_1 + W_2 \cdot V_2 \cdot U_2 + W_3 \cdot V_3 \cdot U_3
@@ -41,7 +41,7 @@ This \textbf{involves learning} (via linear regression or other techniques). Lea
 
 \cite{peterson} proved that this approach generalizes well, outperforming the baseline (default approach), despite this being already high.
 
-\subsubsection{Pruning}
+\subsection{Pruning}
 It aims at identifying a \textbf{subset of features}, \textbf{per category}, improving prediction of human representations, e.g.:
 \[
     Similarity(V,U) = V_2 \cdot U_2 + V_3 \cdot U_3
@@ -52,7 +52,7 @@ Pruning aims to find a subset of features that produces object-to-object distanc
 Humans find Tigers more similar to Lions than to Pumas. The model representation is disaligned from human representation (as Tiger-Lion and Tiger-Puma distances are the same in the embedding space of the model).
 We see that removing Y-Dimension brings the embedding space closer to human representation:
 \begin{center}
-    \includegraphics[width=0.9\textwidth]{images/pruning.png}
+    \includegraphics[width=0.8\textwidth]{images/pruning.png}
 \end{center}
 }
 To summarize, pruning:
@@ -64,34 +64,85 @@ To summarize, pruning:
 Moreover, the feature-sets retained by pruning vary depending on the category guiding the pruning process, and these sets identify different subspaces (latent factors) in the feature space.
 Pruning improves out of sample prediction of human similarity judgments for words and allows an interpretation of latent dimensions underlying word similarity judgments.
 
-\boxl{\cite{TARIGOPULA202389}\\ \textit{Improved prediction of behavioral and neural similarity spaces using pruned DNNs}}{
+In the following we will go through a list studies on pruning to improve representational similarity between AI and Humans.
+
+\boxl{\mandatory{TARIGOPULA202389}\\ \textit{Improved prediction of behavioral and neural similarity spaces using pruned DNNs}}{
 They prune of a model that learns to predict human similarity judgments within 6 categories, each consisting of 120 images. In particular, they prune the penultimate layer of VGG19, which has 4096 nodes (features), and show that pruning outperforms other methods, including reweighting:
 \begin{center}
     \includegraphics[width=0.8\textwidth]{images/tarigopula.png}
 \end{center}
-The number of nodes refers to how many nodes are retained by the pruning algorithm (e.g. for Animals 807 out of the original 4096).\\
+The number of nodes refers to how many nodes are retained by the pruning algorithm (e.g. for Animals 807 out of the original 4096).
 
 They then proceed showing how pruning improves representational space for \textbf{out-of-sample image embeddings}. They first use a \textbf{different dataset} of Animal images and apply MDS (MultiDimentional Scaling); then they repeat but using only feature indices retained from pruning against the original experimental Animals dataset. In this second case, the animal types are better separated in the MDS representation (better clustering).
 
 \begin{center}
-    \includegraphics[width=0.7\textwidth]{images/mds.png}
+    \includegraphics[width=0.65\textwidth]{images/mds.png}
 \end{center}
 
 Pruning also improves representational space for \textbf{out-of-sample brain data}. They use a dataset with two independent sets of 144 images. They produce RDMs from brain activity, per regions, then use RDMs to supervise pruning, and test on out-of-sample data, finding the prediction of brain-derived RDMs is improved.
+
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{images/tarigopula_2.png}
+\end{center}
 }
 
 \boxl{Bavaresco et al. (unpublished)\\ \textit{Continuation of \cite{TARIGOPULA202389}}}{
-They try to understand whether the different feature sets retained by pruning, for each class, are similar; and whether they code for different information. To measure the overlap between the (indices of the) features retained from the different category they use the Dice-Sørensen coefficient:
+They try to understand whether the different feature sets retained by pruning, for each class, are similar; and whether they code for different information. To measure the overlap between the (indices of the) features retained from the different category they use the Dice coefficient \notet:
 \[
     DSC = 2 \cdot \frac{intersection}{union} 
 \]
+\osst{The Dice coefficient is also called \textit{Dice-Sørensen coefficient} or \textit{Dice similarity coefficient} (\textit{DSC}).}
+
 They find the lowest value for $\langle Fruits,Automobiles\rangle$ (0.13) and the highest for $\langle Fruits,Vegetables\rangle$ (0.28). It is not surprising that the highest DSC value is between fruits and vegetables, which are indeed similar. However, in general, the overlap is quite low.
 They find that just 1 out of 4096 feature is always selected for all 6 categories, meaning that there is not a ``core" set of features that is always retained.\\
 
-To know if the selected features identify different information, they use a different dataset of 50k images. \textbf{Images are represented using only activations on the retained features} (6 different versions: 50k$\times807$; 50k$\times647$, etc.). For each of these derived embeddings they \textbf{identified the top-5 images that maximize activation on that set of features} (i.e., highest sum by row (in the matrix with inputs in rows and features in columns). They find that pruning-retained features, per category, are \textbf{maximized by images that 
-exemplify the category}. This is consistent with the prototype theory.\\
+To know if the selected features identify different information, they use a different dataset of 50k images. \textbf{Images are represented using only activations on the retained features} (6 different versions: 50k$\times807$; 50k$\times647$, etc.). For each of these derived embeddings they \textbf{identified the top-5 images that maximize activation on that set of features} (i.e., highest sum by row (in the matrix with inputs in rows and features in columns). They find that pruning-retained features, per category, are \textbf{maximized by images that exemplify the category}. This is consistent with the prototype theory.
+Here is an example of the top-5 images for ``transportation" category:
+
+\begin{center}
+    \includegraphics[width=0.5\textwidth]{images/bavaresco.png}
+\end{center}
 
 To have a more quantitative analysis, they apply PCA to each version (of the 6) and obtain the scores for the 50k images on the first Principal Component (this is needed since  the matrices are too large). Then the 50k PC1 scores are correlated across solutions (they get a score for each image). They conclude that \textbf{different retained sets select for different latent dimensions} (i.e., PC1 of similar categories encode for similar information).
 }
 
-\boxl{Manrique et al. (2023)\\ \textit{?}}{?}
+\boxl{Manrique et al. (2023)\\ \textit{ Enhancing Interpretability Using Human Similarity Judgements to Prune Word Embeddings}}{
+They try to pring the same concepts of \cite{TARIGOPULA202389} to NLP. They define 8 categories as sets of 20-30 noun words each. They have human similarity judgments for all word pairs. The idea is to predict the test-set using all GloVe features, or GloVe feature-sets pruned from the training-set. The results show that \textbf{pruning improves out-of-sample prediction} using a \textbf{less than half of GloVe's 300 features}.
+Notice that the features that are important for positioning objects with respect to each other are not necessarily important for classification, and vice versa.
+
+For each solution they identify the retained feature indices and compute the DSC between pruned sets, which often results low (few of the GloVe features are never selected, and no feature is consistently selected). 
+Some results make sense (fruit and vegetables have high overlap) but others do not (vehicles and fruit):
+
+\begin{center}
+    \includegraphics[width=0.4\textwidth]{images/dsc.png}
+\end{center}
+
+This is a problem for interpretability. So they try to understand what information is coded in a subset of features of a language model. Here an example with the ``sports" category is provided.
+From previous pruning, 100 features out of 300 were retained, from these they take the following steps:
+\begin{itemize}
+    \item further reduce the dimensionality with PCA, retaining only the first PC
+    \item rank sports by PC1 value
+    \item for every word in the corpus, compute the co-occurence with each sport
+    \item select the words whose co-occurence scores (in the form of PMI \notet) are correlated to the PC1 scores for each sport
+\end{itemize}
+\osst{PMI: Pointwise Mutual Information.}
+
+The results suggest that human similarity judgments are sensitive to gender- and location-inclusiveness, and (relatedly) international reach.
+
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{images/sports.png}
+\end{center}
+}
+
+\boxl{Bao et al. (2024)\\ \textit{Identifying and interpreting non-aligned human conceptual representations using language modeling}}{
+This study tries to understand if \textbf{people of different groups represent words differently}. In particular they focus on English native speakers (blind vs sighted). They use 7 verb categories each containing 14 verbs and have \textbf{human similarity judgments} for all verb-pairs. The judgments \textbf{made by congenitally blind and sighted}. They train a model to prune GloVe embeddings to improve out-of-sample prediction, first for blind and then for sighted,so they can compute the DSC between the two subsets of retained features.
+
+\begin{center}
+    \includegraphics[width=0.55\textwidth]{images/bao.png}
+\end{center}
+
+They found that verbs describing emission of animate sounds (\texttt{e\_sa}, e.g. \textit{whine}) and light (e.g. \textit{blink}) have good concordance between retained features for blind (\texttt{CB}) and sighted (\texttt{S}). For others, such as perception sight (\texttt{p\_s}, e.g. \textit{see}, \textit{look}), a lower concordance is found.
+}
+
+To summarize, human representations of concepts/categories are better approximated by AI models that are modified to reflect only the relevant variance dimensions, as indicated by specific subsets of features.
+Practically, pruning via sequential feature selection is one way to identify these dimensions. It is competitive in learning human representations and allows to interpret the relevant lower dimensions.
