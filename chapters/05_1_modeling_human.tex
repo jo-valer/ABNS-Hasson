@@ -158,6 +158,15 @@ Here is an example of the top-5 images for ``transportation" category:
 
 To have a more quantitative analysis, they apply PCA to each version (of the 6) and obtain the scores for the 50k images on the first Principal Component (this is needed since  the matrices are too large). Then the 50k PC1 scores are correlated across solutions (they get a score for each image). They conclude that \textbf{different retained sets select for different latent dimensions} (i.e., PC1 of similar categories encode for similar information).
 }
+\vspace{.5cm}
+To summarize, human representations of concepts/categories are better approximated by AI models that are modified to reflect only the relevant variance dimensions, as indicated by specific subsets of features.
+Practically, pruning via sequential feature selection is one way to identify these dimensions. It is competitive in learning human representations and allows to interpret the relevant lower dimensions.
+
+\subsection{Pruning vs reweighting}
+Vision DNNs trained to classify already provide a moderate approximation of human representational space.
+Reweighting is emerging as a new technique to improve this match (useful for practical applications), and was interpreted to suggest that DNNs learn human-like filters, but at wrong levels of salience.
+
+\textbf{Pruning outperforms reweighting} in learning prediction of human representational spaces, but also originates in a different perspective on the importance of DNN filters: the filters are effective at the learned levels of salience, but different datasets benefit from different combinations of filters. Pruning is also more \textbf{easily interpretable} as a regularization (data reduction) technique in context of explainable AI and provides insights into brain organization.
 
 \boxl{Manrique et al. (2023)\\ \textit{ Enhancing Interpretability Using Human Similarity Judgements to Prune Word Embeddings}}{
 They try to pring the same concepts of \cite{TARIGOPULA202389} to NLP. They define 8 categories as sets of 20-30 noun words each. They have human similarity judgments for all word pairs. The idea is to predict the test-set using all GloVe features, or GloVe feature-sets pruned from the training-set. The results show that \textbf{pruning improves out-of-sample prediction} using a \textbf{less than half of GloVe's 300 features}.
@@ -196,30 +205,21 @@ This study tries to understand if \textbf{people of different groups represent w
 
 They found that verbs describing emission of animate sounds (\texttt{e\_sa}, e.g. \textit{whine}) and light (e.g. \textit{blink}) have good concordance between retained features for blind (\texttt{CB}) and sighted (\texttt{S}). For others, such as perception sight (\texttt{p\_s}, e.g. \textit{see}, \textit{look}), a lower concordance is found.
 }
-\vspace{.5cm}
-To summarize, human representations of concepts/categories are better approximated by AI models that are modified to reflect only the relevant variance dimensions, as indicated by specific subsets of features.
-Practically, pruning via sequential feature selection is one way to identify these dimensions. It is competitive in learning human representations and allows to interpret the relevant lower dimensions.
-
-\subsection{Pruning vs reweighting}
-Vision DNNs trained to classify already provide a moderate approximation of human representational space.
-Reweighting is emerging as a new technique to improve this match (useful for practical applications), and was interpreted to suggest that DNNs learn human-like filters, but at wrong levels of salience.
-
-\textbf{Pruning outperforms reweighting} in learning prediction of human representational spaces, but also originates in a different perspective on the importance of DNN filters: the filters are effective at the learned levels of salience, but different dataset benefit from different combinations of filters. Pruning is also more \textbf{easily interpretable} as a regularization (data reduction) technique in context of explainable AI and provides insights into brain organization.
-
+\vspace{.1cm}
 \section[Why pruning works]{Why pruning works\\ \textit{Network Trimming: A Data-Driven Neuron Pruning Approach towards Efficient Deep Architectures}\\ \mandatory{hu2016network}}
-Extremely sparse matrices produced by top layers of neural networks indicate that empirically designed networks are heavily oversized. Many neurons in a CNN have very low activations, no matter what data is presented. Such weak neurons are highly likely to be redundant and can be excluded without damaging the overall performance. Their existence can only increase the chance of overfitting and optimization difficulty.\\
+Extremely sparse matrices produced by top layers of neural networks indicate that empirically designed networks are heavily oversized. Many neurons in a CNN have very low activations, no matter what data is presented. Such weak neurons are highly likely to be redundant and can be excluded without damaging the overall performance. Their existence can only increase the chance of overfitting and optimization difficulty.
 
-They define the\textit{Average Percentage of Zeros} (\textit{APoZ}) of a single neuron as the percentage of zero activations of that neuron after the ReLU mapping. They use the layer as the unit of analysis (rather than the single neuron), so the analysis is collapsed across all neurons in a layer. The \textit{APoZ} of the $c$\textsuperscript{th} neuron in $i$\textsuperscript{th} layer is defined as:
-\[
-APoZ_c^{(i)} = APoZ(O_c^{(i)}) = \frac{\sum_k^N \sum_j^M f(O_{c,j}^{(i)}(k)=0)}{N\times M}
-\]
-
-\begin{wrapfigure}[13]{r}{0pt}
+\begin{wrapfigure}[12]{r}{0pt}
   \centering
-  \includegraphics[width=0.35\textwidth]{images/apoz.png}
+  \includegraphics[width=0.41\textwidth]{images/apoz.png}
   \caption{\textit{FC6} layer \textit{APoZ} distribution.}
   \label{fig:apoz}
 \end{wrapfigure}
+
+They define the \textit{Average Percentage of Zeros} (\textit{APoZ}) of a single neuron as the percentage of zero activations of that neuron after the ReLU mapping. They use the layer as the unit of analysis (rather than the single neuron), so the analysis is collapsed across all neurons in a layer. The \textit{APoZ} of the $c$\textsuperscript{th} neuron in $i$\textsuperscript{th} layer is defined as:
+\[
+APoZ_c^{(i)} = APoZ(O_c^{(i)}) = \frac{\sum_k^N \sum_j^M f(O_{c,j}^{(i)}(k)=0)}{N\times M}
+\]
 where $f(\cdot) = 1$ if true, and $f(\cdot) = 0$ if false, $M$ denotes the dimension of output feature map of $O_c^{(i)}$, and $N$ denotes the total number of validation examples. Therefore $N\times M$ is the maximum number of activations.\\
 
 The results tell that the redundancy is mainly in the deeper convolutional layers and the fully connected layers. They find more than 600 neurons with $APoZ > 90\%$ (Figure \ref{fig:apoz}).
@@ -228,8 +228,8 @@ To understand if high-$APoZ$ neurons are effectively redundant, they implement a
 \begin{figure}[!ht]
     \centering
     \captionsetup{width=.8\linewidth}
-    \includegraphics[width=0.6\linewidth]{images/trimming.png}
-    \caption*{Example of trimming nodes in \textit{conv5} and \textit{FC6} layers. We have to be aware that a column that is made of all 0s (i.e., 100\%-\textit{PoZ} nodes) might still impact the representational geometry (object-similarities) if specific distance measures are used (see Section \ref{sec:redundancy}).}
+    \includegraphics[width=0.65\linewidth]{images/trimming.png}
+    \caption*{Example of trimming nodes in \textit{CONV5} and \textit{FC6} layers. We have to be aware that a column that is made of all 0s (i.e., a 100\%-\textit{PoZ} node) might still impact the representational geometry (object-similarities) if specific distance measures are used (see Section~\ref{sec:redundancy}).}
     \label{fig:trimming}
 \end{figure}
 
@@ -242,7 +242,7 @@ Truong and Hasson (unpublished) try to answer the following questions:
     \item Can their removal improve prediction of human similarity judgments?
 \end{itemize}
 
-Figure \ref{fig:poz} shows how around 20\% of nodes in MNIST and CIFAR-10 have $PoZ>0.70$, while very few have $PoZ>0.95$.
+Figure \ref{fig:poz} shows how around 20\% of nodes in MNIST and CIFAR-10 have $PoZ>0.70$, while very few have $PoZ>0.95$.\\
 
 \begin{wrapfigure}[13]{r}{0pt}
   \centering
@@ -253,7 +253,7 @@ Figure \ref{fig:poz} shows how around 20\% of nodes in MNIST and CIFAR-10 have $
 
 To answer the first question, they define the representation of the full network, and get the object-by-object similarity matrix (RDM), that will be used as reference. Then, they compute the RDM with just a small subset of features, the ones with lower \textit{PoZ}, and compare it with the original RDM (using Person $R^2$). They progressively insert features from low to high \textit{PoZ} (i.e., from the most informative features to the least ones) and repeat the steps. The results (Figure \ref{fig:poz_2}) show that it is possible to use just a subset of the original features, using the nodes with a \textit{PoZ} lower than $\sim35\%$, to approximate the representation of the original network.\\
 
-They try to understand what other nodes (those with the highest \textit{PoZ}) encode for. They experiment in the other direction, i.e., inserting features from high- to low-\textit{PoZ}. The results (Figure \ref{fig:poz_3}) show that these nodes are not random, nor they encode noise. They can indeed approximate the full network: the lowest 20\% already produces $R^2>0.6$ for CIFAR-10. This means \textbf{relevant information is coded in the network in a redundant way}.
+They also try to understand what other nodes (those with the highest \textit{PoZ}) encode for. They experiment in the other direction, i.e., inserting features from high- to low-\textit{PoZ}. The results (Figure \ref{fig:poz_3}) show that these nodes are not random, nor they encode noise. They can indeed approximate the full network: the lowest 20\% already produces $R^2>0.6$ for CIFAR-10. This means \textbf{relevant information is coded in the network in a redundant way}.
 
 
 \begin{figure}[!ht]
@@ -291,5 +291,4 @@ When we prune a network we have to be aware that it becomes less robust to adver
 To answer the second question they evaluate the \textit{APoZ}-based pruning and its impact on prediction of human similarity judgments. Features are removed sequentially from high-to-low \textit{PoZ} and \textit{2OI} (second-order interaction) is computed between human similarity judgments and the (pruned) model RDM.
 The approximation of human similarity judgements starts dropping significantly only when we use less than 6\% of original features (Figure \ref{fig:apoz_4}).
 We can notice that by removing sparse features, for the category of ``furniture", the approximation of human judgements increases until we use 30\% of the original features only. So, for ``furniture", sparse features actually contain noise.
-
 
