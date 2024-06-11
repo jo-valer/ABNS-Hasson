@@ -44,10 +44,37 @@ They experiment with 21 volunteers. The person is looking at a screen (in the ce
     \centering
     \captionsetup{width=.8\linewidth}
     \includegraphics[width=0.7\linewidth]{images/notaro.png}
-    \caption{Trial structure and fixation locations. \textbf{(A)} Trial timing. \textbf{\textit{Anticipatory fixation offset}} (\textbf{AFO}) is defined at the mean gaze location during the last 10 ms of the blank screen that followed the fixation symbol and that preceded the target. AFO is coded as positive if to the side of the last target, negative otherwise. \textbf{(B)} Spatial features of fixation and targets. Targets are positioned on an invisible arc that extended 108 above and below the fixation symbol, at 128 eccentricity. The exact location on the arc is randomly set on each trial. The fixation symbol consists of an inner gray circle ($\text{radius} = 0.4\degree$) within an outer black circle ($\text{radius} = 1.2\degree)$.}
+    \caption{Trial structure and fixation locations. \textbf{(A)} Trial timing: fixation symbol; blank screen; target; blank screen. This is repeated 100 times in a series. \textbf{(B)} Spatial features of fixation and targets. Targets are positioned on an invisible arc that extended 108 above and below the fixation symbol, at 128 eccentricity. The exact location on the arc is randomly set on each trial. The fixation symbol consists of an inner gray circle ($\text{radius} = 0.4\degree$) within an outer black circle ($\text{radius} = 1.2\degree)$.}
     \label{fig:notaro}
 \end{figure}
+
+\begin{wrapfigure}[17]{r}{0pt}
+  \centering
+  \includegraphics[width=0.3\textwidth]{images/saccade.png}
+  \caption{Saccade latencies indicate learning of statistical structure in addition to an effect of whether a saccade is a return or alternation. Asterisks above bar pairs indicate significant difference.}
+  \label{fig:saccade}
+\end{wrapfigure}
 
 10 series are presented in each condition, each one consisting in 100 trials (Figure \ref{fig:notaro}A shows what a single trial looks like).
 The proportion of presentations on the left and right screen sides is 50\% in both conditions (the marginal probability is the same).
 Moreover, 20 random-location trials are appended to each series to study wash-out effects. They use an eye-tracking system at 1000 Hz to capture the gaze.
+They name ``Return trials" those for which the screen-side of the last-presented target is the same as the preceding one, and ``Alternation trial" for opposite side.
+
+\subsection{Saccade latency}
+The \textbf{saccade latency} is defined as the time taken from the appearance of a target to the beginning of a saccade (i.e., a rapid movement of the eye between fixation points) in response to that target. Note that the first 80 ms are ``consumed" by the signal travelling from eyes to the brain. Saccade latency can be used as a \textbf{measure of surprise}, and \textbf{provide evidence for learning}.
+
+The results (Fig. \ref{fig:saccade}) show that saccades to target presented on alternate sides are faster when alternates are more predictable (\texttt{pret30}). Saccades to targets presented on return sides faster when returns are more predictable (pret70). In \texttt{pret30} subjects should expect an alternation, and indeed the results agree. However, in \texttt{pret70}, we do not have the opposite: in general, returns are slower than alternations because. This is because people do not like to return their attention where they already looked at: people like to explore and shift attention to any other place. This phenomenon has been named ``\textbf{inhibition of return}".
+
+\subsection{Anticipatory fixation offset}
+They also investigate how people look at the fixation symbol while waiting for the next target.
+They define the \textit{anticipatory gaze offset} as the absolute gaze location in relation to the center.
+
+\begin{figure}[!ht]
+    \centering
+    \captionsetup{width=.8\linewidth}
+    \includegraphics[width=0.6\linewidth]{images/afo.png}
+    \caption{Density of fixation location during the last 10 ms of pre-target blank screen. The single dark point: screen center. Red points: mean values for condition; inner/outer circles mark areas encompassing 50\% and 90\% of all fixations. When returns are expected, anticipatory bias towards location of last target is observed.}
+    \label{fig:afo}
+\end{figure}
+
+The \textbf{\textit{anticipatory fixation offset}} is the recording of the gaze offset in relation to the prior target: horizontal deviation from the center is coded as positive if to the side of the last presented target, negative otherwise. The AFO is measured during the final 10 ms of pre-target blank screen. It is arbitrarily coded as positive for offsets to the side of the last presented target. This is a \textbf{measure of anticipatory behaviour} (i.e., ``how much people are betting that the target will appear on a specific side, instead of the other"). If an individual does not learn the environment, the average AFO should be expected to be 0.
