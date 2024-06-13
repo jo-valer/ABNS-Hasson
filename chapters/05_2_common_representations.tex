@@ -114,10 +114,10 @@ They want to approximate $X$ by matrix factorization, i.e., get two matrices $A$
 \]
 subject to:
 \[
-D_{i,:}D_{i,:}^T \leq 1 \:\:\:(\forall \;1 \leq i \leq l)
+D_{i,:}D_{i,:}^T \leq 1 \quad(\forall \;1 \leq i \leq l)
 \]
 \[
-A_{i,j} \geq 0,\:\:\: 1 \leq i \leq w,\:\:\: 1 \leq j \leq l
+A_{i,j} \geq 0,\quad 1 \leq i \leq w,\quad 1 \leq j \leq l
 \]
 The matrix $A$ is the output of the algorithm, i.e., the sparse approximated representation we look for (note the $\lambda \lVert A\rVert_1$ term that induces sparsity).\\
 
@@ -138,13 +138,13 @@ Such algorithm allows to have a ``shared semantic space" (the matrix $A$ is an a
 \]
 subject to:
 \[
-D_{i,:}^{(c)}D_{i,:}^{(c)T} \leq 1 \:\:\:(\forall \;1 \leq i \leq l)
+D_{i,:}^{(c)}D_{i,:}^{(c)T} \leq 1 \quad(\forall \;1 \leq i \leq l)
 \]
 \[
-D_{i,:}^{(b)}D_{i,:}^{(b)T} \leq 1 \:\:\:(\forall \;1 \leq i \leq l)
+D_{i,:}^{(b)}D_{i,:}^{(b)T} \leq 1 \quad(\forall \;1 \leq i \leq l)
 \]
 \[
-A_{i,j} \geq 0,\:\:\: 1 \leq i \leq w,\:\:\: 1 \leq j \leq l
+A_{i,j} \geq 0,\quad 1 \leq i \leq w,\quad 1 \leq j \leq l
 \]
 Notice the difference in summation. The first expression goes over all the words in the corpus ($w$), while the second goes over the subset for which we have brain data ($w'$).
 $A'$ is the subset of the $A$ matrix that is relevant for reconstructing $Y$ (it is a subset of the rows in X).
