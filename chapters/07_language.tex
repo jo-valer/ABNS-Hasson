@@ -132,4 +132,112 @@ We also have evidence for anticipation (people make predictions while they under
 
 \section[Support for structure-pruning/surprisal]{Support for structure-pruning/surprisal\\ \textit{Insensitivity of the Human Sentence-Processing System to Hierarchical Structure}\\
 \mandatory{frank}}
-AI researchers started seeing how grammars and rules are not necessary for learning something: the exposure to data can make the models learn the underlying probability distributions.
+AI researchers started seeing how grammars and rules are not necessary for learning something: the exposure to data can make the models learn the underlying probability distributions. \cite{frank} assume that comprehension is based on structure building; they test the idea by comparing 3 models of language:
+
+\begin{wrapfigure}[13]{r}{0pt}
+  \centering
+  \includegraphics[width=0.4\textwidth]{images/frank.png}
+  \caption{Example of \textbf{(a)} hierarchical phrase structure and \textbf{(b)} sequential structure for a sentence.}
+  \label{fig:frank}
+\end{wrapfigure}
+\begin{itemize}
+    \item Probabilistic PSG (Phrase-Structure Grammar)
+    \item Markov process (N-gram)
+    \item Echo state network (ESN, similar to vanilla RNN)
+\end{itemize}
+They define the \textbf{model quality} as the \textbf{accuracy of predicting human behavior}. PSG models use hierarchical structures (see Fig. \ref{fig:frank}a), whereas Markov models and ESNs estimate probabilities that depend solely on the sentences' sequential structure (as shown in Fig. \ref{fig:frank}b).\\
+
+As training set, they use the ``Wall Street Journal" corpus (49k sentences). This corpus has a syntactic-structure tree annotation for each sentences, which is ideal for training Probabilistic PSG.
+For Markov models and ESNs, they replaced each word with its Part-of-Speech category, so that the models learn to predict POS instead of specific word. This improves accuracy for small 
+datasets. Also, this way there is no need for an algorithm to learn to predict highly specific semantics, as syntactic POS is the target for prediction.
+
+\subsection{Probabilistic PSGs}
+They experiment with different types of PSG:
+\begin{itemize}
+    \item a classic which just considers what continuations can follow each phrase (memory-less);
+\end{itemize}
+
+\begin{itemize}
+    \item $n$\textsuperscript{th} order versions, which consider which continuations can follow combinations of phrases.
+\end{itemize}
+
+\begin{wrapfigure}[8]{r}{0pt}
+  \centering
+  \includegraphics[width=0.34\textwidth]{images/psg.png}
+  \caption{}
+  \label{fig:psg}
+\end{wrapfigure}
+
+In a standard probabilistic context-free grammar, the probability that a parent node will produce a particular set of children is conditional only on the parent node, but it is well known that parsing accuracy can be improved by taking the grandparent node (e.g. in Fig. \ref{fig:frank}a, VP, or verb phrase, is the grandparent of the rightmost IN and NP) into account. Likewise, a rule's probability can be made conditional on information from even higher up in the parse tree. This motivates the $n$\textsuperscript{th} order versions. A comparison is provided in Fig. \ref{fig:psg}.\\
+
+In addition, in an effort of capturing as much structural knowledge as possible, they induced four more PSGs, in which conditioning information was taken not only from ancestor nodes (e.g. grandparent nodes) but also from the ancestors' left siblings (e.g. in Fig. \ref{fig:frank}a, the left sibling of VP is NP), again varying the maximum number of levels up in the tree from one to four. In this manner, they obtained highly structurally sensitive syntactic models. Fig. \ref{psg} highlights the differences.
+
+\begin{figure}[!ht]
+    \centering
+    \captionsetup{width=.8\linewidth}
+    \begin{subfigure}{.32\textwidth}
+        \centering
+        \captionsetup{width=.8\linewidth}
+        \includegraphics[width=.9\linewidth]{images/psg_1.png}
+        \caption*{Regular probabilities.}
+    \end{subfigure}
+    \begin{subfigure}{.32\textwidth}
+        \centering
+        \captionsetup{width=.8\linewidth}
+        \includegraphics[width=.9\linewidth]{images/psg_2.png}
+        \caption*{$2$\textsuperscript{nd}, $3$\textsuperscript{rd}, $4$\textsuperscript{th} order probabilities.}
+    \end{subfigure}
+    \begin{subfigure}{.32\textwidth}
+        \centering
+        \captionsetup{width=.8\linewidth}
+        \includegraphics[width=.9\linewidth]{images/psg_3.png}
+        \caption*{$2$\textsuperscript{nd}, $3$\textsuperscript{rd}, $4$\textsuperscript{th} order probabilities with left relation.}
+    \end{subfigure}
+    \caption{}
+    \label{fig:psg}
+\end{figure}
+
+\subsection{Markov models}
+They used Markov models of first, second, and third orders. In a Markov model of a given order ($n$), a symbol's probability dependds on the context of $n$ previous symbols only; that is, $P(w_t \vert w_{1\dots t-1})$ is taken to equal $P(w_t \vert w_{t-n\dots t-1})$. In their experiments, the probabilities of the sequences $w_{t-n\dots t-1}$ and $w_{t-n\dots t}$ are estimated from their occurrence frequencies in the training data. Note: a $4$\textsuperscript{th} order Markov model is quite good for the English language (it makes very good predictions).
+
+\begin{figure}[!ht]
+    \centering
+    \captionsetup{width=.8\linewidth}
+    \begin{subfigure}{.49\textwidth}
+        \centering
+        \includegraphics[width=.9\linewidth]{images/markov.png}
+        \caption{First order Markov model.}
+    \end{subfigure}
+    \begin{subfigure}{.49\textwidth}
+        \centering
+        \includegraphics[width=.9\linewidth]{images/markov_2.png}
+        \caption{$2$\textsuperscript{nd} order Markov model.}
+    \end{subfigure}
+    \caption{Examples of Markov models.}
+    \label{fig:markov}
+\end{figure}
+
+\subsection{ESNs}
+An ECN is a recurrent architecture that learns sequential relations between input elements without strict limitation on temporal integration window (long range relations as well)
+It learns to predict a POS (the likelihood of the POS tag of the next word). Output activations are treated as probabilities over the upcoming POS tag, and the correct tag. The true POS of the next word is used as true target.
+
+\subsection{Evaluation and results}
+The basic idea for evaluating would be to look at how often the model makes a correct guess on the next word. However, it is difficult to do, so they look at how incorrect the model is. 
+From each of the computational systems they derive a measure of Surprisal for the next word (POS). \textbf{All 3 approaches produce $p(w)$ in context}. 
+They evaluate \textbf{Linguist Accuracy}: \textbf{how surprising is the POS for each system} (\textit{(if the model is wrong, did it give high confidence?}). Presumably, the better a system learns stats of language, the less surprised it is by the future.
+They also use a completely different statistics, \textbf{Psychological Accuracy}: how well do the surprise ratings produced by each model predict word reading time \notet.
+The reading times are obtained with eye tracker for more than 2k sentences. This measure is quantified by variance reduced when Surprisal is added as explanatory variable to a baseline model including just word-frequency and word-length. Basically, they are asking whether it is the case that the model is surprised on the same words the people find difficult to read.
+
+\osst{Reading time for people is a measure of surprise.}
+
+The results (Fig. \ref{fig:frank_2}) show that, for very good linguistic accuracy, there are Markov processes that as good as PSG models (quite interesting).
+RNNs (echo state networks) are the best in predicting human surprise, and in general the best psycho-linguistic models prove to be neural networks (rather than statistical models and grammars).
+
+\begin{figure}[!ht]
+    \centering
+    \captionsetup{width=.8\linewidth}
+    \includegraphics[width=0.4\linewidth]{images/frank_2.png}
+    \caption{Results for first-pass reading times: psychological accuracy plotted against linguistic accuracy. Psychological accuracy was defined as the decrease in deviance that resulted from including one set of surprisal estimates in the regression, and linguistic accuracy was defined as the negative of the average surprisal. Results are plotted for phrase-structure-grammar (PSG) models, Markov models, and echo state networks. PSG models were constructed using only ancestor information (a$_n$, where $n$ indicates the number of levels up in the parse tree from which conditioning information was obtained) or taking also the ancestors' left siblings into account (s$_n$). Markov models of order $n$ were created with additive smoothing (m$_n$), Simple Good-Turing smoothing (g$_n$), or Witten-Bell smoothing (w$_n$). Echo state networks (e$_n$) had 100$n$ hidden units.}
+    \label{fig:frank_2}
+\end{figure}
+
