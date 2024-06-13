@@ -89,4 +89,46 @@ knowledge. It is not concerned with the (noisy) actual behavior or its importanc
 Sentences are represented as trees, with the \textbf{Chomsky hierarchy} (an example is provided in Fig.~\ref{fig:tree}). As sentence meaning is related to its structure, it is possible to disambiguate ambiguous strings of words.
 
 \subsubsection{Derivational theory of psychological complexity}
-These ideas can be used to build a psychological theory: the \textbf{derivational theory of complexity}, the first theory that tried to account for difficulty of sentence comprehension. It is innovative in that it identified an objective metric on which complexity can vary, and examined correlations between value of this metric and human behavior. The metric was the number of transformations needed to transform a kernel sentence to a given sentence (very similar to the substitutions seen in the behavioralist approach). The entire sentence was taken as a unit, and a set of pre-set rules (a grammar) was used to see if the given sentence can be derived from the kernel sentence. No incremental parsing was used.
+These ideas can be used to build a psychological theory: the \textbf{derivational theory of complexity} (DTC), the first theory that tried to account for difficulty of sentence comprehension. It is innovative in that it identified an objective metric on which complexity can vary, and examined correlations between value of this metric and human behavior. The metric was the \textbf{number of transformations needed to transform a kernel sentence to a given sentence} (very similar to the substitutions seen in the behavioralist approach). The entire sentence was taken as a unit, and a set of pre-set rules (a grammar) was used to see if the given sentence can be derived from the kernel sentence. \textbf{No incremental parsing} was used.
+
+\begin{figure}[!ht]
+    \centering
+    \captionsetup{width=.8\linewidth}
+    \includegraphics[width=0.5\linewidth]{images/dtc.png}
+    \caption*{DTC: the complexity of a sentence is its distance from the kernel sentence (i.e., how many transformations are needed).}
+    \label{fig:dtc}
+\end{figure}
+
+DCT enjoyed some early success, particularly when using sentence-picture verification studies, as the verification time can be predicted by the complexity (e.g. the verification time of ``\textit{The boy smelled the flower}" is lower than that of ``\textit{The flower was smelled by the boy}").
+DTC was eventually abandoned because of criticisms to the method (construct validity) and findings suggesting these effects have to do with how the photo might be encoded into language. The other problem with this theory is that there is no incremental parsing, despite people do parse sentences (and predict what comes next). This theory completely ignores this aspect.
+
+\subsubsection{Parsing-based accounts}
+Parsing is an incremental process by which we try to assign a structure to what we have read/heard. In some cases we experience local ambiguity that slows down our comprehension. Such ambiguity is, in many cases, local and is disambiguated by later content. Parsing-based accounts try to explain \textbf{why some tentative interpretations are preferred} and why some sentences are more difficult.\\
+
+We have evidence that humans try to parse sentences: there are particular type of structures, e.g. ``The horse raced past the barn fell". People parse this sentence in a preferred way until ``barn", and at that point they expect the end of the sentence, but encounter ``fell" instead, which makes the whole past parsing wrong. This proves humans do parsing in real time, but also that they make predictions during language comprehension (anticipatory predictions).\\
+
+We also have evidence for anticipation (people make predictions while they understand language) thanks to the \textbf{visual world paradigm} experiment. Participants hear utterances while looking at a visual display of target word along with competitors and distracters. The task assigned to the participants is to look while listening. In Fig. \ref{fig:vwp_1} are the results; the slight advantage of ``\textit{cake}" even before the noun offset is maybe because the boy is looking at it. From these results we cannot rule out the possibility that people actually make predictions.
+
+\begin{figure}[!ht]
+    \centering
+    \captionsetup{width=.8\linewidth}
+    \begin{subfigure}{.42\textwidth}
+        \centering
+        \captionsetup{width=.8\linewidth}
+        \includegraphics[width=.9\linewidth]{images/vwp.png}
+        \caption{}
+        \label{fig:vwp}
+    \end{subfigure}
+    \begin{subfigure}{.56\textwidth}
+        \centering
+        \captionsetup{width=.8\linewidth}
+        \includegraphics[width=.9\linewidth]{images/vwp_2.png}
+        \caption{}
+        \label{fig:vwp_2}
+    \end{subfigure}
+    \caption{Visual World Paradigm by Altmann and Kamide (1999). \textbf{(a)} Task: Look at the picture while hearing ``the boy will move the cake". \textbf{(b)} The cumulative probability of fixating the target object (cake) or a distractor (other) as a function of condition (``eat" vs.~``move). Note: the verb offset, determiner onset, and noun onset, averaged across trials, are shown aligned to the 50 ms bin within which they fell.}
+    \label{fig:vwp_1}
+\end{figure}
+
+\section{Support for structure-pruning/surprisal}
+AI researchers started seeing how grammars and rules are not necessary for learning something: the exposure to data can make the models learn the underlying probability distributions.

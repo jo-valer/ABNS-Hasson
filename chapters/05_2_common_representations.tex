@@ -153,8 +153,7 @@ Both $X$ and $Y$ can be reconstructed by multiplying $A$ with $D^{(c)}$ and $D^{
 JNNSE has many advantages:
 \begin{itemize}
     \item Handle partially paired data, compared to Canonical Correlation Analysis or Partial Least Squares that require data about the same observations in both cases;
-    \item No need to have a common average brain (can concatenate activation across subjects in the Y matrix, per word);
-    \item Merge different brain imaging experiments adding a specific loss.
+    \item No need to have a common average brain (can concatenate activation across subjects in the Y matrix, per word), provided we merge different brain imaging experiments adding the specific term to the loss (to learn a different $D^{(b)}$ matrix for each subject).
 \end{itemize}
 
 \subsection{Experiments and results}
@@ -227,7 +226,7 @@ L(e_1, v_1, v_2) = max{0, F(e_1, v_2) - F(e_1, v_1)}
 where $F$ is a similarity measure.\\
 The triplet loss is positive if the similarity of $e_1$ with $v_2$ (negative item) is greater than its similarity with the positive item ($v_1$).\\
 
-The architecture receives more than one input at a time (in particular there are two networks, and in total a triplet of inputs is presented). The two networks have the same exact architecture (FIgure~\ref{fig:palazzo}). The EEG data are pushed through four 1D-convolutional layers (learning filters at different temporal scales), and these are fed into a recurrent layer. The hidden state of the recurrent layer is fed to a fully connected layer from which embeddings are extracted for the compatibility function.
+The model receives more than one input at a time (in particular there are two networks, and in total a triplet of inputs is presented). The two networks have the same exact architecture (Figure~\ref{fig:palazzo}). The EEG data are pushed through four 1D-convolutional layers (learning filters at different temporal scales), and these are fed into a recurrent layer. The hidden state of the recurrent layer is fed to a fully connected layer from which embeddings are extracted for the compatibility function.
 They don't use directly the embeddings of VGG (or other), but rather put a layer in between (to learn more ``brain related" representations: they train different architectures, whose representations are fine-tuned during the Siamese training.
 
 \begin{figure}[!ht]
