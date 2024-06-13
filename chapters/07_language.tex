@@ -1,4 +1,92 @@
 \chapter{Language}
 \label{chap:language}
 
-\textcolor{red}{TODO}
+We have seen that people easily learn associations, and can use them for prediction about the future. People integrate information from the recent past to make predictions \notet. We also know that human memory systems are optimized for storing $7 \pm 3$ items, and that chunking is one of the main tools used to construct these items. All this suggests that our ability to use learned associations, keep track of the recent past, and make predictions would be fundamental for \textbf{language comprehension} as well.
+
+\osst{Note: some researchers think people do not make predictions on the next word. But once the word is received, then the fit of the new word given the previous context is computed. If the fit is low, then the surprise is high. There is huge debate whether people make predictions.}
+
+In the following we try to answer the two main questions underlying modern and less modern theories of language:
+\begin{itemize}
+    \item do we store language associations?
+    \item if so, how do we use them for comprehension?
+\end{itemize}
+
+\section{Language comprehension and integration}
+There are different theories on how humans learn what is a grammatically valid sentence in a language:
+\begin{itemize}
+    \item From experience, we \textbf{memorize structures}: which can be words or types of phrases that go together. In this case a fundamental role is played by memory, to store statistics;
+    \item We learn \textbf{abstract rules} that specify constraints on grammaticality;
+    \item We acquire \textbf{statistical knowledge} on co-occurrence of language entities. This approach considers memorization and abstract rules to be wrong, as we do not need to acquire precise memorization nor rules.
+\end{itemize}
+These three approaches on the human ability to understand Language have been ``fighting" for a long time, however they are not necessarily dichotomous.
+
+\subsection{Memorization of structures (Behavioral psychology)}
+This approach took off with the advent of \textbf{behavioral psychology}.
+Behavioral psychology research applied S-R (Stimulus-Response) models for language: each word is thought of being a stimulus for the next, building up an overall structure out of local associative relations.
+In language comprehension, the learned sequences of \textbf{adjacent elements} are internally represented as automatically characterizing a sentence as it is encountered. In other words, we \textbf{parse the sentence as a set of local associations}, and then we see if the occurrences have been already encountered (i.e., are stored in the memory). This allows us to determine if it is grammatically correct. We would say (today) that on behaviorism, knowledge of language is 
+knowing which words/elements are followed by other words, which is a very simple idea, but assumes we have a huge amount of memory.
+Moreover, it does not explain how \textit{meaning} is made, but it explains how people produce valid sentences to communicate an idea: they know which words/elements can come after others.
+We use the term ``\textbf{element}" because instead of learning associations between words, people maybe have the ability to learn associations between part-of-speech elements.
+
+\subsubsection{Elements in S-R approaches to language}
+S-R approaches claim we learn which words come after each other, e.g.:\\
+$Horse \rightarrow races$ (relation between specific lexical items)\\
+But they also allow for some abstraction, which enable ``slots". E.g. patterns such as:
+\begin{enumerate}
+    \item $\text{The} \rightarrow X \rightarrow Y\text{-es}$ (relation between definite article, noun [singular], verb [singular]
+    \item $\text{The} \rightarrow X\text{-es}\rightarrow Y\_$ (relation between definite article, plural noun, plural verb)
+\end{enumerate}
+This is more compact than storing single words' associations. However, this compression requires people to have part-of-speech categories.
+
+\subsubsection{Abstract elements in sentence level}
+
+\begin{wrapfigure}[8]{r}{0pt}
+  \centering
+  \includegraphics[width=0.3\textwidth]{images/elements.png}
+  \caption{}
+  \label{fig:elements}
+\end{wrapfigure}
+If people can memorize such paradigm (phrase structure as an element). Then maybe they can also learn what phrase structure can substitute in longer phrases.
+
+This is what Behaviorists believed, accepting some level of abstraction. They attempted to describe different types of phrases. They accepted that longer phrases seemed to resolve into combinations of shorter ones, which in turn could resolve into single words. In other words, longer phrases can be shortened recursively, until a minimal sentence is reached, to know if they are grammatically correct or not (Fig.~\ref{fig:elements}).
+The original S-R approach is no more easily visible here.
+Moreover, they did not really have a theory for storing word meaning.
+
+\subsubsection{Meaning in S-R approaches to language}
+Behaviorists did not develop theories about mental phenomenon (e.g. theories of conceptual representation). They had several parallel ideas.
+The first one is the {Substitution view}: words (``signs") substituted for the objects in the world. Objects in the world produce a real reaction, and the sign produces a similar reaction.  Therefore, the meaning of a word is the response it produces in a person (quite neuro-scientific idea \notet). The substitution view has a problem, it does not work for words with meanings we never experienced. So an alternative was offered by Osgood (1952), the \textbf{Disposition view}: language produces a tendency (\textit{disposition}) towards certain behaviors. ``\textit{The meaning of a linguistic expression is therefore disposition towards response sequence}".
+
+\osst{\colorbox{yellow!20}{Digression:} There are neurons that fire in the same way during production (e.g. moving the hand) and perception (seeing someone moving the hand). This means there is some sort of common categorization.}
+
+\subsection{Abstract rules (Chmosky grammar)}
+Chomsky (1959) challenged S-R learning and behaviorism, identifying multiple weaknesses. His two main arguments were:
+\begin{itemize}
+    \item inability to explain comprehension of sentences not heard previously,
+    \item inability to handle hierarchical structure and long-distance dependencies.
+\end{itemize}
+
+There is evidence of humans understanding of language as constrained by a grammar with abstract rules.
+In an experimental setup, when people hear single words distorted by noise, they correctly recognize 25\% of the words. Assuming words are mapped independently, we would assume an accuracy of 6.25\% when 2 words are put together, but we get 50\%. This means we have a grammatical knowledge with constraints that are used when hearing: ``acoustic representation" is not mapped independently per word.\\
+
+This evidence opened the door to the question of how does knowledge of sentences impact comprehension, where top-down explanation have been battling bottom-up ones for over 60 years.
+Things are clearer in sentences because the constraints are not from rote memory, but from more abstract systems of rules: so adults develop representations that cannot be directly derived from prior experience.
+
+\subsubsection{Transformational grammar}
+For Chomsky (1957) a sentence is what the grammar describes it as a sentence.
+His grammar is generative: it describes the sentence structures of a language as a natural and creative part of human knowledge.
+Grammar constitutes a theory of the speaker’s underlying linguistic 
+knowledge. It is not concerned with the (noisy) actual behavior or its importance for the study of language.\\
+
+\begin{wrapfigure}[8]{r}{0pt}
+  \centering
+  \includegraphics[width=0.2\textwidth]{images/tree.png}
+  \caption{}
+  \label{fig:tree}
+\end{wrapfigure}
+
+\textbf{\textit{Sentence meaning} is captured by its structure}. Structures ``licensed" by the grammar of a language are those that can be produced by the language's grammar (\textbf{\textit{rewrite rules}}). The importance of describing sentences this way is that similar sentences can have very different grammatical structures (or vice versa, e.g. \textit{John is easy to please} and \textit{John is eager to please} are sentences with very similar surface structures but very different meaning).
+
+Sentences are represented as trees, with the \textbf{Chomsky hierarchy} (an example is provided in Fig.~\ref{fig:tree}). As sentence meaning is related to its structure, it is possible to disambiguate ambiguous strings of words.
+
+\subsubsection{Derivational theory of psychological complexity}
+These ideas can be used to build a psychological theory: the \textbf{derivational theory of complexity}, the first theory that tried to account for difficulty of sentence comprehension. It is innovative in that it identified an objective metric on which complexity can vary, and examined correlations between value of this metric and human behavior. The metric was the number of transformations needed to transform a kernel sentence to a given sentence (very similar to the substitutions seen in the behavioralist approach). The entire sentence was taken as a unit, and a set of pre-set rules (a grammar) was used to see if the given sentence can be derived from the kernel sentence. No incremental parsing was used.
