@@ -170,7 +170,7 @@ They experiment with different types of PSG:
 
 In a standard probabilistic context-free grammar, the probability that a parent node will produce a particular set of children is conditional only on the parent node, but it is well known that parsing accuracy can be improved by taking the grandparent node (e.g. in Fig. \ref{fig:frank}a, VP, or verb phrase, is the grandparent of the rightmost IN and NP) into account. Likewise, a rule's probability can be made conditional on information from even higher up in the parse tree. This motivates the $n$\textsuperscript{th} order versions. A comparison is provided in Fig. \ref{fig:psg}.\\
 
-In addition, in an effort of capturing as much structural knowledge as possible, they induced four more PSGs, in which conditioning information was taken not only from ancestor nodes (e.g. grandparent nodes) but also from the ancestors' left siblings (e.g. in Fig. \ref{fig:frank}a, the left sibling of VP is NP), again varying the maximum number of levels up in the tree from one to four. In this manner, they obtained highly structurally sensitive syntactic models. Fig. \ref{psg} highlights the differences.
+In addition, in an effort of capturing as much structural knowledge as possible, they induced four more PSGs, in which conditioning information was taken not only from ancestor nodes (e.g. grandparent nodes) but also from the ancestors' left siblings (e.g. in Fig. \ref{fig:frank}a, the left sibling of VP is NP), again varying the maximum number of levels up in the tree from one to four. In this manner, they obtained highly structurally sensitive syntactic models. Fig. \ref{fig:psg_2} highlights the differences.
 
 \begin{figure}[!ht]
     \centering
@@ -194,7 +194,7 @@ In addition, in an effort of capturing as much structural knowledge as possible,
         \caption*{$2$\textsuperscript{nd}, $3$\textsuperscript{rd}, $4$\textsuperscript{th} order probabilities with left relation.}
     \end{subfigure}
     \caption{}
-    \label{fig:psg}
+    \label{fig:psg_2}
 \end{figure}
 
 \subsection{Markov models}
@@ -224,7 +224,7 @@ It learns to predict a POS (the likelihood of the POS tag of the next word). Out
 \subsection{Evaluation and results}
 The basic idea for evaluating would be to look at how often the model makes a correct guess on the next word. However, it is difficult to do, so they look at how incorrect the model is. 
 From each of the computational systems they derive a measure of Surprisal for the next word (POS). \textbf{All 3 approaches produce $p(w)$ in context}. 
-They evaluate \textbf{Linguist Accuracy}: \textbf{how surprising is the POS for each system} (\textit{(if the model is wrong, did it give high confidence?}). Presumably, the better a system learns stats of language, the less surprised it is by the future.
+They evaluate \textbf{Linguist Accuracy}: \textbf{how surprising is the POS for each system} (\textit{if the model is wrong, did it give high confidence?}). Presumably, the better a system learns stats of language, the less surprised it is by the future.
 They also use a completely different statistics, \textbf{Psychological Accuracy}: how well do the surprise ratings produced by each model predict word reading time \notet.
 The reading times are obtained with eye tracker for more than 2k sentences. This measure is quantified by variance reduced when Surprisal is added as explanatory variable to a baseline model including just word-frequency and word-length. Basically, they are asking whether it is the case that the model is surprised on the same words the people find difficult to read.
 
