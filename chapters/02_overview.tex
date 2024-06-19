@@ -54,7 +54,7 @@ Brain lesions (ablations) offer much information about potential function of bra
   \caption*{Kleist's functional brain map. This map is old and partially incorrect, but still interesting.}
 \end{wrapfigure}
 
-Pruning and ablation causes performance deficits. However, thanks to neuroplasticity, the human brain can achieve again the same performance.\\
+Pruning and ablation cause performance deficits. However, thanks to neuroplasticity, the human brain can achieve again the same performance.\\
 
 Speaking of artificial neural networks, the debate in the last years has seen three thesis on how DNNs encode information:
 \begin{itemize}
@@ -69,11 +69,10 @@ Networks trained for generalization (out of sample prediction) are more robust t
 Pruning and fine-tuning are active areas of research.
 
 \subsection{Dimensionality reduction}
-The brain codes information in a distributed manner, necessitating 
-multivariate analysis:
+The brain codes information in a distributed manner, necessitating multivariate analysis; so dimensionality reduction is used for characterizing representations. There are 3 alternatives:
 \begin{itemize}
-    \item Multiple units encode information in the brain, leading to \textbf{redundancy} where two neurons may fire almost identically; or
-    \item Information is coded in a \textbf{distributed} manner among multiple units (e.g., coding for 4 classes among 2 neurons, each coding $\{0,1\}$); or 
+    \item Multiple units encode information in the brain, leading to \textbf{redundancy} where two neurons may fire almost identically;
+    \item Information is coded in a \textbf{distributed} manner among multiple units (e.g., coding for 4 classes among 2 neurons, each coding $\{0,1\}$);
     \item \textbf{Correlation} among units could indicate that the \textbf{activity can be described in a lower dimensional space}.
 \end{itemize}
 
@@ -82,10 +81,10 @@ It has been shown that, in DNNs, an object-by-feature matrix from fully connecte
 \subsection{Representational geometries}
 To \textbf{understand representations}, we study how they are represented in different layers, how they change over time, and how are different embedding spaces related to each other.
 
-\paragraph{Matrix factorization measures:} they are a good starting point to compare matrices and understand if there is some sort of covariance between the two. We compare representations across networks by comparing \textbf{object-by-feature matrices}. \textit{Canonical Correlation Analysis} and \textit{PLScorrelation} are two different factorization measures, they identify lower-level factors that capture and maximize the correlations/covariance between the datasets (note: these methods can be seen as ``supervised" as they re-weight columns in both tables to maximize similarity).
+\paragraph{Matrix factorization measures:} they are a good starting point to compare matrices and understand if there is some sort of covariance between the two. We compare representations across networks by comparing two \textbf{object-by-feature matrices} (coming, e.g., from two different networks). \textit{Canonical Correlation Analysis} and \textit{PLScorrelation} are two different factorization measures, they identify lower-level factors that capture and maximize the correlations/covariance between the datasets (note: these methods can be seen as ``supervised" as they re-weight columns in both tables to maximize similarity).
 
 \paragraph{Representational Similarity Analysis:} it involves \textbf{comparing two similarity matrices}, often constructed from object-by-feature matrices. This yields an object-by-object similarity matrix.
-Representational Similarity Analysis does not factorize matrices. The principle is: describe how the objects cluster together (in the representational space) according to the matrix. To code for distances between objects, we need a distance matrix; and to get this a distance function is needed (e.g., Euclidean, Mahalanobis, etc.), indeed each row in the object-by-feature matrix is a vector. So we can \textbf{turn the object-by-feature matrix into an object-by-object distance matrix} (pairwise distance between objects).
+RSA does not factorize matrices; the principle is: describe how the objects cluster together (in the representational space) according to the matrix. To code for distances between objects, we need a distance matrix; and to get this a distance function is needed (e.g., Euclidean, Mahalanobis, etc.), indeed each row in the object-by-feature matrix is a vector. So we can \textbf{turn the object-by-feature matrix into an object-by-object distance matrix} (pairwise distance between objects).
 For human data (how human represent things), we usually don't get an object-by-feature matrices (we are directly provided an object-by-object matrix), so with RSA we can study the \textbf{relationship between human representation and machine representation}.
 
 \paragraph{Linear regression:} The machine representation in the neural network (\textit{DNN embeddings}) can be used to predict brain activity (\textit{neurobiological activation vectors}) using linear regression.
@@ -105,7 +104,7 @@ Spatial methods involve placing items in a \textbf{multidimensional space} and u
 Classification based on spatial methods can be determined by an item's location relative to a hyperplane or its similarity to different prototypes (means) or exemplars (centroids):
 \begin{itemize}
     \item \textbf{Prototype approaches} assume that learning is based on similarity to the center of a category (mean), which is stored after training (i.e., all examples are forgotten, the prototype only is stored).
-    \item \textbf{Exemplar approaches} calculate similarity as a ratio between the similarity of an item to all items within a class (i...n) and the similarity of that item to all other items. This provides a fit per class and requires storing item-level information (i.e., all examples are kept).
+    \item \textbf{Exemplar approaches} calculate similarity as a ratio between the similarity of an item to all items within a class ($i, \dots , n$) and the similarity of that item to all other items. This provides a fit per class and requires storing item-level information (i.e., all examples are kept).
     \item \textbf{Clustering} organizes items into groups (cohorts), with quality often quantified by the distance between items within and between clusters. Clustering can be either hard (each item belongs to only one cluster) or soft (items can have multiple memberships, potentially fuzzy).
 \end{itemize}
 
