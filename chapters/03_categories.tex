@@ -12,24 +12,24 @@ Categorical perception is the phenomenon in which people perceive stimuli from d
 \boxc{How we know categorical representation exists}{
 A demonstrating experiment consists in:
 \begin{itemize}
-    \item selecting a set of stimuli that uniformly covers a certain physical domain (e.g. sound freq 100Hz-8000Hz),
-    \item select an objective distance measure so that the space is partitioned in intervals; e.g. distance in frequency space (applicable to both sounds and colors),
-    \item select a method for operationalizing human similarity (e.g. similarity judgments, generalization, confusion [same/different]),
-    \item in one procedure, assign all stimuli to categories (e.g. assign all stimuli to color names); in a second, obtain similarity judgments for within-category vs. between-category pairs, or ask for categorization, and evaluate if the boundary is fuzzy or not (e.g. how much objects are considered similar when belonging to the same category, and when to different categories)
+    \item selecting a set of stimuli that uniformly covers a certain physical domain (e.g., sound freq 100Hz-8000Hz),
+    \item select an objective distance measure so that the space is partitioned in intervals; e.g., distance in frequency space (applicable to both sounds and colors),
+    \item select a method for operationalizing human similarity (e.g., similarity judgments, generalization, confusion [same/different]),
+    \item in one procedure, assign all stimuli to categories (e.g., assign all stimuli to color names); in a second, obtain similarity judgments for within-category vs. between-category pairs, or ask for categorization, and evaluate if the boundary is fuzzy or not (e.g., how much objects are considered similar when belonging to the same category, and when to different categories)
 \end{itemize}
 }
 
 \subsection{Categorical perception in audition}
 In auditory stimuli, there is discrimination between speech sounds. People have a sharper discrimination boundary between sounds that are perceived as belonging to different phonetic categories than between sounds that are perceived as belonging to the same category.
-For experimenting, we use as objective dimension the \textbf{Voice Onset Time} (VOT) of consonants (i.e. the timespan between the start of the consonant and the start of sound emitted by vocal cords). The discrimination performance is simply a ``same/different" judgment. We present consonants such as /b/ and /p/. A fixed-size physical difference in VOT, that is easily discriminated when it straddles the boundary between two categories (labeled as /b/ or /p/), produces \textit{chance} discrimination performance when both tokens come from the same category (either both /b/ or both /p/); results are in Figure \ref{fig:bapa}.
+For experimenting, we use as objective dimension the \textbf{Voice Onset Time} (VOT) of consonants (i.e., the timespan between the start of the consonant and the start of sound emitted by vocal cords). The discrimination performance is simply a ``same/different" judgment. We present consonants such as /b/ and /p/. A fixed-size physical difference in VOT, that is easily discriminated when it straddles the boundary between two categories (labeled as /b/ or /p/), produces \textit{chance} discrimination performance when both tokens come from the same category (either both /b/ or both /p/); results are in Figure \ref{fig:bapa}.
 
 \textbf{Within phonetic category}, two \textbf{different stimuli sound the same} (see \notedv Eimas et al. (1971)).\\
 
 Prior categories aid online processing via categorical perception, in a sort of \textit{experience-dependent learning}; related phenomena are:
 \begin{itemize}
     \item \textit{Change deafness}, Vitevitch (2003): participants repeat words presented by a speaker. Halfway through study, the speaker changed. Only 40\% of participants noticed the change.
-    \item \textit{Sine-wave speech}: phonetic categories/expectations can be considered \textit{priors} on sounds, impacting whether a stimulus is perceived as speech (e.g. if you previously listen to a voice and then hear a sound which is not speech, but has some correlation to the previous voice, you can ``hear" the words\footnote{\url{https://users.sussex.ac.uk/~cjd/SWS/}}).
-    \item \textit{McGurk Effect}: the categorization of sounds is not only an auditory task, since our brain combines multimodal inputs (e.g. also from vision\footnote{\url{https://www.youtube.com/watch?v=PWGeUztTkRA&t=49s}}).
+    \item \textit{Sine-wave speech}: phonetic categories/expectations can be considered \textit{priors} on sounds, impacting whether a stimulus is perceived as speech (e.g., if you previously listen to a voice and then hear a sound which is not speech, but has some correlation to the previous voice, you can ``hear" the words\footnote{\url{https://users.sussex.ac.uk/~cjd/SWS/}}).
+    \item \textit{McGurk Effect}: the categorization of sounds is not only an auditory task, since our brain combines multimodal inputs (e.g., also from vision\footnote{\url{https://www.youtube.com/watch?v=PWGeUztTkRA&t=49s}}).
 \end{itemize}
 
 \begin{figure}
@@ -67,7 +67,7 @@ Brain areas coding for \textbf{low-level} representations are \textbf{not influe
 \subsection{Categorical perception in vision}
 In categorical perception for color, discrimination of items that cross category boundaries is better (faster, more accurate) than when the items are within the same color category. Notice that color category is \textbf{linguistic} \notet.
 For example, it is easier to distinguish between a green stimulus and a blue stimulus than between two stimuli within the same category (two shades of green), who are \textbf{spaced at the same distance}.
-\osst{Practical note: color differences in terms of discriminability can be equated across between-category and within-category comparisons by using the \textit{Commision Internationale de L’Eclairage} (CIE) values.}
+\osst{Practical note: color differences in terms of discriminability can be equated across between-category and within-category comparisons by using the \textit{Commision Internationale de L'Eclairage} (CIE) values.}
 
 \textbf{Color categories are not universal}, and thus \textbf{categorical perception depends on language} (see \notedv Robertson et al. (2000)).
 
@@ -83,7 +83,7 @@ The typical approach is to assume that words are associated with concepts or a n
 We need to first have a good theory of what the conceptual structure is like, and then we can see how this structure is used to represent meaning when referred to by words.
 Ultimately, a word is a sound or written pattern, and it is generally assumed that a single word corresponds to a single concept (this assumption would help with word-embedding models), but there are complications.
 
-There is evidence proving that \textit{form-to-meaning mapping} is not \textit{1-to-1}. We encounter \textbf{polysemy}: a phenomenon where a single word can have multiple meanings depending on the context in which it is used, such as ``cinema" which can refer to different things in different contexts (e.g. \textit{American cinema is naïve} vs \textit{This cinema is ugly}).
+There is evidence proving that \textit{form-to-meaning mapping} is not \textit{1-to-1}. We encounter \textbf{polysemy}: a phenomenon where a single word can have multiple meanings depending on the context in which it is used, such as ``cinema" which can refer to different things in different contexts (e.g., \textit{American cinema is naïve} vs \textit{This cinema is ugly}).
 
 According to Murphy, it is impossible for a single concept to fully capture the meaning of a polysemous word; the process of \textbf{meaning extension} is not a result of \textit{natural change} (chaining) but a matter of \textbf{online derivation}. Online derivation does not prevent information from also being stored somewhere, at least for a short time, in order to understand the nearby context more effectively. Indeed, Klein and Murphy (2001) found evidence suggesting that the different senses of polysemous words can be stored, as they observed priming effects when a word was used twice in the same sense, and interference effects when the sense was switched.
 
@@ -98,7 +98,7 @@ In much of the literature, concepts are studied by using words, assuming that wo
 \osst{Access to conceptual structure is more rapid when people are presented an image, than when presented a word (for the same concept). There are studies showing that music also influences the time of access to conceptual structures.}
 
 \subsubsection{The classic view of word meaning}
-In the classic view \textit{word} and \textit{concept} are the same, and the word's meaning is a \textbf{definition}. Definitions are sets of necessary conditions that are jointly sufficient: every object is \textbf{either within a category or not} (e.g. \textit{Bachelor = Man, unmarried}).
+In the classic view \textit{word} and \textit{concept} are the same, and the word's meaning is a \textbf{definition}. Definitions are sets of necessary conditions that are jointly sufficient: every object is \textbf{either within a category or not} (e.g., \textit{Bachelor = Man, unmarried}).
 This classical view of \textit{concept structure} (word meaning) implies that there are no different levels of category membership (all members are equivalent to others). It has the advantage of supporting hierarchical structure and inheritance.
 
 
@@ -112,7 +112,7 @@ This classical view of \textit{concept structure} (word meaning) implies that th
 \end{wrapfigure}
 
 We first introduce \textbf{propositional networks}.
-A concept has a definition (e.g. \textit{Dog: a member of the canine species, that is domesticated}), it can inherit the default features of the parent class (\textit{canine}) and add a few exceptions if non-default. 
+A concept has a definition (e.g., \textit{Dog: a member of the canine species, that is domesticated}), it can inherit the default features of the parent class (\textit{canine}) and add a few exceptions if non-default. 
 Then the parent classes in the taxonomy are defined (\textit{canine}, then \textit{mammal}, \textit{vertebrate}, \textit{animal}, \textit{organism}, etc).
 At the end, some reference to visual features is added.
 
@@ -156,17 +156,17 @@ Propositional networks, however, present some problems:
 Rosch (1973) proposed an alternative to propositional networks. He argued against the idea of ``sets of necessary and sufficient features”, taking the example of ``game" (there is no set of necessary and sufficient conditions that is in common to all games. Team? Yes/no. Physical skill? Yes/no etc).
 Instead, what makes all games ``games" is their \textbf{family-resemblance} to each other. The \textbf{prototypical members are highly similar to other members within the category but less similar to members of other categories} (in a sort of natural clustering, see \notedv Rosch and Mervis (1975)).\\
 
-Rosch's refutation of ``classic view" in psychology has empirical support, as \textbf{typicality effects} (i.e. typical reactions of people to stimuli) are evident in:
+Rosch's refutation of ``classic view" in psychology has empirical support, as \textbf{typicality effects} (i.e., typical reactions of people to stimuli) are evident in:
 \begin{itemize}
-    \item \textbf{verification times} (e.g. \textit{Robins are birds} faster to verify than \textit{Chicken are birds});
+    \item \textbf{verification times} (e.g., \textit{Robins are birds} faster to verify than \textit{Chicken are birds});
     \item \textbf{ratings} (people are very systematic in rating whether a certain member is a typical member of a category);
-    \item \textbf{generation tasks} when listing members (e.g. for ``birds” many more people list \textit{robins} than \textit{chicken}, and for ``sports” many more list \textit{soccer} than \textit{weightlifting}). 
+    \item \textbf{generation tasks} when listing members (e.g., for ``birds” many more people list \textit{robins} than \textit{chicken}, and for ``sports” many more list \textit{soccer} than \textit{weightlifting}). 
 \end{itemize}
 
 In conclusions \textbf{categories have central and peripheral members}.
 
 \boxl{Rosch and Mervis (1975)\\ \textit{Family resemblances: Studies in the internal structure of categories}}{
-The underlying idea of their study: a prototype of a category is a (hypothetical) member of a category for which all the values are the default or most popular. They first collected feature listing for various items (in different categories), then asked people to rate \textit{how typical} items were of categories, and counted how many category members tended to share features listed. Finally, they analysed \textbf{correlation}, finding items that had more features in common with other items in the category were, independently, rated as more typical of the category (they cross-referenced the typicality ratings against the number of 
+The underlying idea of their study: a prototype of a category is a (hypothetical) member of a category for which all the values are the default or most popular. They first collected feature listing for various items (in different categories), then asked people to rate \textit{how typical} items were of categories, and counted how many category members tended to share features listed. Finally, they analyzed \textbf{correlation}, finding items that had more features in common with other items in the category were, independently, rated as more typical of the category (they cross-referenced the typicality ratings against the number of 
 shared features). The results are in Table \ref{tab:rosch}.
 }
 
@@ -191,7 +191,7 @@ shared features). The results are in Table \ref{tab:rosch}.
 
 \subsubsection{Fuziness and levels of abstraction}
 Propositions also have another problem: \textbf{fuzzy category boundaries}. Natural \textbf{categories do not necessarily have fixed boundaries}.
-Mcloskey and Glucksberg (1978) showed that people’s judgments about category membership differ with typicality (e.g. all agree that \textit{cancer} is a disease and \textit{happiness} is not, opinions differ on \textit{stroke}). Category membership is related to typicality. Edge cases exist, and \textbf{people disagree}. Moreover, \textbf{people are unsure} (e.g. when asked the same question after one month, 11/30 reverse on ``stroke is a disease").\\
+Mcloskey and Glucksberg (1978) showed that people's judgments about category membership differ with typicality (e.g., all agree that \textit{cancer} is a disease and \textit{happiness} is not, opinions differ on \textit{stroke}). Category membership is related to typicality. Edge cases exist, and \textbf{people disagree}. Moreover, \textbf{people are unsure} (e.g., when asked the same question after one month, 11/30 reverse on ``stroke is a disease").\\
 
 These observations raise a question: Why do we end up with the words we have?
 We introduce the concept of \textbf{levels of abstraction and informativeness}.
@@ -205,4 +205,4 @@ granularity:
     \item \textbf{Subordinate} level (\textit{Siamese cat})
 \end{itemize}
 People will use the level of abstraction corresponding to the level of discrimination they need. 
-\textbf{Informativeness} (i.e. the amount of facts linked to the category) and \textbf{distinctiveness} (the extent to which a category differs from other categories at the level) is what makes them useful. The superordinate level lacks informativeness but is distinctive, the opposite of the subordinate level. The basic level has both informativeness and distinctiveness. We do not create a subordinate concept for each item due to reasons of cognitive economy: they maximize information, but without offering much distinction.
+\textbf{Informativeness} (i.e., the amount of facts linked to the category) and \textbf{distinctiveness} (the extent to which a category differs from other categories at the level) is what makes them useful. The superordinate level lacks informativeness but is distinctive, the opposite of the subordinate level. The basic level has both informativeness and distinctiveness. We do not create a subordinate concept for each item due to reasons of cognitive economy: they maximize information, but without offering much distinction.

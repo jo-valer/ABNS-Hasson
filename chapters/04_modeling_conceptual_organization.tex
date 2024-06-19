@@ -17,7 +17,7 @@ They asked people to rate a collection of images for category typicality (images
 \subsubsection{Behavioral experiment}
 Each participant rates ``how well does this picture fit your idea or image of the category". Mean typicality per image is computed across all splits. Human reliability ratings have good split-half correlation: the average reliability of human ratings across random splits is $\rho=0.92$. This confirms that two groups of people produce similar rankings \notet.
 
-\osst{This is required to know if we can trust human ratings (i.e. \textit{is human behaviour reliable enough to predict itself?}). If we could not trust human data, there would be no point in aligning the model output to human ratings.}
+\osst{This is required to know if we can trust human ratings (i.e., \textit{is human behaviour reliable enough to predict itself?}). If we could not trust human data, there would be no point in aligning the model output to human ratings.}
 
 \subsubsection{Computational experiment}
 They use 3 CNN architectures (but for the sake of simplicity \textit{OverDeat} only is described). After the convolutions, the next two layers have 3072 and 4096 fully-connected units, respectively.
@@ -26,14 +26,14 @@ Finally, a 1000-way softmax layer produces a probability distribution over the $
 \osst{Top-five error: the correct label did not appear in the top five guesses.}
 
 \subsection{Estimating image-typicality}
-They assume that (human) \textbf{typicality is related to the strength of the model’s classification response} to the category of interest.
+They assume that (human) \textbf{typicality is related to the strength of the model's classification response} to the category of interest.
 The \textbf{classification strength} can be estimated in two ways:
 \begin{itemize}
     \item \textbf{Raw typicality}: This is a raw category score. There is a theoretical vector (input of last layer) which \textbf{maximizes the activation} of a particular category. Images with representation very close to this theoretical vector are expected to be more typical. So we can maximize $y_j$ to get the particular abstract representation for each category $j$:
     \[
     y_j = \sum_{i=1}^{4096} w_{ij}x_i
     \]
-    \item \textbf{Contrast typicality}: It measures to what extent the correct category is more active than the others. It benefits images that load on the correct category much more than on other ones. The most typical image produces $y_j$ that is most differentiated from other categories’ response to this image. This is independent from the raw value:
+    \item \textbf{Contrast typicality}: It measures to what extent the correct category is more active than the others. It benefits images that load on the correct category much more than on other ones. The most typical image produces $y_j$ that is most differentiated from other categories' response to this image. This is independent from the raw value:
     \[
     z_j = \frac{e^{y_j}}{ \sum_{j=1}^{1000} e^{y_j} }
     \]
@@ -71,7 +71,7 @@ Core questions for neuroscience are:
 We ask ourselves if fMRI and neuroscience allow us to \textit{test} or \textit{understand} what are the \textbf{basis functions} (the \textbf{semantic feature} space) that underlie the representation of words. This can help in designing more cognitive real computational models.
 
 \boxc{Historical approach}{
-We present multiple words sampled from several categories (e.g. tools, buildings), and then train a classifier that predicts the class (tool/building) from the brain images of the words. Brain images are taken with fMRI: see the figure, which shows activation maps from fMRI data (each of the 4 images in a row represent a slice of the brain). A classifier can be trained using a single voxel.
+We present multiple words sampled from several categories (e.g., tools, buildings), and then train a classifier that predicts the class (tool/building) from the brain images of the words. Brain images are taken with fMRI: see the figure, which shows activation maps from fMRI data (each of the 4 images in a row represent a slice of the brain). A classifier can be trained using a single voxel.
 The results of the classifier can be used as a tool for studying the semantics in the brain. For instance, we can understand which brain area contains information about particular classes. This is a pure \textit{decoder}; there is no domain-based knowledge that is applied to predict the brain response from more basic principles.
 
 \begin{center}
@@ -222,7 +222,7 @@ An RDM can also be constructed on \textbf{brain data}. Figure \ref{fig:rdm_brain
         \centering
         \captionsetup{width=.8\linewidth}
         \includegraphics[width=.6\linewidth]{images/rdm.jpg}
-        \caption{Example of a single RDM from human similarity judgements.}
+        \caption{Example of a single RDM from human similarity judgments.}
         \label{fig:rdm}
     \end{subfigure}
     \begin{subfigure}{.54\textwidth}
@@ -244,7 +244,7 @@ An RDM can also be constructed on \textbf{brain data}. Figure \ref{fig:rdm_brain
     \label{fig:rsa}
 \end{figure}
 
-Another possibility (Figure \ref{fig:rsa_2}) is to understand what information is coded over time, so that we can check if there is similarity between representations in the brain and in a neural network at the same depth (e.g. comparing shallow layers of the brain with shallow layers of a CNN). MEG data can be split along the time domain into intervals. For each interval, a similarity matrix is computed correlating the activity between images (note that the matrices are not the same, as representation in the brain changes over time). With fMRI data we can do another thing: relate different modalities (different brain areas), discovering that Extrastriate and Inferior temporal fit with the NN.\\
+Another possibility (Figure \ref{fig:rsa_2}) is to understand what information is coded over time, so that we can check if there is similarity between representations in the brain and in a neural network at the same depth (e.g., comparing shallow layers of the brain with shallow layers of a CNN). MEG data can be split along the time domain into intervals. For each interval, a similarity matrix is computed correlating the activity between images (note that the matrices are not the same, as representation in the brain changes over time). With fMRI data we can do another thing: relate different modalities (different brain areas), discovering that Extrastriate and Inferior temporal fit with the NN.\\
 
 \begin{figure}[!ht]
     \centering

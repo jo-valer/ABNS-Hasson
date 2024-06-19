@@ -1,4 +1,3 @@
-% UNIT : Overview of ML approaches to Cog Neuro 
 \chapter{Overview of ML approaches to modeling cognitive neuroscience data}
 \label{chap:overview}
 
@@ -8,7 +7,7 @@ In this Chapter we have two papers on the topic of \textbf{cognitive neuroscienc
 
 Deep neural networks brought a revolution in the area of ML, with millions of parameters, no engineered features, and very high performance. We can see an \textbf{analogy with neuroscience}, as both fields need to:
 \begin{itemize}
-    \item understand how neural networks, consisting of large numbers of interconnected elements, transform representations of stimuli across multiple processing stages to implement a wide range of complex computations and behaviours;
+    \item understand how neural networks, consisting of large numbers of interconnected elements, transform representations of stimuli across multiple processing stages to implement a wide range of complex computations and behaviors;
     \item describe and analyze very high dimensional data.
 \end{itemize}
 
@@ -27,7 +26,7 @@ Some experiments investigate which types of images maximally activate a neuron. 
     \centering
     \captionsetup{width=.8\linewidth}
     \includegraphics[width=1\linewidth]{images/dnn_receptive_fields.png}
-    \caption{Top: how an input image is progressively processed by a CNN. Bottom: receptive fields for each layer are calculated using activation maximization (i.e. take an already trained CNN and create stimuli that produce the maximal activation in a given feature mapping in the network). For each layer, a single square corresponds to a feature map. We can notice \texttt{conv1} (the first layer) encodes large scale information; some shapes (e.g. circles) start appearing as early as \texttt{conv2}.}
+    \caption{Top: how an input image is progressively processed by a CNN. Bottom: receptive fields for each layer are calculated using activation maximization (i.e., take an already trained CNN and create stimuli that produce the maximal activation in a given feature mapping in the network). For each layer, a single square corresponds to a feature map. We can notice \texttt{conv1} (the first layer) encodes large scale information; some shapes (e.g., circles) start appearing as early as \texttt{conv2}.}
 \end{figure}
 
 \boxl{Retinotopy map}{
@@ -74,11 +73,11 @@ The brain codes information in a distributed manner, necessitating
 multivariate analysis:
 \begin{itemize}
     \item Multiple units encode information in the brain, leading to \textbf{redundancy} where two neurons may fire almost identically; or
-    \item Information is coded in a \textbf{distributed} manner among multiple units (e.g. coding for 4 classes among 2 neurons, each coding $\{0,1\}$); or 
+    \item Information is coded in a \textbf{distributed} manner among multiple units (e.g., coding for 4 classes among 2 neurons, each coding $\{0,1\}$); or 
     \item \textbf{Correlation} among units could indicate that the \textbf{activity can be described in a lower dimensional space}.
 \end{itemize}
 
-It has been shown that, in DNNs, an object-by-feature matrix from fully connected layer can be \textbf{compressed by more than 80\%} (e.g. from 4096 dimensions to 512) while maintaining almost all variance. This means few dimensions are enough to explain differences between images. 
+It has been shown that, in DNNs, an object-by-feature matrix from fully connected layer can be \textbf{compressed by more than 80\%} (e.g., from 4096 dimensions to 512) while maintaining almost all variance. This means few dimensions are enough to explain differences between images. 
 
 \subsection{Representational geometries}
 To \textbf{understand representations}, we study how they are represented in different layers, how they change over time, and how are different embedding spaces related to each other.
@@ -86,7 +85,7 @@ To \textbf{understand representations}, we study how they are represented in dif
 \paragraph{Matrix factorization measures:} they are a good starting point to compare matrices and understand if there is some sort of covariance between the two. We compare representations across networks by comparing \textbf{object-by-feature matrices}. \textit{Canonical Correlation Analysis} and \textit{PLScorrelation} are two different factorization measures, they identify lower-level factors that capture and maximize the correlations/covariance between the datasets (note: these methods can be seen as ``supervised" as they re-weight columns in both tables to maximize similarity).
 
 \paragraph{Representational Similarity Analysis:} it involves \textbf{comparing two similarity matrices}, often constructed from object-by-feature matrices. This yields an object-by-object similarity matrix.
-Representational Similarity Analysis does not factorize matrices. The principle is: describe how the objects cluster together (in the representational space) according to the matrix. To code for distances between objects, we need a distance matrix; and to get this a distance function is needed (e.g. Euclidean, Mahalanobis, etc.), indeed each row in the object-by-feature matrix is a vector. So we can \textbf{turn the object-by-feature matrix into an object-by-object distance matrix} (pairwise distance between objects).
+Representational Similarity Analysis does not factorize matrices. The principle is: describe how the objects cluster together (in the representational space) according to the matrix. To code for distances between objects, we need a distance matrix; and to get this a distance function is needed (e.g., Euclidean, Mahalanobis, etc.), indeed each row in the object-by-feature matrix is a vector. So we can \textbf{turn the object-by-feature matrix into an object-by-object distance matrix} (pairwise distance between objects).
 For human data (how human represent things), we usually don't get an object-by-feature matrices (we are directly provided an object-by-object matrix), so with RSA we can study the \textbf{relationship between human representation and machine representation}.
 
 \paragraph{Linear regression:} The machine representation in the neural network (\textit{DNN embeddings}) can be used to predict brain activity (\textit{neurobiological activation vectors}) using linear regression.
@@ -105,8 +104,8 @@ This paper reviews the modern machine learning techniques and their use in model
 Spatial methods involve placing items in a \textbf{multidimensional space} and using their location to draw conclusions about \textbf{categorization}.
 Classification based on spatial methods can be determined by an item's location relative to a hyperplane or its similarity to different prototypes (means) or exemplars (centroids):
 \begin{itemize}
-    \item \textbf{Prototype approaches} assume that learning is based on similarity to the center of a category (mean), which is stored after training (i.e. all examples are forgotten, the prototype only is stored).
-    \item \textbf{Exemplar approaches} calculate similarity as a ratio between the similarity of an item to all items within a class (i...n) and the similarity of that item to all other items. This provides a fit per class and requires storing item-level information (i.e. all examples are kept).
+    \item \textbf{Prototype approaches} assume that learning is based on similarity to the center of a category (mean), which is stored after training (i.e., all examples are forgotten, the prototype only is stored).
+    \item \textbf{Exemplar approaches} calculate similarity as a ratio between the similarity of an item to all items within a class (i...n) and the similarity of that item to all other items. This provides a fit per class and requires storing item-level information (i.e., all examples are kept).
     \item \textbf{Clustering} organizes items into groups (cohorts), with quality often quantified by the distance between items within and between clusters. Clustering can be either hard (each item belongs to only one cluster) or soft (items can have multiple memberships, potentially fuzzy).
 \end{itemize}
 

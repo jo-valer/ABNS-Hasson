@@ -4,9 +4,9 @@
 Humans learn so that they can get a better fit to the environment: understanding and learning allow for better perception. This Chapter provides an overview on different theories of human learning and memorization. 
 
 \section{Learning and prediction}
-Learning theory  advances by quantifying neurobiological \textbf{responses to stimuli} with different levels of probability/stimulus-features. Learning optimizes perception and behavior, with \textbf{surprise} (sometimes called \textit{prediction error}) being a long-considered key component because it is \textbf{a clue to what people know}. Surprise can be measured through different means: physiologically (e.g. pupil dilation), via brain data, and others.
+Learning theory  advances by quantifying neurobiological \textbf{responses to stimuli} with different levels of probability/stimulus-features. Learning optimizes perception and behavior, with \textbf{surprise} (sometimes called \textit{prediction error}) being a long-considered key component because it is \textbf{a clue to what people know}. Surprise can be measured through different means: physiologically (e.g., pupil dilation), via brain data, and others.
 But the S-R (Stimulus-Response) approach depends on more than what people know: it is mediated by low-level perception, accumulation of evidence, report biases, and response-initiation processes (noise). Therefore studying the observed responses to stimuli might not be the best way to understand what people learn.
-Moreover, S-R also ignores the issue of whether people use learning to construct \textbf{expectations or predictions}. Computer models do not exhibit this problem, but humans do. Actually, there is no guarantee that our behaviour depends on predictions: it might be that no anticipatory prediction is done before the stimulus is presented; there is huge debate on this topic.
+Moreover, S-R also ignores the issue of whether people use learning to construct \textbf{expectations or predictions}. Computer models do not exhibit this problem, but humans do. Actually, there is no guarantee that our behavior depends on predictions: it might be that no anticipatory prediction is done before the stimulus is presented; there is huge debate on this topic.
 Studies of expectation probe the state of a cognitive system prior to stimulus presentation and independent of stimulus-guided responses. We can measure the expectation of a distribution using the Shannon Entropy. This is related to the surprise to a sample from the distribution. If the sample differs much from the expectation, then the surprise is higher (the subject is learning).
 
 We can use surprise to understand if a person has learned something (surprise means he/she has picked up a distribution): we can observe surprise with respect to event transitions (Markov matrix). We can further observe if a person has just learned the marginal probabilities (how much an event is frequent) or also the conditional probabilities (how frequent an event is after a given other event).
@@ -61,7 +61,7 @@ Moreover, 20 random-location trials are appended to each series to study wash-ou
 They name ``Return trials" those for which the screen-side of the last-presented target is the same as the preceding one, and ``Alternation trial" for opposite side.
 
 \subsection{Saccade latency}
-The \textbf{saccade latency} is defined as the time taken from the appearance of a target to the beginning of a saccade (i.e., a rapid movement of the eye between fixation points) in response to that target. Note that the first 80 ms are ``consumed" by the signal travelling from eyes to the brain. Saccade latency can be used as a \textbf{measure of surprise}, and \textbf{provide evidence for learning}.
+The \textbf{saccade latency} is defined as the time taken from the appearance of a target to the beginning of a saccade (i.e., a rapid movement of the eye between fixation points) in response to that target. Note that the first 80 ms are ``consumed" by the signal traveling from eyes to the brain. Saccade latency can be used as a \textbf{measure of surprise}, and \textbf{provide evidence for learning}.
 
 The results (Fig. \ref{fig:saccade}) show that saccades to target presented on alternate sides are faster when alternates are more predictable (\texttt{pret30}). Saccades to targets presented on return sides faster when returns are more predictable (pret70). In \texttt{pret30} subjects should expect an alternation, and indeed the results agree. However, in \texttt{pret70}, we do not have the opposite: in general, returns are slower than alternations because. This is because people do not like to return their attention where they already looked at: people like to explore and shift attention to any other place. This phenomenon has been named ``\textbf{inhibition of return}" (IOR).
 
@@ -77,7 +77,7 @@ They define the \textit{anticipatory gaze offset} as the absolute gaze location 
     \label{fig:afo}
 \end{figure}
 
-The \textbf{\textit{anticipatory fixation offset}} (\textbf{AFO}) is the recording of the gaze offset in relation to the prior target: horizontal deviation from the center is coded as positive if to the side of the last presented target, negative otherwise. The AFO is measured during the final 10 ms of pre-target blank screen. It is arbitrarily coded as positive for offsets to the side of the last presented target. This is a \textbf{measure of anticipatory behaviour} (i.e., ``how much people are betting that the target will appear on a specific side, instead of the other"). If an individual does not learn the environment, the average AFO is expected to be 0.
+The \textbf{\textit{anticipatory fixation offset}} (\textbf{AFO}) is the recording of the gaze offset in relation to the prior target: horizontal deviation from the center is coded as positive if to the side of the last presented target, negative otherwise. The AFO is measured during the final 10 ms of pre-target blank screen. It is arbitrarily coded as positive for offsets to the side of the last presented target. This is a \textbf{measure of anticipatory behavior} (i.e., ``how much people are betting that the target will appear on a specific side, instead of the other"). If an individual does not learn the environment, the average AFO is expected to be 0.
 
 \begin{figure}[!ht]
     \centering
@@ -104,7 +104,7 @@ Fig. \ref{fig:afo_2}C shows how the recent past impacts prediction. Recent retur
 
 They also model the saccade latency, instead of the anticipatory gaze. The regression model is fit per participant per condition, but separately for return and alternation saccades (control: IOR, surprise). The results show \textbf{no impact of recent past on response times for predicted targets} (alternation saccades in pret30, return saccades in \texttt{pret70}). Return saccades in \texttt{pret30} (surprising targets) present an impact limited to the immediately preceding transition: return saccades are faster when preceded by a return. For alternation saccades in pret70 the last 4 $\beta_k$ have significant impact: recent return trials slow down an alternation saccade (vs.~returns).\\
 
-Saccade latencies confirm statistical learning, while AFOs reflct learning of global statistics. Saccade latencies reflect IOR, while AFOs do not. 
+Saccade latencies confirm statistical learning, while AFOs reflect learning of global statistics. Saccade latencies reflect IOR, while AFOs do not. 
 These findings show how modelling response to stimuli with respect to past events can give completely different results, as the past affects the two computational models in completely different ways, as preparatory process and actual execution of saccade are differently impacted.
 
 \subsection{Time scales of knowledge consolidation and process of forgetting}
@@ -121,7 +121,7 @@ They proceed by studying consolidation and forgetting on large timescales, quest
 Moreover, previous statistics impact AFO during during washout: when forgetting, people still show effects of the prior statistical condition, and the immediately prior trial (consider Fig. \ref{fig:afo_3}A and compare it to Fig. \ref{fig:afo_2}B).
 
 \subsection{Rescorla-Wagner learning model based on AFO}
-They use an error-driven (Rescorla-Wagner) \textbf{model of learning} to map beliefs about transitions to observed behavior (AFO). They use it for predicting the actual human behaviour. The model is implemented as:
+They use an error-driven (Rescorla-Wagner) \textbf{model of learning} to map beliefs about transitions to observed behavior (AFO). They use it for predicting the actual human behavior. The model is implemented as:
 \[
 \begin{cases}
     P_{ret}(t+1) = P_{ret}(t) + \alpha(1-P_{ret}(t)) \quad \text{after a return}\\
@@ -129,7 +129,7 @@ They use an error-driven (Rescorla-Wagner) \textbf{model of learning} to map bel
     AFO(t+1) = K(P_{ret}(t+1)-P_0)
 \end{cases}
 \]
-where $P_0$ is the probability equilibrium point \notet; $K$ is the scaling factor transforming internal probability to overt behavior; and $\alpha$ is the learning rate (the relative importance of a new observation in relation to prior knowledge). Note: both are learned for single individuals. $K$ links the internal belief (the probability) to the actual behaviour (AFO). Different people behave differently with the same internal belief, meaning that this parameter is not the same for everyone. Similarly, different people have very divergent learning rates.
+where $P_0$ is the probability equilibrium point \notet; $K$ is the scaling factor transforming internal probability to overt behavior; and $\alpha$ is the learning rate (the relative importance of a new observation in relation to prior knowledge). Note: both are learned for single individuals. $K$ links the internal belief (the probability) to the actual behavior (AFO). Different people behave differently with the same internal belief, meaning that this parameter is not the same for everyone. Similarly, different people have very divergent learning rates.
 
 The advantage of an error-driven learning model is that it allows to model the learning rate. This is directly related to the drop-off curve of the $\beta_k$ in the regression model (impact of past on present). The scaling factor $K$ further deals with the possibility that in different situations, the exact same knowledge can translate to behaviors of different magnitude; it can be seen as a measure of confidence.
 
@@ -152,7 +152,7 @@ In conclusion, the different learning rates for two processes with identical con
 
 \section[Relationship between prediction and behavior]{Relationship between prediction and behavior\\ Timme and Lapish (2018)
 }
-They study the relationship between anticipation (anticipatory fixation offset, AFO) and stimulus response (saccade latency, SL), to understand if AFOs predict subsequent SLs in a manner consistent with prior prediction. They further want to know if there is a difference in the amount of information AFOs and SLs carry about the experimental condition, i.e., if it is possible to predict the condition (\texttt{pret30} or \texttt{pret70}) based on human behaviour.\\
+They study the relationship between anticipation (anticipatory fixation offset, AFO) and stimulus response (saccade latency, SL), to understand if AFOs predict subsequent SLs in a manner consistent with prior prediction. They further want to know if there is a difference in the amount of information AFOs and SLs carry about the experimental condition, i.e., if it is possible to predict the condition (\texttt{pret30} or \texttt{pret70}) based on human behavior.\\
 
 If AFO measures prediction, the following relation should hold between measured AFO and following SL: larger AFO values (putative anticipation of target on prior side) should be followed by faster return saccades, but slower alternation saccades (negative AFO/SL correlation for returns, positive AFO/SL correlation for alternations). This is what is found. A larger anticipatory bias towards return predicts a faster return saccade, and also predicts a slower alternation saccade.\\
 
@@ -218,7 +218,7 @@ He conducted an experiment in which people are presented some items. Almost all 
 information is to be remembered later (Fig.~\ref{fig:ebbinghaus_2}).
 He used a list of nonsense syllables (as items) in order to have a cultural-independent study.\\
 Ebbinghaus introduced another study: how memorization is impacted by the information composition.
-Fig. \ref{fig:keppel} shows the difference between all items together (massed learning) vs.~a small chunck at a time (distributed learning).
+Fig. \ref{fig:keppel} shows the difference between all items together (massed learning) vs.~a small chunk at a time (distributed learning).
 
 \begin{figure}[!ht]
     \centering
@@ -256,7 +256,7 @@ Bartlett (1932) used multiple repetition of recalled material to study distortio
 \end{wrapfigure}
 
 The Gestalt movement (Kohler, Koffka, Wertheimer) followed an 
-\textbf{anti-reductionistic} approach, thinking that a representation cannot be reduced to the representations of its parts (\textit{the whole is different that the sum of its parts}). Yet they did acknowledge the importance of understanding the components of thought.\\
+\textbf{anti-reductionist} approach, thinking that a representation cannot be reduced to the representations of its parts (\textit{the whole is different that the sum of its parts}). Yet they did acknowledge the importance of understanding the components of thought.\\
 
 In their view, \textbf{memory is influenced by the configuration of elements and context}, and there is an \textbf{isomorphism of mental representation}: material is represented mentally in the same configuration as it exists in the world. An example of how context impacts perception is provided in Fig.~\ref{fig:gestalt_2}.\\
 
@@ -268,7 +268,7 @@ In their view, \textbf{memory is influenced by the configuration of elements and
 }
 
 \subsection{Behaviorism}
-Pavlov and Thorndike developed this theory as a response to Gestalt psychology (as this was non quantitative). They thought \textbf{psychology should be the study of observable behavior, not of the structure of mind}. They wanted to quantify behavior; behaviorism is associated with the term \textit{learning} as it is easy to quantify learning. Later behaviorists (like Tolman) used mental explanations and representations (e.g. cognitive maps).\\
+Pavlov and Thorndike developed this theory as a response to Gestalt psychology (as this was non quantitative). They thought \textbf{psychology should be the study of observable behavior, not of the structure of mind}. They wanted to quantify behavior; behaviorism is associated with the term \textit{learning} as it is easy to quantify learning. Later behaviorists (like Tolman) used mental explanations and representations (e.g., cognitive maps).\\
 From Ebbinghaus's work, they developed a behaviorist approach to the learning of verbal materials (\textbf{verbal learning}: words, sentences, stories): \textbf{memorization is the ``attachment of responses to stimuli"}, while forgetting is the ``loss of response availability".
 
 \subsection{Early neuroscience}
