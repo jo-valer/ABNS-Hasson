@@ -20,7 +20,7 @@ Each participant rates ``how well does this picture fit your idea or image of th
 \osst{This is required to know if we can trust human ratings (i.e., \textit{is human behaviour reliable enough to predict itself?}). If we could not trust human data, there would be no point in aligning the model output to human ratings.}
 
 \subsubsection{Computational experiment}
-They use 3 CNN architectures (but for the sake of simplicity \textit{OverDeat} only is described). After the convolutions, the next two layers have 3072 and 4096 fully-connected units, respectively.
+They use 3 CNN architectures (but for the sake of simplicity \textit{OverFeat} only is described). After the convolutions, the next two layers have 3072 and 4096 fully-connected units, respectively.
 Finally, a 1000-way softmax layer produces a probability distribution over the $j = 1,\dots,1000$ classes. They get a top-five error rate of 14.2\% \notet.
 
 \osst{Top-five error: the correct label did not appear in the top five guesses.}
@@ -39,7 +39,7 @@ The \textbf{classification strength} can be estimated in two ways:
     \]
 \end{itemize}
 
-The values computed for each $j$ are averaged, then they check for correlation with human ratings.
+The training objective is to maximize the log-probability of the correct label across the 1.2 million training instances (i.e., cross-entropy loss). Then they check for correlation with human ratings.
 
 \subsection{Results}
 \begin{wrapfigure}[16]{r}{0pt}
@@ -71,14 +71,15 @@ Core questions for neuroscience are:
 We ask ourselves if fMRI and neuroscience allow us to \textit{test} or \textit{understand} what are the \textbf{basis functions} (the \textbf{semantic feature} space) that underlie the representation of words. This can help in designing more cognitive real computational models.
 
 \boxc{Historical approach}{
-We present multiple words sampled from several categories (e.g., tools, buildings), and then train a classifier that predicts the class (tool/building) from the brain images of the words. Brain images are taken with fMRI: see the figure, which shows activation maps from fMRI data (each of the 4 images in a row represent a slice of the brain). A classifier can be trained using a single voxel.
+We present multiple words sampled from several categories (e.g., tools, buildings), and then train a classifier that predicts the class (tool/building) from the brain images of the words. Brain images are taken with fMRI: see the figure, which shows activation maps from fMRI data (each of the 4 images in a row represent a slice of the brain).
+% A classifier is trained using a single voxel, so that we learn which voxel contains information for specific classes.
 The results of the classifier can be used as a tool for studying the semantics in the brain. For instance, we can understand which brain area contains information about particular classes. This is a pure \textit{decoder}; there is no domain-based knowledge that is applied to predict the brain response from more basic principles.
 
 \begin{center}
     \includegraphics[width=0.5\textwidth]{images/fmri_slices.png}
 \end{center}
 
-Classifiers capture some meaning, as they show \textbf{cross-domain generalization} (train on words, guess class of image).
+Classifiers capture some meaning, as they show \textbf{cross-domain generalization}.
 They collected brain activity while people watched an image (instead of the word), and while Portuguese (instead of English) people watched the same words.
 They then took the classifier trained to discriminate categories based on brain responses to words presented in English and tested on brain activity from those other domains. 
 Both \textit{testing on pictures} and \textit{testing on other language} produce above chance accuracy: \textbf{semantics generalize beyond modality used}.
@@ -94,7 +95,7 @@ These considerations sparked \cite{Mitchell2008PredictingHB} to propose an alter
   \caption{Example of feature vector.}
   \label{fig:mitchell_2}
 \end{wrapfigure}
-Their proposal is to \textbf{come up with a theory of word meaning and see whether the theory predicts brain activity} (\textit{activation}). They capture ``word meaning" from corpus statistics (from mutual constraints appearing in corpora). The challenge is basically to find a ``mapping function" from word meaning to brain activity.
+Their proposal is to \textbf{come up with a theory of word meaning and see whether the theory predicts brain activity} (\textit{activation}). They capture ``word meaning" from corpus statistics (mutual occurrences in corpora). The challenge is basically to find a ``mapping function" from word meaning to brain activity.
 \begin{figure}
     \centering
     \captionsetup{width=.8\linewidth}
@@ -199,7 +200,7 @@ In the end, they experimented with \textbf{random} \textit{25-feature-basis} set
 In this section we see how they model similarity spaces expressed in human behavior and brain responses.
 
 \subsection{The principles of Representational Similarity Analysis (RSA)}
-To compare if two clustering representations are similar, a possibility is to pick single elements, and check if the neighbors that are part of the same cluster in a representation, are part of the same cluster also in the other representation. This idea coming from statistics is exploited in RSA.
+% To compare if two clustering representations are similar, a possibility is to pick single elements, and check if the neighbors that are part of the same cluster in a representation, are part of the same cluster also in the other representation. This idea coming from statistics is exploited in RSA.
 
 RSA relates modalities of human behavior (or brain activity measurement) and information processing models by \textbf{comparing activity-pattern dissimilarity matrices}. A single similarity-matrix captures \textit{first-order} similarity between stimuli (either similarity in brain response, or similarity as computed by a  model). \textbf{RSA is a 2\textsuperscript{nd} order similarity} because it quantifies how alike two similarity-matrices are.
 RSA:
@@ -290,7 +291,7 @@ The typical approach of fMRI is massively multivariate, since it considers one v
 \end{wrapfigure}
 
 For this reason they studied brain responses during narrative comprehension: some participants were required to focus on space, others on time, others on actions, hearing the same story.
-They considered each IFG sub-region as a ``voxel".
+They considered each IFG (\textit{inferior frontal gyrus}) sub-region as a ``voxel".
 With an univariate approach, regional activity in \textit{pars opercularis} (see Figure~\ref{fig:ptri}) was higher for some conditions, while \textit{pars triangularis} responded always with the same level of activation for the different dimensions.
 In a multivariate approach, they considered the entire set of values in each region, and quantified how similar those activity patterns were for the three conditions. Instead of considering the whole area (\textit{pars triangularis}) by averaging, they kept voxels separated and found very different activations when focusing on different dimensions.
 
@@ -298,7 +299,7 @@ In a multivariate approach, they considered the entire set of values in each reg
 A multi voxel pattern analysis (MVPA) can be carried out.
 Two conditions are presented, which produce different distributions of activity across trials. In Case 1, each condition produces different activity levels, in both Voxel 1 and Voxel 2. Clearly, the region discriminates the classes.
 In Case 2, each condition produces highly similar mean activity levels in both Voxel 1 and Voxel 2. So one might conclude that the region does not discriminate, if aggregating across univariate analysis.
-But the multivariate analysis leads to a completely different result, allowing us to better understand: the region containing voxels 1 and 2 \textbf{contains information about conditions in the joint distribution} of Voxel 1 and Voxel 2.
+But the multivariate analysis leads to a completely different result, allowing us to better understand: the region containing voxels 1 and 2 \textbf{caries information about conditions in the joint distribution} of Voxel 1 and Voxel 2.
 \begin{figure}[!ht]
     \centering
     \captionsetup{width=.8\linewidth}
