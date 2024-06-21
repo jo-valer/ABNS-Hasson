@@ -5,25 +5,25 @@ In this Chapter we study how human representation and AI representation can be c
 
 \section[Using human brain activity to guide machine learning]{\textit{Using human brain activity to guide machine learning}\\ \mandatory{fong2017using}}
 
-This study tries to \textbf{improve ML performance by guiding it with brain activity}, and explore whether such guidance makes the representations themselves more ``human-like". Notice that here the focus is not on performance but on \textbf{representational geometry}. The underlying idea is that, if the human brain is a natural reference point (for representation geometry) and performance, and ANNs are a good algorithm for learning structure, then we can attempt to leverage the ML algorithm with biological information.\\
+This study tries to \textbf{improve ML performance by guiding it with brain activity}, and explore whether such guidance makes the representations themselves more ``human-like" (notice that in this second part the focus is not on performance but on \textbf{representational geometry}). The underlying idea is that, if the human brain is a natural reference point (for representation geometry and performance), and ANNs are a good algorithm for learning structure, then we can attempt to leverage the ML algorithm with biological information.\\
 
 They consider 7 brain areas (ROIs, \textit{regions of interest}, whose partitioning is defined a-priori). Different brain areas code for different information about the stimulus, but all of them are involved in \textbf{visual processing} (either low, middle, or high level). They use two types of models: CNN and HOG (\textit{histogram of oriented gradients}, an often-used algorithm for generating features that capture the local ``slopeness" of different parts of an image).
 
-Their idea is to train a classifier on brain data to perform binary classification. To do so (to maximize the margin between the decision boundary and the data points), they use a loss derived from the \textbf{Hinge loss} \notet. They define the \textbf{``response strength" from brain fMRI activity data} as the \textbf{distance of an object from the decision boundary} for a given binary classification task.
+Their idea is to train a classifier on brain data to perform binary classification. To do so (to maximize the margin between the decision boundary and the data points), they use a loss derived from the \textbf{Hinge loss} \notet. They define the \textbf{``response strength" $c_x$ from brain fMRI activity data} as the \textbf{distance of an object $x$ from the decision boundary} for a given binary classification task.
 This produces a per-stimulus activity weight (response strength) for each stimulus. As input to the classifier, each image is encoded as a vector of brain activity values sampled from a given brain area (one of the 7 mentioned before).
 From the Hinge loss they define the \textbf{Activation weighted loss} (AWL) as:
 \[
-\phi (x, z) = max(0, (1-z) \cdot M(x,z)
+\phi (x, z) = max(0, (1-z) \cdot M(x,z))
 \]
 where $M(x,z) =\begin{cases}
          1+c_x, \text{if } z<1\\
         1 \text{ otherwise}
         \end{cases}$
 
-and $c_x \geq 0$ is an activity weight derived from fMRI data corresponding to $x$ (it is the distance of the object from the classification boundary of the binary classifier trained on brain data).\\
-While HL penalizes misclassified examples, \textbf{AWS penalizes misclassified examples on stimuli that are easy for humans to distinguish}.\\
+and $c_x \geq 0$ is the activity weight derived from fMRI data corresponding to $x$ (it is the distance of the object from the classification boundary of the binary classifier trained on brain data).\\
+While HL penalizes misclassified examples, \textbf{AWL penalizes misclassified examples on stimuli that are easy for humans to distinguish}.\\
 
-They train a classifier on brain responses (fMRI), then use this prior knowledge to train a new model on non-annotated data. They basically use the learned weights as a starting point. The process consists in the following steps:
+They train a classifier on brain responses (fMRI), then use this prior knowledge to train a new model on non-annotated data. They basically use the learned weights as a `correction' that helps the SVM to find a solution closer to the fMRI-based one. The process consists in the following steps:
 \begin{enumerate}
     \item \textbf{Derive per-stimulus ``activity weights" from fMRI data}:
         \begin{itemize}
@@ -80,15 +80,15 @@ They also experiment using information from one brain area only for the loss, ob
 
 In conclusion, \textbf{information measured directly from brain can guide an ML algorithm to make better human-like decisions}.
 One can harness measures of the internal representations employed by the brain to guide machine learning.
-However, the authors ignore an important question: Are the better results obtained thanks to \textbf{brain} data, or is it just because it is \textbf{more} data? What if we improved the HOG classifier using AWL from CNN classifier (i.e., what if we compute the $C_x$ of the hinge loss from the CNN embeddings?).
-The accuracy should be much higher, so we expect the difference when using Activity Weighted Loss to be less significant.
+However, the authors ignore an important question: Are the better results obtained thanks to \textbf{brain} data, or is it just because it is \textbf{more} data? What if we improved the HOG classifier using AWL from CNN classifier (i.e., what if we compute the $c_x$ of the AWL from the CNN embeddings?).
+The accuracy should be much higher, so we expect the difference in using AWL~vs.~HL to be less significant.
 
 \section[Interpretable semantic vectors from a joint model of brain- and text-based meaning]{\textit{Interpretable Semantic Vectors from a Joint Model of Brain- and Text-Based Meaning}\\ \mandatory{fyshe-etal-2014-interpretable}}
 
 This study is similar to \cite{fong2017using}, but the domain is completely different: human-constraint NLP. They are computational linguists and want to improve word embeddings (they are not really interested in studying the brain).
 
 \subsection{Background}
-Vector Space Models (VSMs) represent lexical meaning by assigning each word a point in high dimensional space. The high dimensional space can be any vectorial representation associated with each word. VSMs are typically created using a large text corpora. When this is he case, the VSM represents word semantics as observed in text. In the VSM, the distance between any two words is taken to indicate their semantic similarity (matching, e.g., that observed and rated by speakers). Corpus-based VSMs have been criticized as being noisy or incomplete representations of meaning.\\
+Vector Space Models (VSMs) represent lexical meaning by assigning each word a point in high dimensional space. The high dimensional space can be any vectorial representation associated with each word. VSMs are typically created using a large text corpus. When this is the case, the VSM represents word semantics as observed in text. In the VSM, the distance between any two words is taken to indicate their semantic similarity (matching, e.g., that observed and rated by speakers). Corpus-based VSMs have been criticized as being noisy or incomplete representations of meaning.\\
 
 When a person is reading or writing, the semantic content of each word necessarily produces patterns of activity over neurons/voxels/sensors. In principle then, \textbf{brain activity could be used instead of corpus data to construct a VSM}. If brain activation data encodes semantics, including brain data in a model of semantics could result in a more effective model. They anticipate that, if it is indeed possible to create word embeddings using brain activations, then the inclusion of this data will only improve a text-based model if brain data contains semantic information not readily available in the corpus.\\
 
@@ -100,7 +100,7 @@ This study tries to:
 \end{itemize}
 
 \subsection{Data and method}
-The corpus data are compiled from a 16 billion word subset of ClueWeb09 and contain two types of corpus features: \textbf{dependency} (between words) and \textbf{document features}. Dependency statistics were derived by dependency parsing the corpus and compiling co-occurrence counts for all dependencies incident on the word. Count thresholding was applied to reduce noise, and positive pointwise mutual-information (PPMI \notet) was applied to the counts. SVD was applied to the document. They started with a word-by-word co-occurrence matrix and then get a word-by-feature matrix $X$, after PPMI and SVD.
+The corpus data is compiled from a 16 billion word subset of ClueWeb09 and contains two types of corpus features: \textbf{dependency} (between words) and \textbf{document features}. Dependency statistics were derived by dependency parsing the corpus and compiling counts for all dependencies incident on the word. Document statistics are word-document co-occurrence counts. Count thresholding was applied to reduce noise, and positive pointwise mutual-information (PPMI \notet) was applied to the counts. SVD was applied to the document. They started with a word-by-word co-occurrence matrix and then get a word-by-feature matrix $X$, after PPMI and SVD.
 \osst{They consider just the positive PMI, i.e., words that co-occur more often that if they were independent.}
 
 The brain data comes from fMRI data and MEG data for 18 subjects (9 in each imaging modality). Each read 60 concrete nouns. The 60 words span 12 word categories.\\
@@ -158,10 +158,10 @@ JNNSE has many advantages:
 
 \subsection{Experiments and results}
 To check whether the word-by-feature matrix encodes for specific properties, they use a \textbf{probing classifier}: they train the regression model on $A$ and evaluate it on a human-rated-property table. More specifically, they obtain behavioral measure of semantics for 60 words, rated on 218 properties (e.g., \textit{smell}, \textit{emotion}, etc.), and then train the classifier to predict the [$60 \times 218$] human behavior's matrix from the $A$ matrix obtained using NNSE (text only) or JNNSE (brain+text). They experiment with different numbers of latent dimensions $l$: 250, 500 or 1000. For \textbf{evaluating the correlation} of the latent representation ($A$) with behavioral data ($Y$), they do not compare the tables directly, but use in-matrix pairwise (Euclidean) distance instead, i.e., they are somehow checking if the two vector spaces are isomorphic.\\
-Figure \ref{fig:jnnse} shows that joint embeddings improve prediction of human similarity space. However, as in \cite{fong2017using}, the higher performance might not be caused by infusing brain data, but just by using a multiple data sources, which allow to remove noise.\\
+Figure \ref{fig:jnnse} shows that joint embeddings improve prediction of human similarity space. However, as in \cite{fong2017using}, the higher performance might not be caused by infusing brain data, but just by using multiple data sources, therefore removing noise.\\
 
 Another experiment they deal with consists in \textbf{word prediction from brain data}. The matrix $A$ from NNSE or JNNSE is used as outcome variable: they predict it (for left out words) one column at a time. For each lower-dimension, there is a set of values over words ($Y$).
-Regression is used to predict the value of that dimension $l$ over the $Y$ words. This is repeated for all $l$ dimensions, which produces a predictive $l$-dimensional vector per word. They train the regression on $A$ (NNSE or JNNSE) consisting of 58 words. They then produce predictive vectors for the 2 left out words and evaluate their similarity to the ground truth of those embeddings in $A$.\\
+Regression is used to predict the value of a given dimension $l$ over the $Y$ words. This is repeated for all $l$ dimensions, which produces a predictive $l$-dimensional vector per word. They train the regression on $A$ (NNSE or JNNSE) consisting of 58 words. They then produce predictive vectors for the 2 left out words and evaluate their similarity to the ground truth of those embeddings in $A$.\\
 The results presented in Figure \ref{fig:jnnse_2} show how word prediction from brain data improves when the embedding space itself ($A$) is constrained by brain data.
 
 \begin{figure}[!ht]
@@ -221,13 +221,13 @@ As \textbf{compatibility} (the measure of how much two encodings are similar) be
 Similarity of mismatching EEG/vision should be lower than the matching case.
 The loss is defined as follows:
 \[
-L(e_1, v_1, v_2) = max{0, F(e_1, v_2) - F(e_1, v_1)}
+L(e_1, v_1, v_2) = max\{0, F(e_1, v_2) - F(e_1, v_1)\}
 \]
 where $F$ is a similarity measure.\\
 The triplet loss is positive if the similarity of $e_1$ with $v_2$ (negative item) is greater than its similarity with the positive item ($v_1$).\\
 
 The model receives more than one input at a time (in particular there are two networks, and in total a triplet of inputs is presented). The two networks have the same exact architecture (Figure~\ref{fig:palazzo}). The EEG data are pushed through four 1D-convolutional layers (learning filters at different temporal scales), and these are fed into a recurrent layer. The hidden state of the recurrent layer is fed to a fully connected layer from which embeddings are extracted for the compatibility function.
-They don't use directly the embeddings of VGG (or other), but rather put a layer in between (to learn more ``brain related" representations: they train different architectures, whose representations are fine-tuned during the Siamese training.
+They don't directly use the embeddings of VGG (or other), but rather put a layer in between (to learn more ``brain related" representations): they train different architectures, whose representations are fine-tuned during the Siamese training.
 
 \begin{figure}[!ht]
     \centering
@@ -276,13 +276,13 @@ In Figure \ref{fig:palazzo_2} is shown how joint embeddings increase performance
 Moreover, they \textbf{use the joint embedding for saliency detection} \notet. \textbf{After training for joint embedding}, they employ a masking process. This has to be done after training so that they can trust the compatibility in output of the model. The masking process follows these steps (notice that no learning is involved):
 \begin{enumerate}
     \item a mask is applied to a part of the image,
-    \item the compatibility between the brain vector (to original image) and the image vector (of the masked image) is computed,
+    \item the compatibility between the brain vector (of the original image) and the image vector (of the masked image) is computed,
     \item the decrease in match vs. the original compatibility score is computed. 
 \end{enumerate}
 In other words, the saliency value at pixel $(x, y)$ is obtained by removing the $\sigma \times \sigma$ image region around $(x, y)$ and computing the difference between the original compatibility score and the one after suppressing that patch. This way they understand how much salient an image part is: the higher the decrease in compatibility, the more the saliency. Note that if non-salient parts are removed from the image, the compatibility might increase.
 
 \boxc{\notet Saliency detection}{
-Saliency detection is set of algorithms that can process an image to identify which parts of the image are particularly important (outputting a sort of heat map).
+Saliency detection is a set of algorithms that can process an image to identify which parts of the image are particularly important (outputting a sort of heat map).
 These are evaluated by comparing the saliency map generated by the algorithm to the ground truth using either:
 \begin{itemize}
     \item Correlation between the two maps;
@@ -343,9 +343,9 @@ Many soft labeling schemes have been described:
 Human knowledge is inconsistent with the notion of ``hard labels" because in some cases humans are not confident in category assignment, whereas CNNs are. In some cases humans may be not confident, and so will the CNN, but in different ways. \textbf{They propose a method to estimate the soft-label probability distribution from human judgments}. Knowing the human classifications is useful to understand the ``image quality". It is useful for building NNs that reproduce the same sort of vagueness/fuzziness.
 
 \subsection{Data and method}
-They produce a curated dataset, CIFAR10H: a behavioral dataset consisting of \~500k human categorization decisions over the 10k-image testing subset of CIFAR10 (approximately 50 judgments per image). One of the reason for using  CIFAR10 is that it contains observations close to the category boundaries. They use Amazon Mechanical Turk: on each trial, a person categorizes each image by clicking one of the 10 labels surrounding it as quickly and accurately as possible (but with no time limit). Note: no confidence is obtained for the judgments.\\  
+They produce a curated dataset, CIFAR10H: a behavioral dataset consisting of $\sim$500k human categorization decisions over the 10k-image testing subset of CIFAR10 (approximately 50 judgments per image). One of the reason for using  CIFAR10 is that it contains observations close to the category boundaries. They use Amazon Mechanical Turk: on each trial, a person categorizes each image by clicking one of the 10 labels surrounding it as quickly and accurately as possible (but with no time limit). Note: no confidence is obtained for the judgments.\\  
 
-They expect the human image label distribution $p_{hum}(y|x)$ to better reflect the natural distribution over categories given an image, so they use it as an improved estimator for $p(y|x)$, where $y$ is the distribution of activity assigned to all labels for a given image $x$. They then simply use the usual cross-entropy loss to minimize the divergence between the human distribution and the post-softmax activity distribution.
+They expect the human image label distribution $p_{hum}(y|x)$ to better reflect the natural distribution over categories given an image, so they use it as an improved estimator for $p(y|x)$, where $y$ is the distribution of activity assigned to all labels for a given image $x$. So, they simply use the usual cross-entropy loss to minimize the divergence between the human distribution and the post-softmax activity distribution.
 
 \subsection{Results}
 They train multiple architectures using the human labeling data (9k images for training, 1k images for testing). This is simply to show accuracy for the homogenous dataset.
@@ -372,8 +372,8 @@ Soft labeling also produces a better calibrated model (\textit{calibration} refe
 
 They consider several other alternatives to soft labels training. Here are 4:
 \begin{itemize}
-    \item \textbf{Category soft targets}: approximate category-level confusions by averaging ratings across images within each category. They apply then the same soft label for all images in a category (i.e., all the samples from a category share the same target distribution);
-    \item \textbf{Knowledge distillations} an alternative way for simulating confusion (instead of infusing human knowledge): they simulate the confusion by using different models. They take the post-softmax profile of each image from 8 different classification models, averaging.
+    \item \textbf{Category soft targets}: approximate category-level confusions by averaging ratings across images within each category. Then they apply the same soft label for all images in a category (i.e., all the samples from a category share the same target distribution);
+    \item \textbf{Knowledge distillation} is an alternative way for simulating confusion (instead of infusing human knowledge): they simulate the confusion by using different models. They take the post-softmax profile of each image from 8 different classification models, averaging.
 \end{itemize}
 
 \begin{itemize}
@@ -385,7 +385,7 @@ Probabilistic soft labels outperform their alternative methods for soft-label co
 
 \subsection{Discussion}
 Speaking of adversarial attacks, which aim to produce a wrong label for a minimally changed image, the soft-labeling approach provides protection. The accurate behavior here is the maintenance of the original label. Human training produces a network that is much more robust against Fast Gradient Sign Method (FGSM) attacks (one of the easiest ways to create an adversarial image).
-Also, when exposed to an adversarial example, the Cross Entropy between the network and the model is lower after being trained with human-trained soft labels. This means that the adversarial example is not shifting the decision as much as it does on a non-soft-label architecture.\\
+Also, when exposed to an adversarial example, the Cross Entropy is lower after being trained with human-trained soft labels. This means that the adversarial example is not shifting the decision as much as it does on a non-soft-label architecture.\\
 
 However, this approach has some potential weaknesses that might be tackled:
 \begin{itemize}
