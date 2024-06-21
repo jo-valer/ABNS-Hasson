@@ -4,11 +4,11 @@
 From a historical point of view, the success of RSA brought to many studies on ablation, plasticity, etc. Many researchers used it, but they started questioning whether it is a good model of human knowledge. In the following we are discussing different assumptions, in respect to artificial DNN.
 
 \section{Background}
-We have already seen in Chapter \ref{chap:concepts_categories} the most accepted representation of concepts, as categories, in psychology: semantic domains or categories (e.g., mammals, animals, dogs) are organized via features or dimensions that carry the relevant variance for the category (Classical view, Rosch and Mervis (1975), \cite{lake-2015-deep}).
-We have also seen how we can have typicality effects in AI: entities (e.g., images, words) are described by feature values from which representational category effects emerge.
+We have already seen in Chapter \ref{chap:concepts_categories} the most accepted representation of concepts, as categories, \textbf{in psychology}: semantic domains or categories (e.g., mammals, animals, dogs) are organized via features or dimensions that carry the relevant variance for the category (Classical view, Rosch and Mervis (1975), \cite{lake-2015-deep}).
+We have also seen how we can have typicality effects \textbf{in AI}: entities (e.g., images, words) are described by feature values from which representational category effects emerge.
 
 We can use AI systems as models of semantics (Section \ref{sec:kriegeskorte}): AI systems trained for image categorization or word embedding produce representations that reasonably approximate those of humans. Similarity between categories, as operationalized from human data, is well predicted by distances between objects in the AI model, where human similarity is quantified using brain/behavior and model similarity is quantified via Euclidean distances, inverse cosine, etc.
-For prediction of human similarity judgments on images, they found 20 to 60\% of the judgments is modeled by the NN. While in MVPA the results are more complicated: these can predict activation in brain areas, but the correlation is just barely above the significance threshold.
+For prediction of human similarity judgments on images, \notedv \cite{peterson} found 20 to 60\% of the judgments is modeled by the NN. While in MVPA the results are more complicated: these can predict activation in brain areas, but the correlation is just barely above the significance threshold.
 
 \section{AI modeling of human representations}
 Modeling human representations with AI is useful for many fields:
@@ -20,9 +20,9 @@ Modeling human representations with AI is useful for many fields:
 
 There are three approaches:
 \begin{itemize}
-    \item \textbf{Default}: \textbf{use all DNN features} (all in the whole network, or all in a particular layer) as object-representation for modeling human data. This implicitly assumes that all features are relevant and equally important, for the alignment, for all concepts.
+    \item \textbf{Default}: \textbf{use all DNN features} (all in the whole network, or all in a particular layer) as object-representation for modeling human data. This implicitly assumes that all features are relevant and equally important, for all concepts.
     \item \textbf{Reweighting}: \textbf{keep all features, but adjust the weights by finetuning}. It addresses mis-calibrated, human-relevant features by applying concept-specific adjustment of feature saliency for modeling human representations. This assumes that AI learns human-relevant features, but these are mis-calibrated.
-    \item \textbf{Pruning}: \textbf{keep the weights unchanged but remove some features}, investigating modular structures in AI models. This assumes that the network develops a modular structure where information about different categories is represented in different subspaces (subsets of latent dimensions) within the model, i.e., knowledge about particular categories or concepts is stored in particular areas (``modules") in the AI model.
+    \item \textbf{Pruning}: \textbf{weight all features the same, but remove some of them}, investigating modular structures in AI models. This assumes that the network develops a modular structure where information about different categories is represented in different subspaces (subsets of latent dimensions) within the model, i.e., knowledge about particular categories or concepts is stored in particular areas (``modules") in the AI model.
 \end{itemize}
 
 \subsection{Default approach}
@@ -46,22 +46,22 @@ This study explores how well the representations discovered by DNNs align with h
 
 Reweighting starts like RSA, by comparing the representations formed by deep neural networks to those of humans, i.e., similarity judgments (accordingly, the first experiment of the paper focuses on this comparison). Notice that a similarity function over a set of  pairs of data points corresponds to an implicit representation of those  points.\\
 
-Firstly, they evaluate the performance of deep neural networks in predicting human similarity judgments for 6 categories of images (120 images each). They collect the human judgments as pairwise image similarity ratings (within each category) from human participants on Amazon Mechanical Turk, using a scale from 0 (``not similar at all") to 10 (``very similar"). The result is six $120 \times 120$ similarity matrices after averaging over individual judgments. They collect the activations of a DNN (they experiment with several models, here are the results of VGG only) in a feature matrix, with an image per row, that therefore has shape [$120 \times 4096$]. A similarity matrix $\mathbf{S}$, in which the entry $s_{ij}$ gives the human similarity judgments between images $i$ and $j$, can then be approximated by the matrix product $\mathbf{FF}^T$:
+Firstly, they evaluate the performance of deep neural networks in predicting human similarity judgments for 6 categories of images (120 images each). They collect the human judgments as pairwise image similarity ratings (within each category) from human participants on Amazon Mechanical Turk, using a scale from 0 (``not similar at all") to 10 (``very similar"). The result is six $120 \times 120$ similarity matrices after averaging over individual judgments. They collect the activations of a DNN (they experiment with several models, here are the results of VGG only) in a feature matrix $\mathbf{F}$, with an image per row, that therefore has shape [$120 \times 4096$]. The similarity matrix $\mathbf{S}$, in which the entry $s_{ij}$ gives the human similarity judgments between images $i$ and $j$, can then be approximated by the matrix product $\mathbf{FF}^T$:
 \[
-\mathbf{S=FF}^T
+\mathbf{S \approx FF}^T
 \]
 They assess the model performance in predicting human similarity judgments by computing the correlation between $\mathbf{S}$ and $\mathbf{FF}^T$, finding that the \textbf{raw deep representations provide a reasonable first approximation to human similarity judgments}.
 }
 \boxs{
 
-To better understand how DNNs succeed and fail to reproduce the structure of psychological representations, they applied  two classic psychological tools: \textit{non-metric multidimensional scaling}, which converts similarities into a spatial representation (from relative distances of $n$ elements to a map of relative distances in 2 dimensions), and \textit{hierarchical clustering}, which produces a tree structure (dendrogram). They find that human representations exhibit highly distinguished clusters in the spatial projections and intuitive taxonomic structure in the dendrograms, neither of which is present in the DNN representations.\\
+To better understand how DNNs succeed and fail to reproduce the structure of psychological representations, they applied  two classic psychological tools: \textit{non-metric multidimensional scaling} (MDS), which converts similarities into a spatial representation (from relative distances of $n$ elements to a map of relative distances in 2 dimensions), and \textit{hierarchical clustering}, which produces a tree structure (dendrogram). They find that human representations exhibit highly distinguished clusters in the spatial projections and intuitive taxonomic structure in the dendrograms, neither of which is present in the DNN representations.\\
 
 They proceed exploring how DNN representations can be transformed to increase their alignment with psychological representations.
 They augment the model of similarity judgments with a set of weights on the features used to compute similarity:
 \[
 \mathbf{S=FWF}^T
 \]
-where $\mathbf{W}$ is a diagonal matrix of dimension weights. the diagonal of $\mathbf{W}$, the vector of weights $\mathbf{w}$, can be expressed as the solution to a linear regression problem where the predictors for each similarity $s_{ij}$ are the (elementwise) product of the values of each feature for objects $i$ and $j$ (i.e., each row of the regression design matrix $X$ can be written as $\mathbf{F}_i \circ \mathbf{F}_j$, where $\circ$ is the Hadamard product). The similarity $s_{ij}$ between objects $i$ and $j$ is therefore modeled as
+where $\mathbf{W}$ is a diagonal matrix of dimension weights. The diagonal of $\mathbf{W}$, the vector of weights $\mathbf{w}$, can be expressed as the solution to a linear regression problem where the predictors for each similarity $s_{ij}$ are the (elementwise) product of the values of each feature for objects $i$ and $j$ (i.e., each row of the regression design matrix $X$ can be written as $\mathbf{F}_i \circ \mathbf{F}_j$, where $\circ$ is the Hadamard product). The similarity $s_{ij}$ between objects $i$ and $j$ is therefore modeled as:
 \[
 s_{ij} = \sum_k w_k f_{ik} f_{jk}
 \]
@@ -72,10 +72,10 @@ Freely identifying the $\mathbf{w}$ that best predicts human similarity judgment
 The \textbf{new representations that emerge explain nearly twice the variance compared to raw representations} on all domains:
 
 \begin{center}
-    \includegraphics[width=0.5\textwidth]{images/sfft.png}
+    \includegraphics[width=0.95\textwidth]{images/sfft_2.png}
 \end{center}
 
-The stricter case of cross-validation titled ``CV control" explains the similarity judgments better than raw  representations. In this case no single images occurred in both training folds and test folds of cross-validation. However, for ``Transformed model", the exclusivity was in respect to pair of images.
+The stricter case of cross-validation titled ``CV control" explains the similarity judgments better than raw  representations; this proves reweighting works well in generalization. In this case no single image occurred in both training folds and test folds of cross-validation. However, for ``Transformed model", the exclusivity was in respect to pair of images.
 
 The MDS and dendrogram plots for the transformed representations show a stronger resemblance to the original human judgments:
 
@@ -102,7 +102,7 @@ Differently than reweighting, pruning assumes that DNNs \textbf{do acquire the r
 By iterating over features and using \textit{Sequential Feature Selection} algorithms, supervised pruning learns a subset of features that \textbf{better predicts human judgments and generalizes to out-of-sample data}. It is supervised as it uses human judgments to choose which features to prune.
 
 \boxc{Pruning at work: a toy example}{
-Humans find Tigers more similar to Lions than to Pumas. The model representation is disaligned from human representation (as Tiger-Lion and Tiger-Puma distances are the same in the embedding space of the model).
+Humans find Tigers (B) more similar to Lions (A) than to Pumas (C). The model representation is disaligned from human representation (as Tiger-Lion and Tiger-Puma distances are the same in the embedding space of the model).
 We see that removing Y-Dimension brings the embedding space closer to human representation:
 \begin{center}
     \includegraphics[width=0.9\textwidth]{images/pruning.png}
@@ -120,7 +120,7 @@ Pruning improves out of sample prediction of human similarity judgments for word
 In the following we will go through a list studies on pruning to improve representational similarity between AI and Humans.
 
 \boxl{\mandatory{TARIGOPULA202389}\\ \textit{Improved prediction of behavioral and neural similarity spaces using pruned DNNs}}{
-They prune of a model that learns to predict human similarity judgments within 6 categories, each consisting of 120 images. In particular, they prune the penultimate layer of VGG19, which has 4096 nodes (features), and show that pruning outperforms other methods, including reweighting:
+They prune a model that learns to predict human similarity judgments within 6 categories, each consisting of 120 images. In particular, they prune the penultimate layer of VGG19, which has 4096 nodes (features), and show that pruning outperforms other methods, including reweighting (PAG18):
 \begin{center}
     \includegraphics[width=0.8\textwidth]{images/tarigopula.png}
 \end{center}
@@ -149,7 +149,7 @@ They try to understand whether the different feature sets retained by pruning, f
 They find the lowest value for $\langle Fruits,Automobiles\rangle$ (0.13) and the highest for $\langle Fruits,Vegetables\rangle$ (0.28). It is not surprising that the highest DSC value is between fruits and vegetables, which are indeed similar. However, in general, the overlap is quite low.
 They find that just 1 out of 4096 feature is always selected for all 6 categories, meaning that there is not a ``core" set of features that is always retained.\\
 
-To know if the selected features identify different information, they use a different dataset of 50k images. \textbf{Images are represented using only activations on the retained features} (6 different versions: 50k$\times807$; 50k$\times647$, etc.). For each of these derived embeddings they \textbf{identified the top-5 images that maximize activation on that set of features} (i.e., highest sum by row (in the matrix with inputs in rows and features in columns). They find that pruning-retained features, per category, are \textbf{maximized by images that exemplify the category}. This is consistent with the prototype theory.
+To know if the selected features identify different information, they use a different dataset of 50k images. \textbf{Images are represented using only activations on the retained features} (6 different versions: 50k$\times807$; 50k$\times647$, etc.). For each of these derived embeddings they \textbf{identified the top-5 images that maximize activation on that set of features} (i.e., highest sum by row (in the matrix with inputs in rows and features in columns). They find that pruning-retained features, per category, are \textbf{maximized by images that exemplify the category}. This is \textbf{consistent with the prototype theory}.
 Here is an example of the top-5 images for ``transportation" category:
 
 \begin{center}
@@ -169,7 +169,7 @@ Reweighting is emerging as a new technique to improve this match (useful for pra
 \textbf{Pruning outperforms reweighting} in learning prediction of human representational spaces, but also originates in a different perspective on the importance of DNN filters: the filters are effective at the learned levels of salience, but different datasets benefit from different combinations of filters. Pruning is also more \textbf{easily interpretable} as a regularization (data reduction) technique in context of explainable AI and provides insights into brain organization.
 
 \boxl{Manrique et al. (2023)\\ \textit{ Enhancing Interpretability Using Human Similarity judgments to Prune Word Embeddings}}{
-They try to bring the same concepts of \cite{TARIGOPULA202389} to NLP. They define 8 categories as sets of 20-30 noun words each. They have human similarity judgments for all word pairs. The idea is to predict the test-set using all GloVe features, or GloVe feature-sets pruned from the training-set. The results show that \textbf{pruning improves out-of-sample prediction} using a \textbf{less than half of GloVe's 300 features}.
+They try to bring the same concepts of \cite{TARIGOPULA202389} to NLP. They define 8 categories as sets of 20-30 noun words each. They have human similarity judgments for all word pairs. The idea is to predict the test-set using all GloVe features, or GloVe feature-sets pruned from the training-set. The results show that \textbf{pruning improves out-of-sample prediction} using \textbf{less than half of GloVe's 300 features}.
 Notice that the features that are important for positioning objects with respect to each other are not necessarily important for classification, and vice versa.
 
 For each solution they identify the retained feature indices and compute the DSC between pruned sets, which often results low (few of the GloVe features are never selected, and no feature is consistently selected). 
@@ -197,7 +197,7 @@ The results suggest that human similarity judgments are sensitive to gender- and
 }
 
 \boxl{Bao et al. (2024)\\ \textit{Identifying and interpreting non-aligned human conceptual representations using language modeling}}{
-This study tries to understand if \textbf{people of different groups represent words differently}. In particular they focus on English native speakers (blind vs sighted). They use 7 verb categories each containing 14 verbs and have \textbf{human similarity judgments} for all verb-pairs. The judgments \textbf{made by congenitally blind and sighted}. They train a model to prune GloVe embeddings to improve out-of-sample prediction, first for blind and then for sighted,so they can compute the DSC between the two subsets of retained features.
+This study tries to understand if \textbf{people of different groups represent words differently}. In particular they focus on English native speakers (blind vs sighted). They use 7 verb categories each containing 14 verbs and have \textbf{human similarity judgments} for all verb-pairs, \textbf{made by congenitally blind and sighted}. They train a model to prune GloVe embeddings to improve out-of-sample prediction, first for blind and then for sighted, so they can compute the DSC between the two subsets of retained features.
 
 \begin{center}
     \includegraphics[width=0.55\textwidth]{images/bao.png}
@@ -216,7 +216,7 @@ Extremely sparse matrices produced by top layers of neural networks indicate tha
   \label{fig:apoz}
 \end{wrapfigure}
 
-They define the \textit{Average Percentage of Zeros} (\textit{APoZ}) of a single neuron as the percentage of zero activations of that neuron after the ReLU mapping. They use the layer as the unit of analysis (rather than the single neuron), so the analysis is collapsed across all neurons in a layer. The \textit{APoZ} of the $c$\textsuperscript{th} neuron in $i$\textsuperscript{th} layer is defined as:
+They define the \textit{Average Percentage of Zeros} (\textit{APoZ}) of a single neuron as the percentage of zero activations of that neuron after the ReLU mapping. They use the layer as the unit of analysis, so the analysis is collapsed across all neurons in a layer. The \textit{APoZ} of the $c$\textsuperscript{th} neuron in $i$\textsuperscript{th} layer is defined as:
 \[
 APoZ_c^{(i)} = APoZ(O_c^{(i)}) = \frac{\sum_k^N \sum_j^M f(O_{c,j}^{(i)}(k)=0)}{N\times M}
 \]
