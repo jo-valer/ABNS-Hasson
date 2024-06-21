@@ -105,11 +105,11 @@ Their proposal is to \textbf{come up with a theory of word meaning and see wheth
 \end{figure}
 
 The model works in two steps. The first step encodes the stimulus word.
-The second step predicts the neural fMRI activation at every voxel location in the brain, as a weighted sum of neural activations contributed by each of the intermediate semantic features. A schematic explanation can be seen in Figure \ref{fig:mitchell}.
+The second step predicts the neural fMRI activation at every voxel location in the brain, as a weighted sum of neural activations contributed by each of the intermediate semantic features. A schematic explanation can be seen in Fig.~\ref{fig:mitchell}.
 
 \subsubsection{Define word meaning}
 We mentioned that they captured word meanings via corpora exploitation. They use 60 \textbf{nouns}. Each noun $j$ is described using 25 \textbf{features}.\\
-Feature $i$ is defined as the \textbf{co-occurrence frequency of the stimulus noun with the verb} $i$. They chose verbs which are either: \textit{sensory}, \textit{motor}, or \textit{abstract} verbs. An example of the resulting semantic features is provided in Figure \ref{fig:mitchell_2}.
+Feature $i$ is defined as the \textbf{co-occurrence frequency of the stimulus noun with the verb} $i$. They chose verbs which are either: \textit{sensory}, \textit{motor}, or \textit{abstract} verbs. An example of the resulting semantic features is provided in Fig.~\ref{fig:mitchell_2}.
 
 \subsubsection{Single-voxel analysis}
 They perform a single-voxel analysis. For each voxel in the brain they learn the relation between voxel activity values for the 60 nouns, and the semantic features of the 60 nouns \notet.
@@ -138,7 +138,7 @@ $\mathbf{Y}$ is the activity for the 58 nouns in the voxel; $\boldsymbol{\vareps
 
 \osst{To be precise, they present stimuli of noun+image together (but for the sake of simplicity we refer to them just as ``nouns").}
 
-Predicting word activity in each voxel just means multiplying its semantic feature values by learned weights (Figure \ref{fig:mitchell_3}).
+Predicting word activity in each voxel just means multiplying its semantic feature values by learned weights (Fig.~\ref{fig:mitchell_3}).
 \begin{figure}[!ht]
     \centering
     \includegraphics[width=0.6\linewidth]{images/mitchell_3.png}
@@ -149,7 +149,7 @@ Predicting word activity in each voxel just means multiplying its semantic featu
 \subsection{Results}
 They tested the model by predicting activity for word A, and checking if it is more similar to true activity of word A than it is to the other word B (where A and B are the two left over words, not used for training). They got an average accuracy of 0.79, suggesting that word meanings are indeed \textbf{represented as features in the brain}.\\
 
-They also examined, for each of the 25 features (verbs), the importance across the brain, to obtain a map of which brain areas are the most important for a given verb (and therefore for a given activity, see Figure \ref{fig:mitchell_4}).\\
+They also examined, for each of the 25 features (verbs), the importance across the brain, to obtain a map of which brain areas are the most important for a given verb (and therefore for a given activity, see Fig.~\ref{fig:mitchell_4}).\\
 
 \begin{figure}[!ht]
     \centering
@@ -165,7 +165,7 @@ They also examined, for each of the 25 features (verbs), the importance across t
         \centering
         \captionsetup{width=.8\linewidth}
         \includegraphics[width=.8\linewidth]{images/mitchell_5.png}
-        \caption{Mean accuracy over 9 participants, using  randomly selected sets of intermediate semantic features vs. using the manually chosen set.}
+        \caption{Mean accuracy over 9 participants, using  randomly selected sets of intermediate semantic features vs.~using the manually chosen set.}
         \label{fig:mitchell_5}
     \end{subfigure}
     \caption{Results.}
@@ -183,7 +183,7 @@ They also examined, for each of the 25 features (verbs), the importance across t
 Furthermore, they performed a \textit{by participant} analysis that allowed them to account for inter-individual differences. They split the brain into areas and swept through a very large number of words (10 thousands) to see \textbf{which word maximally activates that region} (or the entire brain).
 They found there are indeed words that are most activating for specific brain areas.\\
 
-In the end, they experimented with \textbf{random} \textit{25-feature-basis} sets, instead of a manually chosen set. They tried with 115 randomly selected sets (composed not only by verbs), finding that the results are much worse, yet with \textbf{significant accuracy} ($>0.61$, see Figure \ref{fig:mitchell_5}).
+In the end, they experimented with \textbf{random} \textit{25-feature-basis} sets, instead of a manually chosen set. They tried with 115 randomly selected sets (composed not only by verbs), finding that the results are much worse, yet with \textbf{significant accuracy} ($>0.61$, see Fig.~\ref{fig:mitchell_5}).
 
 % \begin{figure}
 %     \centering
@@ -212,9 +212,9 @@ RSA:
 
 \subsection{Applied contexts for RSA}
 
-A \textbf{Representational Dissimilarity Matrix} (\textbf{RDM}) of \textbf{human behavior} is shown in Figure \ref{fig:rdm}. We can see how objects in the same category are judged to be similar (as expected). Such matrix can be populated either by directly asking pairwise similarity to people, or via item sorting tasks: given randomly placed objects, people are required to sort objects in an array with similar objects close one to each other.\\
+A \textbf{Representational Dissimilarity Matrix} (\textbf{RDM}) of \textbf{human behavior} is shown in Fig.~\ref{fig:rdm}. We can see how objects in the same category are judged to be similar (as expected). Such matrix can be populated either by directly asking pairwise similarity to people, or via item sorting tasks: given randomly placed objects, people are required to sort objects in an array with similar objects close one to each other.\\
 
-An RDM can also be constructed on \textbf{brain data}. Figure \ref{fig:rdm_brain} shows how it is populated: we consider how much each group of voxels is related to input stimuli. We can then compare the similarity matrices as in Figure \ref{fig:rsa}.
+An RDM can also be constructed on \textbf{brain data}. Fig.~\ref{fig:rdm_brain} shows how it is populated: we consider how much each group of voxels is related to input stimuli. We can then compare the similarity matrices as in Fig.~\ref{fig:rsa}.
 
 \begin{figure}[!ht]
     \centering
@@ -245,7 +245,7 @@ An RDM can also be constructed on \textbf{brain data}. Figure \ref{fig:rdm_brain
     \label{fig:rsa}
 \end{figure}
 
-Another possibility (Figure \ref{fig:rsa_2}) is to understand what information is coded over time, so that we can check if there is similarity between representations in the brain and in a neural network at the same depth (e.g., comparing shallow layers of the brain with shallow layers of a CNN). MEG data can be split along the time domain into intervals. For each interval, a similarity matrix is computed correlating the activity between images (note that the matrices are not the same, as representation in the brain changes over time). With fMRI data we can do another thing: relate different modalities (different brain areas), discovering that Extrastriate and Inferior temporal fit with the NN.\\
+Another possibility (Fig.~\ref{fig:rsa_2}) is to understand what information is coded over time, so that we can check if there is similarity between representations in the brain and in a neural network at the same depth (e.g., comparing shallow layers of the brain with shallow layers of a CNN). MEG data can be split along the time domain into intervals. For each interval, a similarity matrix is computed correlating the activity between images (note that the matrices are not the same, as representation in the brain changes over time). With fMRI data we can do another thing: relate different modalities (different brain areas), discovering that Extrastriate and Inferior temporal fit with the NN.\\
 
 \begin{figure}[!ht]
     \centering

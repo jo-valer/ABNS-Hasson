@@ -58,7 +58,7 @@ where $z = y \cdot f(x)$, $y \in N$ is the true label, and $f(x) \in \mathbb{R}$
 }
 
 \subsection{Results}
-They argue that brain activity compensates for poor feature representation (consider the large difference for HOG in Figure \ref{fig:fong}).
+They argue that brain activity compensates for poor feature representation (consider the large difference for HOG in Fig.~\ref{fig:fong}).
 
 \begin{figure}[!ht]
     \centering
@@ -68,7 +68,7 @@ They argue that brain activity compensates for poor feature representation (cons
     \label{fig:fong}
 \end{figure}
 
-They also experiment using information from one brain area only for the loss, observing how this affects classification. Figure \ref{fig:fong_2} shows that certain areas produce significantly better accuracy for the specific categories they are selective for.\\
+They also experiment using information from one brain area only for the loss, observing how this affects classification. Fig.~\ref{fig:fong_2} shows that certain areas produce significantly better accuracy for the specific categories they are selective for.\\
 
 \begin{figure}[!ht]
     \centering
@@ -158,11 +158,11 @@ JNNSE has many advantages:
 
 \subsection{Experiments and results}
 To check whether the word-by-feature matrix encodes for specific properties, they use a \textbf{probing classifier}: they train the regression model on $A$ and evaluate it on a human-rated-property table. More specifically, they obtain behavioral measure of semantics for 60 words, rated on 218 properties (e.g., \textit{smell}, \textit{emotion}, etc.), and then train the classifier to predict the [$60 \times 218$] human behavior's matrix from the $A$ matrix obtained using NNSE (text only) or JNNSE (brain+text). They experiment with different numbers of latent dimensions $l$: 250, 500 or 1000. For \textbf{evaluating the correlation} of the latent representation ($A$) with behavioral data ($Y$), they do not compare the tables directly, but use in-matrix pairwise (Euclidean) distance instead, i.e., they are somehow checking if the two vector spaces are isomorphic.\\
-Figure \ref{fig:jnnse} shows that joint embeddings improve prediction of human similarity space. However, as in \cite{fong2017using}, the higher performance might not be caused by infusing brain data, but just by using multiple data sources, therefore removing noise.\\
+Fig.~\ref{fig:jnnse} shows that joint embeddings improve prediction of human similarity space. However, as in \cite{fong2017using}, the higher performance might not be caused by infusing brain data, but just by using multiple data sources, therefore removing noise.\\
 
 Another experiment they deal with consists in \textbf{word prediction from brain data}. The matrix $A$ from NNSE or JNNSE is used as outcome variable: they predict it (for left out words) one column at a time. For each lower-dimension, there is a set of values over words ($Y$).
 Regression is used to predict the value of a given dimension $l$ over the $Y$ words. This is repeated for all $l$ dimensions, which produces a predictive $l$-dimensional vector per word. They train the regression on $A$ (NNSE or JNNSE) consisting of 58 words. They then produce predictive vectors for the 2 left out words and evaluate their similarity to the ground truth of those embeddings in $A$.\\
-The results presented in Figure \ref{fig:jnnse_2} show how word prediction from brain data improves when the embedding space itself ($A$) is constrained by brain data.
+The results presented in Fig.~\ref{fig:jnnse_2} show how word prediction from brain data improves when the embedding space itself ($A$) is constrained by brain data.
 
 \begin{figure}[!ht]
     \centering
@@ -197,7 +197,7 @@ The last experiment consists in \textbf{mapping semantics onto the brain}. $D^{(
   \caption{$D^{(b)}$ matrix; dimension with top scoring words \textit{buffet}, \textit{brunch}, \textit{lunch}. Pars opercularis is believed to be part of the gustatory cortex, which responds to food related words.}
   \label{fig:jnnse_4}
 \end{wrapfigure}
-In Figure \ref{fig:jnnse_4} there is an example (through fMRI slices) of mapping ($D^{(b)}$) from latent semantic space ($A$) to brain space ($Y$) for fMRI and words from three semantic categories.\\
+In Fig.~\ref{fig:jnnse_4} there is an example (through fMRI slices) of mapping ($D^{(b)}$) from latent semantic space ($A$) to brain space ($Y$) for fMRI and words from three semantic categories.\\
 
 In conclusion, VSMs can be extended or even substituted using brain data. Addition of brain data strongly improves the prediction of human annotations (perhaps can substitute them) and the prediction of latent dimension scores produced in the joint embedding. It is possible to use brain data to synthesize raw corpus data for those words. And finally, solutions of joint embeddings can be mapped onto the brain space.
 
@@ -237,7 +237,7 @@ They don't directly use the embeddings of VGG (or other), but rather put a layer
     \label{fig:palazzo}
 \end{figure}
 
-After training, they use the trained EEG and image encoders as feature extractors in the joint embedding space, followed by a softmax layer for image classification, where they classify into 40 classes. They test different configurations of image and EEG encoding in joint embedding, and then quantify each encoder separately as a feature extractor for classification. The results are provided in Table \ref{tab:palazzo}.
+After training, they use the trained EEG and image encoders as feature extractors in the joint embedding space, followed by a softmax layer for image classification, where they classify into 40 classes. They test different configurations of image and EEG encoding in joint embedding, and then quantify each encoder separately as a feature extractor for classification. The results are provided in Tab.~\ref{tab:palazzo}.
 
 \begin{table}[!ht]
     \centering
@@ -263,13 +263,13 @@ After training, they use the trained EEG and image encoders as feature extractor
     \label{tab:palazzo}
 \end{table}
 
-In Figure \ref{fig:palazzo_2} is shown how joint embeddings increase performance; merging visual features into EEG features of course boosts EEG classification performance, but is less interesting.\\
+In Fig.~\ref{fig:palazzo_2} is shown how joint embeddings increase performance; merging visual features into EEG features of course boosts EEG classification performance, but is less interesting.\\
 
 \begin{figure}[!ht]
     \centering
     \captionsetup{width=.8\linewidth}
     \includegraphics[width=0.5\linewidth]{images/palazzo_2.png}
-    \caption{Comparison of image and EEG classification performance when using only one modality (either image or EEG) relative to when the joint neural-visual features are used. For each model, the best performance according to Tab. \ref{tab:palazzo} is reported.}
+    \caption{Comparison of image and EEG classification performance when using only one modality (either image or EEG) relative to when the joint neural-visual features are used. For each model, the best performance according to Tab.~\ref{tab:palazzo} is reported.}
     \label{fig:palazzo_2}
 \end{figure}
 
@@ -277,7 +277,7 @@ Moreover, they \textbf{use the joint embedding for saliency detection} \notet. \
 \begin{enumerate}
     \item a mask is applied to a part of the image,
     \item the compatibility between the brain vector (of the original image) and the image vector (of the masked image) is computed,
-    \item the decrease in match vs. the original compatibility score is computed. 
+    \item the decrease in match vs.~the original compatibility score is computed. 
 \end{enumerate}
 In other words, the saliency value at pixel $(x, y)$ is obtained by removing the $\sigma \times \sigma$ image region around $(x, y)$ and computing the difference between the original compatibility score and the one after suppressing that patch. This way they understand how much salient an image part is: the higher the decrease in compatibility, the more the saliency. Note that if non-salient parts are removed from the image, the compatibility might increase.
 
@@ -351,7 +351,7 @@ They expect the human image label distribution $p_{hum}(y|x)$ to better reflect 
 They train multiple architectures using the human labeling data (9k images for training, 1k images for testing). This is simply to show accuracy for the homogenous dataset.
 They then apply the learned model (weights) to several other CIFAR10 variants. As generalization measures they evaluate accuracy and cross-entropy loss.\\
 
-As shown in Fig. \ref{fig:peterson_2}, \textbf{generalization improves with human soft labels}. Accuracy is higher and loss is lower using human labels for every individual CNN and dataset.
+As shown in Fig.~\ref{fig:peterson_2}, \textbf{generalization improves with human soft labels}. Accuracy is higher and loss is lower using human labels for every individual CNN and dataset.
 
 \begin{figure}[!ht]
     \centering
@@ -368,7 +368,7 @@ As shown in Fig. \ref{fig:peterson_2}, \textbf{generalization improves with huma
   \label{fig:peterson_3}
 \end{wrapfigure}
 
-Soft labeling also produces a better calibrated model (\textit{calibration} refers to the relation between confidence of the model and correct/incorrect output). Consider Fig. \ref{fig:peterson_3}: on correct predictions, both hard- and soft-labeling show similar high confidence. Instead, on incorrect predictions, the soft-label training results in significantly lower confidence.\\
+Soft labeling also produces a better calibrated model (\textit{calibration} refers to the relation between confidence of the model and correct/incorrect output). Consider Fig.~\ref{fig:peterson_3}: on correct predictions, both hard- and soft-labeling show similar high confidence. Instead, on incorrect predictions, the soft-label training results in significantly lower confidence.\\
 
 They consider several other alternatives to soft labels training. Here are 4:
 \begin{itemize}
