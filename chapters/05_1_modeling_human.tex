@@ -149,7 +149,7 @@ They try to understand whether the different feature sets retained by pruning, f
 They find the lowest value for $\langle Fruits,Automobiles\rangle$ (0.13) and the highest for $\langle Fruits,Vegetables\rangle$ (0.28). It is not surprising that the highest DSC value is between fruits and vegetables, which are indeed similar. However, in general, the overlap is quite low.
 They find that just 1 out of 4096 feature is always selected for all 6 categories, meaning that there is not a ``core" set of features that is always retained.\\
 
-To know if the selected features identify different information, they use a different dataset of 50k images. \textbf{Images are represented using only activations on the retained features} (6 different versions: 50k$\times807$; 50k$\times647$, etc.). For each of these derived embeddings they \textbf{identified the top-5 images that maximize activation on that set of features} (i.e., highest sum by row (in the matrix with inputs in rows and features in columns). They find that pruning-retained features, per category, are \textbf{maximized by images that exemplify the category}. This is \textbf{consistent with the prototype theory}.
+To know if the selected features identify different information, they use a different dataset of 50k images. \textbf{Images are represented using only activations on the retained features} (6 different versions: 50k$\times807$; 50k$\times647$, etc.). For each of these derived embeddings they \textbf{identified the top-5 images that maximize activation on that set of features}, i.e., highest sum by row (in the matrix with inputs in rows and features in columns). They find that pruning-retained features, per category, are \textbf{maximized by images that exemplify the category}. This is \textbf{consistent with the prototype theory}.
 Here is an example of the top-5 images for ``transportation" category:
 
 \begin{center}
@@ -251,7 +251,7 @@ Fig.~\ref{fig:poz} shows how around 20\% of nodes in MNIST and CIFAR-10 have $Po
   \label{fig:poz}
 \end{wrapfigure}
 
-To answer the first question, they define the representation of the full network, and get the object-by-object similarity matrix (RDM), that will be used as reference. Then, they compute the RDM with just a small subset of features, the ones with lower \textit{PoZ}, and compare it with the original RDM (using Person $R^2$). They progressively insert features from low to high \textit{PoZ} (i.e., from the most informative features to the least ones) and repeat the steps. The results (Fig.~\ref{fig:poz_2}) show that it is possible to use just a subset of the original features, using the nodes with a \textit{PoZ} lower than $\sim35\%$, to approximate the representation of the original network.\\
+To answer the first question, they define the representation of the full network, and get the object-by-object similarity matrix (RDM), that will be used as reference. Then, they compute the RDM with just a small subset of features, the ones with lower \textit{PoZ}, and compare it with the original RDM (using Person $R^2$). They progressively insert features from low- to high-\textit{PoZ} (i.e., from the most informative features to the least ones) and repeat the steps. The results (Fig.~\ref{fig:poz_2}) show that it is possible to use just a subset of the original features, using the nodes with a \textit{PoZ} lower than $\sim35\%$, to approximate the representation of the original network.\\
 
 They also try to understand what other nodes (those with the highest \textit{PoZ}) encode for. They experiment in the other direction, i.e., inserting features from high- to low-\textit{PoZ}. The results (Fig.~\ref{fig:poz_3}) show that these nodes are not random, nor they encode noise. They can indeed approximate the full network: the lowest 20\% already produces $R^2>0.6$ for CIFAR-10. This means \textbf{relevant information is coded in the network in a redundant way}.
 
@@ -288,7 +288,7 @@ When we prune a network we have to be aware that it becomes less robust to adver
   \label{fig:apoz_4}
 \end{wrapfigure}
 
-To answer the second question they evaluate the \textit{APoZ}-based pruning and its impact on prediction of human similarity judgments. Features are removed sequentially from high-to-low \textit{PoZ} and \textit{2OI} (second-order interaction) is computed between human similarity judgments and the (pruned) model RDM.
+To answer the second question they evaluate the \textit{APoZ}-based pruning and its impact on prediction of human similarity judgments. Features are removed sequentially from high- to low-\textit{PoZ} and \textit{2OI} (second-order interaction) is computed between human similarity judgments and the (pruned) model RDM.
 The approximation of human similarity judgments starts dropping significantly only when we use less than 6\% of original features (Fig.~\ref{fig:apoz_4}).
 We can notice that by removing sparse features, for the category of ``furniture", the approximation of human judgments increases until we use 30\% of the original features only. So, for ``furniture", sparse features actually contain noise.
 
