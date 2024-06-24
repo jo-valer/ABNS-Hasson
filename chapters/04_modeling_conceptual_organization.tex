@@ -53,7 +53,7 @@ They found that raw and contrast scores do similarly well, and that some models 
 
 However, when dealing with hidden layers, one cannot have categories' activations, so they needed to redefine typicality.
 They used 1300 images (of the same category) as input for the network and averaged the activation of the given layer over all images to get the \textbf{category prototype} (typical activation vector).
-Typicality was modeled as the cosine distance between the activation vector for a new image and the stored prototype. They found better prediction in deeper convolutional layers (see Figure~\ref{fig:lake}), i.e., by going deeper (closer to the output layer) the layer representations predict increasingly better human typicality.
+Typicality was modeled as the cosine distance between the activation vector for a new image and the stored prototype. They found better prediction in deeper convolutional layers (see Fig.~\ref{fig:lake}), i.e., by going deeper (closer to the output layer) the layer representations predict increasingly better human typicality.
 
 
 \section[Words-as-features as models of cognition]{Words-as-features as models of cognition\\ \large{\textit{Predicting Human Brain Activity Associated with the Meanings of Nouns}\\ \mandatory{Mitchell2008PredictingHB}}}
@@ -292,14 +292,14 @@ The typical approach of fMRI is massively multivariate, since it considers one v
 
 For this reason they studied brain responses during narrative comprehension: some participants were required to focus on space, others on time, others on actions, hearing the same story.
 They considered each IFG (\textit{inferior frontal gyrus}) sub-region as a ``voxel".
-With an univariate approach, regional activity in \textit{pars opercularis} (see Figure~\ref{fig:ptri}) was higher for some conditions, while \textit{pars triangularis} responded always with the same level of activation for the different dimensions.
+With an univariate approach, regional activity in \textit{pars opercularis} (see Fig.~\ref{fig:ptri}) was higher for some conditions, while \textit{pars triangularis} responded always with the same level of activation for the different dimensions.
 In a multivariate approach, they considered the entire set of values in each region, and quantified how similar those activity patterns were for the three conditions. Instead of considering the whole area (\textit{pars triangularis}) by averaging, they kept voxels separated and found very different activations when focusing on different dimensions.
 
 \subsubsection{Decoding category (binary case) from brain}
 A multi voxel pattern analysis (MVPA) can be carried out.
 Two conditions are presented, which produce different distributions of activity across trials. In Case 1, each condition produces different activity levels, in both Voxel 1 and Voxel 2. Clearly, the region discriminates the classes.
 In Case 2, each condition produces highly similar mean activity levels in both Voxel 1 and Voxel 2. So one might conclude that the region does not discriminate, if aggregating across univariate analysis.
-But the multivariate analysis leads to a completely different result, allowing us to better understand: the region containing voxels 1 and 2 \textbf{caries information about conditions in the joint distribution} of Voxel 1 and Voxel 2.
+But the multivariate analysis leads to a completely different result, allowing us to better understand: the region containing voxels 1 and 2 \textbf{carries information about conditions in the joint distribution} of Voxel 1 and Voxel 2.
 \begin{figure}[!ht]
     \centering
     \captionsetup{width=.8\linewidth}
