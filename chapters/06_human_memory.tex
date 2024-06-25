@@ -133,14 +133,6 @@ where $P_0$ is the probability equilibrium point \notet; $K$ is the scaling fact
 
 The advantage of an error-driven learning model is that it allows to model the learning rate. This is directly related to the drop-off curve of the $\beta_k$ in the regression model (impact of past on present). The scaling factor $K$ further deals with the possibility that in different situations, the exact same knowledge can translate to behaviors of different magnitude; it can be seen as a measure of confidence.
 
-\boxc{\notet Probability equilibrium point}{
-    \textbf{People mis-estimate chance in a systematic way}: random binary series are subjectively perceived as containing too many streaks. In particular, people perceive the series as random when the probability of return is $\sim0.4$ (probability of alternation 0.6). On the other hand, if the probability is 0.5 they think there are too many returns. As a result, people do not start predicting returns when $P(ret)>0.5$. Their point of equilibrium is thought to be around $P(ret)=0.4$ instead.
-}
-
-The results are presented in Fig.~\ref{fig:rescorla}.
-They observe a huge variability among individuals (very different $\alpha$ and $K$). From a statistical perspective, \texttt{pret30} is as much informative as \texttt{pret70}, however people present higher learning rate in \texttt{pret30}. This because people would perceive \texttt{pret40} as random, not \texttt{pret50}; so psychologically \texttt{pret70} is considered to be much more informative than \texttt{pret30}.
-They successfully validate on left-out data per participant.
-
 \begin{figure}[!ht]
     \centering
     \captionsetup{width=.8\linewidth}
@@ -149,7 +141,14 @@ They successfully validate on left-out data per participant.
     \label{fig:rescorla}
 \end{figure}
 
+The results are presented in Fig.~\ref{fig:rescorla}.
+They observe a huge variability among individuals (very different $\alpha$ and $K$). From a statistical perspective, \texttt{pret30} is as much informative as \texttt{pret70}, however people present higher learning rate in \texttt{pret30}. This because people would perceive \texttt{pret40} as random, not \texttt{pret50}; so psychologically \texttt{pret70} is considered to be much more informative than \texttt{pret30}.
+They successfully validate on left-out data per participant.\\
 In conclusion, the different learning rates for two processes with identical conditional entropy supports the idea of a subjective perception of randomness. Modulations of $K$ are consistent with greater confidence in executing behavior in \texttt{pret70}.
+
+\boxc{\notet Probability equilibrium point}{
+    \textbf{People mis-estimate chance in a systematic way}: random binary series are subjectively perceived as containing too many streaks. In particular, people perceive the series as random when the probability of return is $\sim0.4$ (probability of alternation 0.6). On the other hand, if the probability is 0.5 they think there are too many returns. As a result, people do not start predicting returns when $P(ret)>0.5$. Their point of equilibrium is thought to be around $P(ret)=0.4$ instead.
+}
 
 \section[Relationship between prediction and behavior]{Relationship between prediction and behavior\\ Timme and Lapish (2018)
 }
