@@ -71,7 +71,7 @@ Core questions for neuroscience are:
 We ask ourselves if fMRI and neuroscience allow us to \textit{test} or \textit{understand} what are the \textbf{basis functions} (the \textbf{semantic feature} space) that underlie the representation of words. This can help in designing more cognitive real computational models.
 
 \boxc{Historical approach}{
-We present multiple words sampled from several categories (e.g., tools, buildings), and then train a classifier that predicts the class (tool/building) from the brain images of the words. Brain images are taken with fMRI: see the figure, which shows activation maps from fMRI data (each of the 4 images in a row represent a slice of the brain).
+We present multiple words sampled from several categories (e.g., tools, buildings), and then train a classifier that predicts the class (tool/building) from the brain images of the words. Brain images are taken with fMRI: see the figure, which shows activation maps from fMRI data (each of the 4 images in a row represents a slice of the brain).
 % A classifier is trained using a single voxel, so that we learn which voxel contains information for specific classes.
 The results of the classifier can be used as a tool for studying the semantics in the brain. For instance, we can understand which brain area contains information about particular classes. This is a pure \textit{decoder}; there is no domain-based knowledge that is applied to predict the brain response from more basic principles.
 
@@ -281,7 +281,7 @@ The following techniques all probe for strength of common dimensions between two
 In the following we consider already seen topics, but from a different perspective.
 
 \subsubsection{Information contained in multiple voxels}
-The typical approach of fMRI is massively multivariate, since it considers one voxel at a time. The problem is that information contained in multiple voxels is lost.
+The typical approach of fMRI is massively univariate, since it considers one voxel at a time. The problem is that information contained in multiple voxels is lost.
 
 \begin{wrapfigure}[12]{r}{0pt}
   \centering
@@ -299,7 +299,7 @@ In a multivariate approach, they considered the entire set of values in each reg
 A multi voxel pattern analysis (MVPA) can be carried out.
 Two conditions are presented, which produce different distributions of activity across trials. In Case 1, each condition produces different activity levels, in both Voxel 1 and Voxel 2. Clearly, the region discriminates the classes.
 In Case 2, each condition produces highly similar mean activity levels in both Voxel 1 and Voxel 2. So one might conclude that the region does not discriminate, if aggregating across univariate analysis.
-But the multivariate analysis leads to a completely different result, allowing us to better understand: the region containing voxels 1 and 2 \textbf{carries information about conditions in the joint distribution} of Voxel 1 and Voxel 2.
+But the multivariate analysis leads to a completely different result, allowing us to better understand: the region containing voxels 1 and 2 \textbf{caries information about conditions in the joint distribution} of Voxel 1 and Voxel 2.
 \begin{figure}[!ht]
     \centering
     \captionsetup{width=.8\linewidth}
