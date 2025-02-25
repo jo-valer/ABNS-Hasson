@@ -4,9 +4,12 @@
 
 Theory Notes for the course "Artificial and Biological Neural Systems"
 
-## PDF
+## ⬇️ PDF
 
 The PDF of the Notes can be downloaded [here](https://github.com/jo-valer/ABNS-Hasson/blob/main/out/ABNS_Notes.pdf).
+
+> [!WARNING]
+> Some PDF readers have problems rendering these notes. Avoid using Adobe Acrobat Reader and Microsoft Edge built-in PDF reader.
 
 ## License
 This work is licensed under a
